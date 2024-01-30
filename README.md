@@ -141,20 +141,20 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
 ```
 - If you have a public code repo, please share it here:  
-- How many contracts are in scope?:   
-- Total SLoC for these contracts?:  
-- How many external imports are there?:  
-- How many separate interfaces and struct definitions are there for the contracts within scope?:  
-- Does most of your code generally use composition or inheritance?:   
-- How many external calls?:   
-- What is the overall line coverage percentage provided by your tests?:
-- Is this an upgrade of an existing system?:
-- Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.): 
-- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:   
-- Please describe required context:   
-- Does it use an oracle?:  
-- Describe any novel or unique curve logic or mathematical models your code uses: 
-- Is this either a fork of or an alternate implementation of another project?:   
+- How many contracts are in scope?: 11   
+- Total SLoC for these contracts?: 1350  
+- How many external imports are there?: 5  
+- How many separate interfaces and struct definitions are there for the contracts within scope?: 4 structs  
+- Does most of your code generally use composition or inheritance?: Composition   
+- How many external calls?: 0  
+- What is the overall line coverage percentage provided by your tests?: 50
+- Is this an upgrade of an existing system?: False
+- Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.): NFT, ERC-20 Token, Uses L2  
+- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?: True - We have a deployed mintpass that will be redeemed for a fighter NFT. It could be important to read through the mintpass smart contract code. Additionally, to understand the ranked battle points system, material will be required to understand the flow.   
+- Please describe required context: We have a deployed mintpass that will be redeemed for a fighter NFT. It could be important to read through the mintpass smart contract code. Additionally, to understand the ranked battle points system, material will be required to understand the flow. 
+- Does it use an oracle?: Others - Our game server acts as an oracle to put battle results on-chain  
+- Describe any novel or unique curve logic or mathematical models your code uses: Our points system for determining distribution of our ERC20 token at the end of each round uses a combination of ELO factor, staking factor, and % of points to be allocated to the merging pool 
+- Is this either a fork of or an alternate implementation of another project?: False   
 - Does it use a side-chain?:
 - Describe any specific areas you would like addressed:
 ```
