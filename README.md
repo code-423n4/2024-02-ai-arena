@@ -58,15 +58,15 @@ Some of the checklists in this doc are for **C4 (🐺)** and some of them are fo
 
 ---
 
-# AI Arena (https://twitter.com/aiarena_) audit details
-- Total Prize Pool: $114500 in USDC
-  - HM awards: $95250 in USDC
-  - Analysis awards: $2500 in USDC
-  - QA awards: $1250 in USDC
-  - Bot Race awards: $3750 in USDC
-  - Gas awards: $1250 in USDC
-  - Judge awards: $6000 in USDC
-  - Lookout awards: XXX XXX USDC (Notion: Sum of Pre-sort fee + Pre-sort early bonus)
+# AI Arena audit details
+- Total Prize Pool: $114,500 in USDC
+  - HM awards: $95,250 in USDC
+  - Analysis awards: $2,500 in USDC
+  - QA awards: $1,250 in USDC
+  - Bot Race awards: $3,750 in USDC
+  - Gas awards: $1,250 in USDC
+  - Judge awards: $60,00 in USDC
+  - Lookout awards: $4,000 in USDC
   - Scout awards: $500 in USDC
  
 - Join [C4 Discord](https://discord.gg/code4rena) to register
@@ -79,7 +79,7 @@ Some of the checklists in this doc are for **C4 (🐺)** and some of them are fo
 
 The 4naly3er report can be found [here](https://github.com/code-423n4/2024-02-ai-arena/blob/main/4naly3er-report.md).
 
-Automated findings output for the audit can be found [here](https://github.com/code-423n4/YYYY-MM-contest-candidate/blob/main/bot-report.md) within 24 hours of audit opening.
+Automated findings output for the audit can be found [here](https://github.com/code-423n4/2024-02-ai-arena/blob/main/bot-report.md) within 24 hours of audit opening.
 
 _Note for C4 wardens: Anything included in this `Automated Findings / Publicly Known Issues` section is considered a publicly known issue and is ineligible for awards._
 
