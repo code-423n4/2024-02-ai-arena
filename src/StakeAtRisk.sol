@@ -6,9 +6,7 @@ import { RankedBattle } from "./RankedBattle.sol";
 
 /// @title StakeAtRisk
 /// @author ArenaX Labs Inc.
-/// @notice Manages the staking of NRN tokens at risk during battles
-/// @dev This contract allows the RankedBattle contract to manage the
-/// staking of NRN tokens at risk during battles.
+/// @notice Manages the NRNs that are at risk of being lost during a round of competition
 contract StakeAtRisk {
 
     /*//////////////////////////////////////////////////////////////
@@ -54,11 +52,11 @@ contract StakeAtRisk {
                                CONSTRUCTOR
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Sets the contract addresses for the Neuron, Treasury, and RankedBattle contracts.
+    /// @notice Sets the addresses for the treasury, neuron contract and ranked battle contract.
     /// Instantiates the Neuron contract.
     /// @param _treasuryAddress The address of the treasury contract
     /// @param nrnAddress The address of the Neuron contract
-    /// @param rankedBattleAddress The address of the RankedBattle contract
+    /// @param rankedBattleAddress The address of the Ranked Battle contract
     constructor(
         address _treasuryAddress,
         address nrnAddress,
