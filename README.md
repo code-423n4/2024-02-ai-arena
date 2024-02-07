@@ -141,10 +141,7 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
 
   
 ## Scoping Details
-
-[ ⭐️ SPONSORS: please confirm/edit the information below. ]
  
-
 ```
 
 - If you have a public code repo, please share it here:
