@@ -106,7 +106,7 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
 
 # Additional Context
 
-  
+AAMintPass Contract: This contract creates mint passes for those who have qualified, which are claimable for AI Arena fighters at a later date.
 
 - [ ] Describe any novel or unique curve logic or mathematical models implemented in the contracts
 
@@ -146,9 +146,9 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
 
 - If you have a public code repo, please share it here:
 
-- How many contracts are in scope?: 11
+- How many contracts are in scope?: 8
 
-- Total SLoC for these contracts?: 1350
+- Total SLoC for these contracts?: 1052
 
 - How many external imports are there?: 5
 
