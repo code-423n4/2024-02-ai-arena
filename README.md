@@ -158,7 +158,7 @@ AAMintPass Contract: This contract creates mint passes for those who have qualif
 
 - How many external calls?: 0
 
-- What is the overall line coverage percentage provided by your tests?: 50
+- What is the overall line coverage percentage provided by your tests?: 90
 
 - Is this an upgrade of an existing system?: False
 
