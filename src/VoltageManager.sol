@@ -1,29 +1,30 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
-import {GameItems} from "./GameItems.sol";
+import { GameItems } from "./GameItems.sol";
 
-/// @title VoltageManager
+/// @title VoltageManager 
 /// @author ArenaX Labs Inc.
 /// @notice Manages the voltage system for game items
-/// @dev This contract allows the management of voltage for game items and
+/// @dev This contract allows the management of voltage for game items and 
 /// provides functions for using and replenishing voltage.
 contract VoltageManager {
+
     /*//////////////////////////////////////////////////////////////
                                 EVENTS
     //////////////////////////////////////////////////////////////*/
 
     /// @notice Event emitted when voltage amount is altered.
-    event VoltageRemaining(address spender, uint8 voltage);
+    event VoltageRemaining(address spender, uint8 voltage);  
 
     /*//////////////////////////////////////////////////////////////
                             STATE VARIABLES
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice The address that deploys the smart contract.
+    /// The address that has owner privileges (initially the contract deployer).
     address _ownerAddress;
-
-    /// @notice The game items contract instance.
+    
+    /// @dev The game items contract instance.
     GameItems _gameItemsContractInstance;
 
     /*//////////////////////////////////////////////////////////////
@@ -53,7 +54,7 @@ contract VoltageManager {
         _ownerAddress = ownerAddress;
         _gameItemsContractInstance = GameItems(gameItemsContractAddress);
         isAdmin[_ownerAddress] = true;
-    }
+    } 
 
     /*//////////////////////////////////////////////////////////////
                             EXTERNAL FUNCTIONS
@@ -74,7 +75,7 @@ contract VoltageManager {
     function adjustAdminAccess(address adminAddress, bool access) external {
         require(msg.sender == _ownerAddress);
         isAdmin[adminAddress] = access;
-    }
+    }  
 
     /// @notice Adjusts whether a given address is allowed to spend voltage
     /// @dev Only admins are authorized to call this function.
@@ -87,7 +88,7 @@ contract VoltageManager {
 
     /*//////////////////////////////////////////////////////////////
                             PUBLIC FUNCTIONS
-    //////////////////////////////////////////////////////////////*/
+    //////////////////////////////////////////////////////////////*/    
 
     /// @notice Uses a voltage battery to replenish voltage for a player in AI Arena.
     /// @dev This function can be called by any user to use the voltage battery.
@@ -118,5 +119,5 @@ contract VoltageManager {
     function _replenishVoltage(address owner) private {
         ownerVoltage[owner] = 100;
         ownerVoltageReplenishTime[owner] = uint32(block.timestamp + 1 days);
-    }
+    }    
 }

@@ -3,11 +3,11 @@ pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
-import {Verification} from "./Verification.sol";
+import { Verification } from "./Verification.sol";
 
 /// @title AI Arena Mint Pass
 /// @author ArenaX Labs Inc.
-/// @notice This contract creates mint passes for those who have qualified, which are claimable
+/// @notice This contract creates mint passes for those who have qualified, which are claimable 
 /// for AI Arena fighters at a later date
 contract AAMintPass is ERC721, ERC721Burnable {
     // The founder address is the address that deploys the smart contract
@@ -20,7 +20,7 @@ contract AAMintPass is ERC721, ERC721Burnable {
     // The delegated address is responsible for signing messages to confirm someone is able to
     // claim mint passes
     address public delegatedAddress;
-
+    
     // Mapping to check if an address has admin rights
     mapping(address => bool) public isAdmin;
 
@@ -37,11 +37,13 @@ contract AAMintPass is ERC721, ERC721Burnable {
     uint256 public numTokensOutstanding = 0;
 
     // Number of tokens which have been burned
-    uint256 public numTokensBurned = 0;
+    uint256 public numTokensBurned = 0;    
 
     /// @dev Initializes the smart contract with the founder and delegated addresses
-    /// Also sets the founder as an admin by default
-    constructor(address _founderAddress, address _delegatedAddress) ERC721("AI Arena Mint Pass", "AAMP") {
+    /// Also sets the founder as an admin by default 
+    constructor(address _founderAddress, address _delegatedAddress) 
+        ERC721("AI Arena Mint Pass", "AAMP") 
+    {
         delegatedAddress = _delegatedAddress;
         founderAddress = _founderAddress;
         isAdmin[founderAddress] = true;
@@ -94,32 +96,32 @@ contract AAMintPass is ERC721, ERC721Burnable {
     }
 
     /// @notice This allows you to claim a mintpass which you have qualified for
-    /// @dev Users must provide the number of mintpasses they want to claim, along with the
-    /// tokenURIs and a signature from our delegated server address. We then verify that the
+    /// @dev Users must provide the number of mintpasses they want to claim, along with the 
+    /// tokenURIs and a signature from our delegated server address. We then verify that the 
     /// server did indeed sign a message approving them to claim the amount of mint passes.
     /// We use passesClaimed as a part of the message and increment it to ensure they cannot use
     /// the same signature multiple times.
     /// @param numToMint The number of mintpasses to claim. The first element in the array is the
-    /// number of AI Champion mintpasses and the second element is the number of Dendroid
+    /// number of AI Champion mintpasses and the second element is the number of Dendroid 
     /// mintpasses.
     /// @param signature The signature from the delegated server address
-    /// @param _tokenURIs Token URIs for each of the mintpasses a user claims
-    function claimMintPass(uint8[2] calldata numToMint, bytes calldata signature, string[] calldata _tokenURIs)
-        external
+    /// @param _tokenURIs Token URIs for each of the mintpasses a user claims 
+    function claimMintPass(
+        uint8[2] calldata numToMint,
+        bytes calldata signature,
+        string[] calldata _tokenURIs
+    ) 
+        external 
     {
         require(!mintingPaused);
-        bytes32 msgHash = bytes32(
-            keccak256(
-                abi.encode(
-                    msg.sender,
-                    numToMint[0],
-                    numToMint[1],
-                    passesClaimed[msg.sender][0],
-                    passesClaimed[msg.sender][1],
-                    _tokenURIs
-                )
-            )
-        );
+        bytes32 msgHash = bytes32(keccak256(abi.encode(
+            msg.sender, 
+            numToMint[0], 
+            numToMint[1],
+            passesClaimed[msg.sender][0],
+            passesClaimed[msg.sender][1],
+            _tokenURIs
+        )));
         require(Verification.verify(msgHash, signature, delegatedAddress));
         uint16 totalToMint = uint16(numToMint[0] + numToMint[1]);
         require(_tokenURIs.length == totalToMint);
@@ -149,7 +151,7 @@ contract AAMintPass is ERC721, ERC721Burnable {
         return "ipfs://bafybeifdvzwsjpxrkbyhqpz3y57j7nwm3eyyc3feqppqggslea3g5kk3jq";
     }
 
-    /// @dev Returns the tokenURI for a given token id
+    /// @dev Returns the tokenURI for a given token id 
     /// @param _tokenId The id for the NFT
     function tokenURI(uint256 _tokenId) public view override(ERC721) returns (string memory) {
         require(_exists(_tokenId), "ERC721Metadata: URI query for nonexistent token");

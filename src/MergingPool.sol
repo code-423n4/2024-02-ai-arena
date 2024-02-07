@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
-import {FighterFarm} from "./FighterFarm.sol";
+import { FighterFarm } from "./FighterFarm.sol";
 
 /// @title MergingPool
 /// @author ArenaX Labs Inc.
-/// @notice This contract allows users to stake their fighters to earn rewards.
+/// @notice This contract allows users to potentially earn a new fighter NFT.
 contract MergingPool {
+
     /*//////////////////////////////////////////////////////////////
                                 EVENTS
     //////////////////////////////////////////////////////////////*/
@@ -15,7 +16,7 @@ contract MergingPool {
     event PointsAdded(uint256 tokenId, uint256 points);
 
     /// @notice Event emitted when claimed.
-    event Claimed(address claimer, uint256 amount);
+    event Claimed(address claimer, uint32 amount);
 
     /*//////////////////////////////////////////////////////////////
                             STATE VARIABLES
@@ -28,15 +29,15 @@ contract MergingPool {
     uint256 public roundId = 0;
 
     /// @notice Total points.
-    uint256 public totalPoints = 0;
+    uint256 public totalPoints = 0;    
 
-    /// @notice The address that deploys the smart contract.
+    /// The address that has owner privileges (initially the contract deployer).
     address _ownerAddress;
 
-    /// @notice The address of the ranked battle contract.
+    /// The address of the ranked battle contract.
     address _rankedBattleAddress;
 
-    /// @notice The fighter farm contract instance.
+    /// @dev The fighter farm contract instance.
     FighterFarm _fighterFarmInstance;
 
     /*//////////////////////////////////////////////////////////////
@@ -46,11 +47,11 @@ contract MergingPool {
     /// @notice Maps the user address to the number of rounds they've claimed for
     mapping(address => uint32) public numRoundsClaimed;
 
-    /// @notice Mapping of fighterId to fighter points.
+    /// @notice Mapping of address to fighter points.
     mapping(uint256 => uint256) public fighterPoints;
 
     /// @notice Mapping of roundId to winner addresses list.
-    mapping(uint256 => address[]) public winnerAddresses;
+    mapping(uint256 => address[]) public winnerAddresses;    
 
     /// @notice Mapping of round id to an indication of whether winners have been selected yet.
     mapping(uint256 => bool) public isSelectionComplete;
@@ -67,7 +68,11 @@ contract MergingPool {
     /// @param ownerAddress Address of contract deployer.
     /// @param rankedBattleAddress Address of ranked battle contract.
     /// @param fighterFarmAddress Address of fighter farm contract.
-    constructor(address ownerAddress, address rankedBattleAddress, address fighterFarmAddress) {
+    constructor(
+        address ownerAddress, 
+        address rankedBattleAddress, 
+        address fighterFarmAddress
+    ) {
         _ownerAddress = ownerAddress;
         _rankedBattleAddress = rankedBattleAddress;
         _fighterFarmInstance = FighterFarm(fighterFarmAddress);
@@ -93,7 +98,7 @@ contract MergingPool {
     function adjustAdminAccess(address adminAddress, bool access) external {
         require(msg.sender == _ownerAddress);
         isAdmin[adminAddress] = access;
-    }
+    }   
 
     /// @notice Change the number of winners per competition period.
     /// @dev Only admins are authorized to call this function.
@@ -101,7 +106,7 @@ contract MergingPool {
     function updateWinnersPerPeriod(uint256 newWinnersPerPeriodAmount) external {
         require(isAdmin[msg.sender]);
         winnersPerPeriod = newWinnersPerPeriodAmount;
-    }
+    }    
 
     /// @notice Allows the admin to pick the winners for the current round.
     /// @dev Only admins are authorized to call this function.
@@ -132,10 +137,12 @@ contract MergingPool {
     /// @param modelTypes The array of model types corresponding to each round and winner address.
     /// @param customAttributes Array with [element, weight] of the newly created fighter.
     function claimRewards(
-        string[] calldata modelURIs,
+        string[] calldata modelURIs, 
         string[] calldata modelTypes,
         uint256[2][] calldata customAttributes
-    ) external {
+    ) 
+        external 
+    {
         uint256 winnersLength;
         uint32 claimIndex = 0;
         uint32 lowerBound = numRoundsClaimed[msg.sender];
@@ -145,7 +152,10 @@ contract MergingPool {
             for (uint32 j = 0; j < winnersLength; j++) {
                 if (msg.sender == winnerAddresses[currentRound][j]) {
                     _fighterFarmInstance.mintFromMergingPool(
-                        msg.sender, modelURIs[claimIndex], modelTypes[claimIndex], customAttributes[claimIndex]
+                        msg.sender,
+                        modelURIs[claimIndex],
+                        modelTypes[claimIndex],
+                        customAttributes[claimIndex]
                     );
                     claimIndex += 1;
                 }
@@ -159,7 +169,7 @@ contract MergingPool {
     /// @notice Gets the unclaimed rewards for a specific address.
     /// @param claimer The address of the claimer.
     /// @return numRewards The amount of unclaimed fighters.
-    function getUnclaimedRewards(address claimer) external view returns (uint256) {
+    function getUnclaimedRewards(address claimer) external view returns(uint256) {
         uint256 winnersLength;
         uint256 numRewards = 0;
         uint32 lowerBound = numRoundsClaimed[claimer];
@@ -176,7 +186,7 @@ contract MergingPool {
 
     /*//////////////////////////////////////////////////////////////
                             PUBLIC FUNCTIONS
-    //////////////////////////////////////////////////////////////*/
+    //////////////////////////////////////////////////////////////*/    
 
     /// @notice Add merging pool points to a fighter.
     /// @dev Only the rankedBattle contract address can call this function.

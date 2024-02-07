@@ -50,10 +50,6 @@ contract DeployerScript is Script {
         Neuron neuron = new Neuron(deployerAddress, treasuryAddress, contributorAddress);
         StakeAtRisk stakeAtRisk = new StakeAtRisk(treasuryAddress, address(neuron), address(rankedBattle));
 
-        // ----------------- ONLY FOR TESTNET CAMPAIGN -----------------
-        // TeamGame teamGame = new TeamGame();
-        // ----------------- ONLY FOR TESTNET CAMPAIGN -----------------
-
         // After Deployment ------------------------
         gameItems.setAllowedBurningAddresses(address(voltageManager));
         gameItems.instantiateNeuronContract(address(neuron));
@@ -77,10 +73,6 @@ contract DeployerScript is Script {
         rankedBattle.setStakeAtRiskAddress(address(stakeAtRisk));
 
         voltageManager.adjustAllowedVoltageSpenders(address(rankedBattle), true);
-
-        // ----------------- ONLY FOR TESTNET CAMPAIGN -----------------
-        // teamGame.instantiateFighterFarmContract(address(fighterFarm));
-        // ----------------- ONLY FOR TESTNET CAMPAIGN -----------------
 
         neuron.addMinter(address(rankedBattle));
         neuron.addStaker(address(rankedBattle));

@@ -1,13 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
-import {Neuron} from "./Neuron.sol";
+import { Neuron } from "./Neuron.sol";
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 
 /// @title GameItems
 /// @author ArenaX Labs Inc.
 /// @notice This contract represents a collection of game items used in AI Arena.
 contract GameItems is ERC1155 {
+
     /*//////////////////////////////////////////////////////////////
                                 EVENTS
     //////////////////////////////////////////////////////////////*/
@@ -29,7 +30,7 @@ contract GameItems is ERC1155 {
     /*//////////////////////////////////////////////////////////////
                                 STRUCTS
     //////////////////////////////////////////////////////////////*/
-
+    
     /// @notice Struct for game item attributes
     struct GameItemAttributes {
         string name;
@@ -38,7 +39,7 @@ contract GameItems is ERC1155 {
         uint256 itemsRemaining;
         uint256 itemPrice;
         uint256 dailyAllowance;
-    }
+    }  
 
     /*//////////////////////////////////////////////////////////////
                             STATE VARIABLES
@@ -56,18 +57,18 @@ contract GameItems is ERC1155 {
     /// @notice The address that recieves funds of purchased game items.
     address public treasuryAddress;
 
-    /// @notice The address that deploys the smart contract.
+    /// The address that has owner privileges (initially the contract deployer).
     address _ownerAddress;
 
-    /// @notice Total number of game items.
-    uint256 _itemCount = 0;
+    /// Total number of game items.
+    uint256 _itemCount = 0;    
 
-    /// @notice The Neuron contract instance.
+    /// @dev The Neuron contract instance.
     Neuron _neuronInstance;
-
+    
     /*//////////////////////////////////////////////////////////////
                                 MAPPINGS
-    //////////////////////////////////////////////////////////////*/
+    //////////////////////////////////////////////////////////////*/ 
 
     /// @notice Mapping of address to tokenId to get remaining allowance.
     mapping(address => mapping(uint256 => uint256)) public allowanceRemaining;
@@ -88,8 +89,7 @@ contract GameItems is ERC1155 {
                                CONSTRUCTOR
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Sets the owner address, the delegated address and
-    /// the isAdmin mapping is set to true for the owner address.
+    /// @notice Sets the owner address and the isAdmin mapping to true for the owner address.
     /// @param ownerAddress Address of contract deployer.
     /// @param treasuryAddress_ Address of admin signer for messages.
     constructor(address ownerAddress, address treasuryAddress_) ERC1155("https://ipfs.io/ipfs/") {
@@ -100,7 +100,7 @@ contract GameItems is ERC1155 {
 
     /*//////////////////////////////////////////////////////////////
                             EXTERNAL FUNCTIONS
-    //////////////////////////////////////////////////////////////*/
+    //////////////////////////////////////////////////////////////*/    
 
     /// @notice Transfers ownership from one address to another.
     /// @dev Only the owner address is authorized to call this function.
@@ -117,19 +117,19 @@ contract GameItems is ERC1155 {
     function adjustAdminAccess(address adminAddress, bool access) external {
         require(msg.sender == _ownerAddress);
         isAdmin[adminAddress] = access;
-    }
+    }  
 
     /// @notice Adjusts whether the game item can be transferred or not
     /// @dev Only the owner address is authorized to call this function.
     /// @param tokenId The token id for the specific game item being adjusted.
-    /// @param transferable The address of the new admin
+    /// @param transferable Whether the game item is transferable or not
     function adjustTransferability(uint256 tokenId, bool transferable) external {
-        require(msg.sender == _ownerAddress);
+        require(msg.sender == _ownerAddress); // Add this check in the transfer functions
         allGameItemAttributes[tokenId].transferable = transferable;
         if (transferable) {
-            emit Unlocked(tokenId);
+          emit Unlocked(tokenId);
         } else {
-            emit Locked(tokenId);
+          emit Locked(tokenId);
         }
     }
 
@@ -149,15 +149,15 @@ contract GameItems is ERC1155 {
         uint256 price = allGameItemAttributes[tokenId].itemPrice * quantity;
         require(_neuronInstance.balanceOf(msg.sender) >= price, "Not enough NRN for purchase");
         require(
-            allGameItemAttributes[tokenId].finiteSupply == false
-                || (
-                    allGameItemAttributes[tokenId].finiteSupply == true
-                        && quantity <= allGameItemAttributes[tokenId].itemsRemaining
-                )
+            allGameItemAttributes[tokenId].finiteSupply == false || 
+            (
+                allGameItemAttributes[tokenId].finiteSupply == true && 
+                quantity <= allGameItemAttributes[tokenId].itemsRemaining
+            )
         );
         require(
-            dailyAllowanceReplenishTime[msg.sender][tokenId] <= block.timestamp
-                || quantity <= allowanceRemaining[msg.sender][tokenId]
+            dailyAllowanceReplenishTime[msg.sender][tokenId] <= block.timestamp || 
+            quantity <= allowanceRemaining[msg.sender][tokenId]
         );
 
         _neuronInstance.approveSpender(msg.sender, price);
@@ -177,7 +177,7 @@ contract GameItems is ERC1155 {
 
     /*//////////////////////////////////////////////////////////////
                             PUBLIC FUNCTIONS
-    //////////////////////////////////////////////////////////////*/
+    //////////////////////////////////////////////////////////////*/    
 
     /// @notice Sets the allowed burning addresses.
     /// @dev Only the admins are authorized to call this function.
@@ -189,7 +189,7 @@ contract GameItems is ERC1155 {
 
     /// @notice Sets the token URI for a game item
     /// @dev Only the admins are authorized to call this function.
-    /// @param tokenId The token id for the specific game item being queried.
+    /// @param tokenId The token id for the specific game item being queried.    
     /// @param _tokenURI The token id to be set
     function setTokenURI(uint256 tokenId, string memory _tokenURI) public {
         require(isAdmin[msg.sender]);
@@ -213,13 +213,22 @@ contract GameItems is ERC1155 {
         uint256 itemsRemaining,
         uint256 itemPrice,
         uint16 dailyAllowance
-    ) public {
+    ) 
+        public 
+    {
         require(isAdmin[msg.sender]);
         allGameItemAttributes.push(
-            GameItemAttributes(name_, finiteSupply, transferable, itemsRemaining, itemPrice, dailyAllowance)
+            GameItemAttributes(
+                name_,
+                finiteSupply,
+                transferable,
+                itemsRemaining,
+                itemPrice,
+                dailyAllowance
+            )
         );
         if (!transferable) {
-            emit Locked(_itemCount);
+          emit Locked(_itemCount);
         }
         setTokenURI(_itemCount, tokenURI);
         _itemCount += 1;
@@ -250,7 +259,7 @@ contract GameItems is ERC1155 {
             return customURI;
         }
         return super.uri(tokenId);
-    }
+    }        
 
     /// @notice Gets the amount of a game item that a user is still able to mint for the day
     /// @param owner The user's address.
@@ -279,8 +288,14 @@ contract GameItems is ERC1155 {
 
     /// @notice Safely transfers an NFT from one address to another.
     /// @dev Added a check to see if the game item is transferable.
-    function safeTransferFrom(address from, address to, uint256 tokenId, uint256 amount, bytes memory data)
-        public
+    function safeTransferFrom(
+        address from, 
+        address to, 
+        uint256 tokenId,
+        uint256 amount,
+        bytes memory data
+    ) 
+        public 
         override(ERC1155)
     {
         require(allGameItemAttributes[tokenId].transferable);
@@ -289,7 +304,7 @@ contract GameItems is ERC1155 {
 
     /*//////////////////////////////////////////////////////////////
                             PRIVATE FUNCTIONS
-    //////////////////////////////////////////////////////////////*/
+    //////////////////////////////////////////////////////////////*/    
 
     /// @notice Replenishes the daily allowance for the specified game item token.
     /// @dev This function is called when a user buys a battery after the replenish interval has passed.
@@ -297,5 +312,5 @@ contract GameItems is ERC1155 {
     function _replenishDailyAllowance(uint256 tokenId) private {
         allowanceRemaining[msg.sender][tokenId] = allGameItemAttributes[tokenId].dailyAllowance;
         dailyAllowanceReplenishTime[msg.sender][tokenId] = uint32(block.timestamp + 1 days);
-    }
+    }    
 }

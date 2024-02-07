@@ -7,8 +7,9 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 /// @title Neuron
 /// @author ArenaX Labs Inc.
 /// @notice ERC20 token contract representing Neuron (NRN) tokens.
-/// @dev The Neuron token is used for various functions within the platform, including staking, governance, and rewards.
+/// @dev The Neuron token is used for AI Arena's in-game economy.
 contract Neuron is ERC20, AccessControl {
+
     /*//////////////////////////////////////////////////////////////
                                 EVENTS
     //////////////////////////////////////////////////////////////*/
@@ -17,7 +18,7 @@ contract Neuron is ERC20, AccessControl {
     event TokensClaimed(address user, uint256 amount);
 
     /// @notice Event emitted when tokens are minted.
-    event TokensMinted(address user, uint256 amount);
+    event TokensMinted(address user, uint256 amount);    
 
     /*//////////////////////////////////////////////////////////////
                             STATE VARIABLES
@@ -28,23 +29,23 @@ contract Neuron is ERC20, AccessControl {
 
     /// @notice Role for spending tokens.
     bytes32 public constant SPENDER_ROLE = keccak256("SPENDER_ROLE");
-
+    
     /// @notice Role for staking tokens.
     bytes32 public constant STAKER_ROLE = keccak256("STAKER_ROLE");
 
     /// @notice Initial supply of NRN tokens to be minted to the treasury.
-    uint256 public constant INITIAL_TREASURY_MINT = 10 ** 18 * 10 ** 8 * 2;
+    uint256 public constant INITIAL_TREASURY_MINT = 10**18 * 10**8 * 2;
 
     /// @notice Initial supply of NRN tokens to be minted and distributed to contributors.
-    uint256 public constant INITIAL_CONTRIBUTOR_MINT = 10 ** 18 * 10 ** 8 * 5;
+    uint256 public constant INITIAL_CONTRIBUTOR_MINT = 10**18 * 10**8 * 5;
 
     /// @notice Maximum supply of NRN tokens.
-    uint256 public constant MAX_SUPPLY = 10 ** 18 * 10 ** 9;
+    uint256 public constant MAX_SUPPLY = 10**18 * 10**9;
 
-    /// @notice The dddress of treasury.
+    /// @notice The address of treasury.
     address public treasuryAddress;
 
-    /// The address that deploys the smart contract.
+    /// The address that has owner privileges (initially the contract deployer).
     address _ownerAddress;
 
     /*//////////////////////////////////////////////////////////////
@@ -58,11 +59,15 @@ contract Neuron is ERC20, AccessControl {
                                CONSTRUCTOR
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Mints the initial supply.
-    /// @param ownerAddress The address of the owner who deploys the contract.
-    /// @param treasuryAddress_ The address of the treasury where the initial supply is minted.
-    /// @param contributorAddress The address that will distribute NRNs to early contributors when the initial supply is minted.
-    constructor(address ownerAddress, address treasuryAddress_, address contributorAddress) ERC20("Neuron", "NRN") {
+    /// @notice Grants roles to the ranked battle contract. 
+    /// @notice Mints the initial supply to the treasury address.
+    /// @param ownerAddress The address of the owner who deploys the contract
+    /// @param treasuryAddress_ The address of the treasury where the initial supply is minted
+    /// @param contributorAddress The address that will distribute NRNs to early contributors when 
+    /// the initial supply is minted.
+    constructor(address ownerAddress, address treasuryAddress_, address contributorAddress)
+        ERC20("Neuron", "NRN")
+    {
         _ownerAddress = ownerAddress;
         treasuryAddress = treasuryAddress_;
         isAdmin[_ownerAddress] = true;
@@ -113,9 +118,9 @@ contract Neuron is ERC20, AccessControl {
     function adjustAdminAccess(address adminAddress, bool access) external {
         require(msg.sender == _ownerAddress);
         isAdmin[adminAddress] = access;
-    }
+    }  
 
-    /// @notice Sets up the allowance from the treasury address to transfer to each recipient.
+    /// @notice Sets up the allowance from the treasury address to transfer to each recipient address.
     /// @dev Only admins are authorized to call this function.
     /// @param recipients The array of recipient addresses
     /// @param amounts The array of corresponding amounts for each recipient
@@ -131,7 +136,10 @@ contract Neuron is ERC20, AccessControl {
     /// @notice Claims the specified amount of tokens from the treasury address to the caller's address.
     /// @param amount The amount to be claimed
     function claim(uint256 amount) external {
-        require(allowance(treasuryAddress, msg.sender) >= amount, "ERC20: claim amount exceeds allowance");
+        require(
+            allowance(treasuryAddress, msg.sender) >= amount, 
+            "ERC20: claim amount exceeds allowance"
+        );
         transferFrom(treasuryAddress, msg.sender, amount);
         emit TokensClaimed(msg.sender, amount);
     }
@@ -161,7 +169,10 @@ contract Neuron is ERC20, AccessControl {
     /// @param account The account for which to approve the allowance.
     /// @param amount The amount of tokens to be approved.
     function approveSpender(address account, uint256 amount) public {
-        require(hasRole(SPENDER_ROLE, msg.sender), "ERC20: must have spender role to approve spending");
+        require(
+            hasRole(SPENDER_ROLE, msg.sender), 
+            "ERC20: must have spender role to approve spending"
+        );
         _approve(account, msg.sender, amount);
     }
 
@@ -171,7 +182,10 @@ contract Neuron is ERC20, AccessControl {
     /// @param spender The address for which to approve the allowance.
     /// @param amount The amount of tokens to be approved.
     function approveStaker(address owner, address spender, uint256 amount) public {
-        require(hasRole(STAKER_ROLE, msg.sender), "ERC20: must have staker role to approve staking");
+        require(
+            hasRole(STAKER_ROLE, msg.sender), 
+            "ERC20: must have staker role to approve staking"
+        );
         _approve(owner, spender, amount);
     }
 
@@ -180,9 +194,13 @@ contract Neuron is ERC20, AccessControl {
     /// @param account The account from which to burn the tokens
     /// @param amount The amount of tokens to be burned
     function burnFrom(address account, uint256 amount) public virtual {
-        require(allowance(account, msg.sender) >= amount, "ERC20: burn amount exceeds allowance");
+        require(
+            allowance(account, msg.sender) >= amount, 
+            "ERC20: burn amount exceeds allowance"
+        );
         uint256 decreasedAllowance = allowance(account, msg.sender) - amount;
         _burn(account, amount);
         _approve(account, msg.sender, decreasedAllowance);
     }
+ 
 }

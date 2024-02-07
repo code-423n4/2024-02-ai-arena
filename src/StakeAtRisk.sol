@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
-import {Neuron} from "./Neuron.sol";
-import {RankedBattle} from "./RankedBattle.sol";
+import { Neuron } from "./Neuron.sol";
+import { RankedBattle } from "./RankedBattle.sol";
 
 /// @title StakeAtRisk
 /// @author ArenaX Labs Inc.
@@ -10,6 +10,7 @@ import {RankedBattle} from "./RankedBattle.sol";
 /// @dev This contract allows the RankedBattle contract to manage the
 /// staking of NRN tokens at risk during battles.
 contract StakeAtRisk {
+
     /*//////////////////////////////////////////////////////////////
                                 EVENTS
     //////////////////////////////////////////////////////////////*/
@@ -25,7 +26,7 @@ contract StakeAtRisk {
     //////////////////////////////////////////////////////////////*/
 
     /// @notice The current roundId.
-    uint256 public roundId = 0;
+    uint256 public roundId = 0;    
 
     /// @notice The treasury address.
     address public treasuryAddress;
@@ -35,7 +36,7 @@ contract StakeAtRisk {
 
     /// @notice The Neuron contract instance.
     Neuron _neuronInstance;
-
+    
     /*//////////////////////////////////////////////////////////////
                                 MAPPINGS
     //////////////////////////////////////////////////////////////*/
@@ -58,9 +59,13 @@ contract StakeAtRisk {
     /// @param _treasuryAddress The address of the treasury contract
     /// @param nrnAddress The address of the Neuron contract
     /// @param rankedBattleAddress The address of the RankedBattle contract
-    constructor(address _treasuryAddress, address nrnAddress, address rankedBattleAddress) {
+    constructor(
+        address _treasuryAddress,
+        address nrnAddress,
+        address rankedBattleAddress
+    ) {
         treasuryAddress = _treasuryAddress;
-        _rankedBattleAddress = rankedBattleAddress;
+        _rankedBattleAddress = rankedBattleAddress;   
         _neuronInstance = Neuron(nrnAddress);
     }
 
@@ -81,7 +86,7 @@ contract StakeAtRisk {
     }
 
     /// @notice Reclaims NRN tokens from the stake at risk.
-    /// @dev This function can only be called by the RankedBattle contract to reclaim
+    /// @dev This function can only be called by the RankedBattle contract to reclaim 
     /// NRN tokens from the stake at risk.
     /// @dev This gets triggered when they win a match while having NRNs at risk.
     /// @param nrnToReclaim The amount of NRN tokens to reclaim.
@@ -89,7 +94,10 @@ contract StakeAtRisk {
     /// @param fighterOwner The owner of the fighter.
     function reclaimNRN(uint256 nrnToReclaim, uint256 fighterId, address fighterOwner) external {
         require(msg.sender == _rankedBattleAddress, "Call must be from RankedBattle contract");
-        require(stakeAtRisk[roundId][fighterId] >= nrnToReclaim, "Fighter does not have enough stake at risk");
+        require(
+            stakeAtRisk[roundId][fighterId] >= nrnToReclaim, 
+            "Fighter does not have enough stake at risk"
+        );
 
         bool success = _neuronInstance.transfer(_rankedBattleAddress, nrnToReclaim);
         if (success) {
@@ -101,33 +109,39 @@ contract StakeAtRisk {
     }
 
     /// @notice Updates the stake at risk records for a fighter.
-    /// @dev This function can only be called by the RankedBattle contract to update the stake at
+    /// @dev This function can only be called by the RankedBattle contract to update the stake at 
     /// risk records for a fighter.
     /// @dev This gets triggered when the fighter has 0 points and loses (i.e. goes into deficit).
     /// @param nrnToPlaceAtRisk The amount of NRN tokens to place at risk.
     /// @param fighterId The ID of the fighter.
-    function updateAtRiskRecords(uint256 nrnToPlaceAtRisk, uint256 fighterId, address fighterOwner) external {
+    function updateAtRiskRecords(
+        uint256 nrnToPlaceAtRisk, 
+        uint256 fighterId, 
+        address fighterOwner
+    ) 
+        external 
+    {
         require(msg.sender == _rankedBattleAddress, "Call must be from RankedBattle contract");
         stakeAtRisk[roundId][fighterId] += nrnToPlaceAtRisk;
         totalStakeAtRisk[roundId] += nrnToPlaceAtRisk;
         amountLost[fighterOwner] += nrnToPlaceAtRisk;
         emit IncreasedStakeAtRisk(fighterId, nrnToPlaceAtRisk);
-    }
+    }   
 
     /// @notice Gets the stake at risk for a specific fighter in the current round.
     /// @param fighterId The ID of the fighter.
     /// @return Amount of NRN tokens at risk for the fighter in the current round.
-    function getStakeAtRisk(uint256 fighterId) external view returns (uint256) {
+    function getStakeAtRisk(uint256 fighterId) external view returns(uint256) {
         return stakeAtRisk[roundId][fighterId];
     }
 
     /*//////////////////////////////////////////////////////////////
                             PRIVATE FUNCTIONS
-    //////////////////////////////////////////////////////////////*/
+    //////////////////////////////////////////////////////////////*/    
 
     /// @notice Sweeps the lost stake to the treasury contract.
     /// @dev This function is called internally to transfer the lost stake to the treasury contract.
-    function _sweepLostStake() private returns (bool) {
+    function _sweepLostStake() private returns(bool) {
         return _neuronInstance.transfer(treasuryAddress, totalStakeAtRisk[roundId]);
     }
 }
