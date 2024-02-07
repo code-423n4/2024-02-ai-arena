@@ -69,15 +69,15 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
 ## Links
 
 
--  **Previous audits:**
+-  **Previous audits:** N/A
 
--  **Documentation:**
+-  **Documentation:** [Docs](https://docs.aiarena.io/gaming-competition)
 
--  **Website:**
+-  **Website:** [Website](https://aiarena.io/#/)
 
--  **Twitter:**
+-  **Twitter:** [Twitter](https://twitter.com/aiarena_)
 
--  **Discord:**
+-  **Discord:** [Discord](https://discord.gg/aiarena)
   
 
 # Scope
