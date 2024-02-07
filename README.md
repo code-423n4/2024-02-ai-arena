@@ -47,7 +47,22 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
   
 
-[ ⭐️ SPONSORS: add info here ]
+AI Arena is a PvP platform fighting game where the fighters are AIs that were trained by humans. In the web3 version of our game, these fighters are tokenized via the `FighterFarm.sol` smart contract. Each fighter NFT within this smart contract contains the following:
+
+- **Physical attributes**: Determines the visual appearance
+- **Generation**: This primarily affects the visual appearance
+- **Weight**: Determines the battle attributes
+- **Element**: Determines its special abilities
+- **Fighter Type**: Indicates whether its a regular Champion, Icons, or Dendroid
+- **Model Data**: Comprising of the model type and model hash
+  
+Players are able to enter their NFT fighters into ranked battle to earn rewards in our native token *$NRN*. Our token is an ERC20 token, as defined in the `Neuron.sol` smart contract. During deployment, we grant our `RankedBattle.sol` smart contract the `MINTER` and `STAKER` roles in order to facilitate our reward system. Additionally, the `FighterFarm.sol` and `GameItems.sol` smart contracts are granted the `SPENDER` role to allow for in-game purchases with our native token.
+
+Players are only able to earn *$NRN* in our game by staking their tokens and winning. However, it is important to note that it is possible for players to lose part of their stake if they perform poorly. Additionally, to level the playing field, we take the square root of the amount staked to calculate the `stakingFactor`, which is used in the points calculation after each ranked match. To learn more about our reward mechanism, please [click here](https://www.youtube.com/watch?v=JSaKUdcPBho).
+
+Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from the start of their first initiated match for the day, voltage will be replenished back to 100. Each ranked battle costs 10 voltage units. If a player runs out of voltage they either have to wait until it naturally replenishes or they can purchase a **battery** from our `GameItems.sol` smart contract. Each battery will fill voltage back to 100.
+
+**NOTE**: Our core game logic runs off-chain via our servers. We essentially use our game server as the oracle for ranked match results.
 
   
 

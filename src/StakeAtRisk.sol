@@ -5,6 +5,7 @@ import {Neuron} from "./Neuron.sol";
 import {RankedBattle} from "./RankedBattle.sol";
 
 /// @title StakeAtRisk
+/// @author ArenaX Labs Inc.
 /// @notice Manages the staking of NRN tokens at risk during battles
 /// @dev This contract allows the RankedBattle contract to manage the
 /// staking of NRN tokens at risk during battles.
