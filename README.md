@@ -1,8 +1,8 @@
 # AI Arena audit details
 
-- Total Prize Pool: $114,500 in USDC
+- Total Prize Pool: $60,500 in USDC
 
-- HM awards: $95,250 in USDC
+- HM awards: $41,250 in USDC
 
 - Analysis awards: $2,500 in USDC
 
@@ -12,7 +12,7 @@
 
 - Gas awards: $1,250 in USDC
 
-- Judge awards: $60,00 in USDC
+- Judge awards: $6,000 in USDC
 
 - Lookout awards: $4,000 in USDC
 
