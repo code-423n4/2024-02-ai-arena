@@ -212,6 +212,23 @@ slither  .
 
 ```  
 
+To generate or view graphs of contracts, refer here: [printer-docs](https://github.com/crytic/slither/wiki/Printer-documentation)
+
+Here's and example of outputting a graph showing the inheritance interaction between the FighterFarm contract.
+
+```bash
+
+slither src/FighterFarm.sol --print inheritance-graph 
+
+```  
+Then run this command to view the graph:
+
+```bash
+
+ xdot src/FighterFarm.sol.inheritance-graph.dot 
+
+```  
+
 ## Miscellaneous
   
 Employees of AI Arena and employees' family members are ineligible to participate in this audit.
