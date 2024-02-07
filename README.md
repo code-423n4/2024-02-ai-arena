@@ -130,16 +130,6 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
 	- For example, let's say there are two player
 - **NOTE**: The asymmetry in point increase/decrease as well as *$NRNs* gained vs potentially lost is an intentional design in our economy.
 
-## Attack ideas (Where to look for bugs)
-
-*List specific areas to address - see [this blog post](https://medium.com/code4rena/the-security-council-elections-within-the-arbitrum-dao-a-comprehensive-guide-aa6d001aae60#9adb) for an example*
-
-
-## Main invariants
-
-*Describe the project's main invariants (properties that should NEVER EVER be broken).*
-
-  
 ## Scoping Details
  
 ```
