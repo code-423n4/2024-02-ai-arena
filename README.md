@@ -98,7 +98,10 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
 ## Out of scope
   
 
-*List any files/contracts that are out of scope for this audit.*
+  - All of the [OpenZepplin](https://github.com/OpenZeppelin) contracts (used for `ERC20`, `ERC721`, `ERC1155`) used as the base for our smart contracts
+  - The `FixedPointMathLib.sol` library created by [solmate](https://github.com/transmissions11/solmate/tree/main)
+  - The `Verification.sol` library
+  - The `AAMintPass.sol` smart contract since it is already deployed and completed minting
   
 
 # Additional Context
