@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 import {Test, console} from "forge-std/Test.sol";
-import "forge-std/Vm.sol";
+import {Vm} from "forge-std/Vm.sol";
 import {AAMintPass} from "../src/AAMintPass.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 

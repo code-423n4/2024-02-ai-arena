@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "forge-std/Test.sol";
-import "forge-std/console.sol";
-import "forge-std/Vm.sol";
+import {Test, console} from "forge-std/Test.sol";
+import {Vm} from "forge-std/Vm.sol";
 import {GameItems} from "../src/GameItems.sol";
 import {Neuron} from "../src/Neuron.sol";
 import "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";

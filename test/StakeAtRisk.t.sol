@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "forge-std/Test.sol";
-import "forge-std/console.sol";
-import "forge-std/Vm.sol";
+import {Test, console} from "forge-std/Test.sol";
+import {Vm} from "forge-std/Vm.sol";
 import {FighterFarm} from "../src/FighterFarm.sol";
 import {Neuron} from "../src/Neuron.sol";
 import {MergingPool} from "../src/MergingPool.sol";
