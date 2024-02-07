@@ -44,7 +44,7 @@ contract FighterFarm is ERC721, ERC721Enumerable {
     /// @notice Aggregate number of training sessions recorded.
     uint32 public totalNumTrained;
 
-    /// @notice The dddress of treasury.
+    /// @notice The address of treasury.
     address public treasuryAddress;
 
     /// The address that has owner privileges (initially the contract deployer).

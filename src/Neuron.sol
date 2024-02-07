@@ -176,7 +176,7 @@ contract Neuron is ERC20, AccessControl {
         _approve(account, msg.sender, amount);
     }
 
-    /// @notice Approves the specified amount of tokens for the spender address.
+    /// @notice Approves the specified amount of tokens for the staker address.
     /// @dev The caller must have the staker role.
     /// @param owner The owner of the tokens.
     /// @param spender The address for which to approve the allowance.
