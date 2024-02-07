@@ -67,38 +67,17 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
 # Scope
 
-  
-
-[ ⭐️ SPONSORS: add scoping and technical details here ]
-
-  
-
-- [ ] In the table format shown below, provide the name of each contract and:
-
-- [ ] source lines of code (excluding blank lines and comments) in each *For line of code counts, we recommend running prettier with a 100-character line length, and using [cloc](https://github.com/AlDanial/cloc).*
-
-- [ ] external contracts called in each
-
-- [ ] libraries used in each
-
-  
-
-*List all files in scope in the table below (along with hyperlinks) -- and feel free to add notes here to emphasize areas of focus.*
-
-  
-
-| Contract | SLOC | Purpose | Libraries used |
-
-| ----------- | ----------- | ----------- | ----------- |
-| Contracts (8) |  |  |  |
-| [src/AiArenaHelper.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/AAMintPass.sol) | 102 | This contract creates mint passes for those who have qualified, which are claimable for AI Arena fighters at a later date | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) [`@FighterOps/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterOps.sol) |
-| [src/FighterFarm.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterFarm.sol) | 256 | This contract manages the creation, ownership, and redemption of AI Arena Fighter NFTs, including the ability to mint new NFTs from a merging pool or through the redemption of mint passes. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) [`@FighterOps/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterOps.sol) [`@Verification/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/Verification.sol) |
-| [src/GameItems.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/GameItems.sol) | 148 | This contract represents a collection of game items used in AI Arena. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
-| [src/MergingPool.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/MergingPool.sol) | 101 | This contract allows users to stake their fighters to earn rewards. | |
-| [src/Neuron.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/Neuron.sol) | 78 | The Neuron token is used for various functions within the platform, including staking, governance, and rewards. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
-| [src/RankedBattle.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/RankedBattle.sol) | 270 | This contract provides functionality for staking NRN tokens on fighters, tracking battle records, calculating and distributing rewards based on battle outcomes and staked amounts, and allowing claiming of accumulated rewards. | [`@FixedPointMathLib/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FixedPointMathLib.sol) |
-| [src/StakeAtRisk.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/StakeAtRisk.sol) | 50 | This contract allows the RankedBattle contract to manage the staking of NRN tokens at risk during battles. | |
-| [src/VoltageManager.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/VoltageManager.sol) | 47 | This contract allows the management of voltage for game items and provides functions for using and replenishing voltage. | |
+|File|[SLOC]|Description|Libraries|
+|:-|:-:|:-|:-|
+|_Contracts (8)_|
+|[src/AiArenaHelper.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/AAMintPass.sol)|[102]|This contract creates mint passes for those who have qualified, which are claimable for AI Arena fighters at a later date| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) [`@FighterOps/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterOps.sol)|
+|[src/FighterFarm.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterFarm.sol)|[256]|This contract manages the creation, ownership, and redemption of AI Arena Fighter NFTs, including the ability to mint new NFTs from a merging pool or through the redemption of mint passes.| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) [`@FighterOps/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterOps.sol) [`@Verification/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/Verification.sol)|
+|[src/GameItems.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/GameItems.sol)|[148]|This contract represents a collection of game items used in AI Arena.| [`@openzeppelin/*`](https://openzeppelin.com/contracts/)|
+|[src/MergingPool.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/MergingPool.sol)|[101]|This contract allows users to stake their fighters to earn rewards.| |
+|[src/Neuron.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/Neuron.sol)|[78]|The Neuron token is used for various functions within the platform, including staking, governance, and rewards.| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+|[src/RankedBattle.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/RankedBattle.sol)|[270]|This contract provides functionality for staking NRN tokens on fighters, tracking battle records, calculating and distributing rewards based on battle outcomes and staked amounts, and allowing claiming of accumulated rewards.| [`@FixedPointMathLib/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FixedPointMathLib.sol)|
+|[src/StakeAtRisk.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/StakeAtRisk.sol)|[50]|This contract allows the RankedBattle contract to manage the staking of NRN tokens at risk during battles.| |
+|[src/VoltageManager.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/VoltageManager.sol)|[47]|This contract allows the management of voltage for game items and provides functions for using and replenishing voltage. | |
   
 
 ## Out of scope
