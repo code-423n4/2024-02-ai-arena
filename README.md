@@ -128,7 +128,7 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
 - Players are able to divert part of their points to the `MergingPool.sol` smart contract. This contract will periodically raffle off new NFTs to be minted. The amount of NFTs to be minted through the Merging Pool will be managed in a way that keeps NFT inflation relatively low.
 - At the end of each round, we will distribute a fixed amount of *$NRN* between players proportional to the relative amount of points they have amassed.
 	- For example, let's say there are two player
-  
+- **NOTE**: The asymmetry in point increase/decrease as well as *$NRNs* gained vs potentially lost is an intentional design in our economy.
 
 ## Attack ideas (Where to look for bugs)
 
