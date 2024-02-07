@@ -106,25 +106,28 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
 
 # Additional Context
 
-AAMintPass Contract: This contract creates mint passes for those who have qualified, which are claimable for AI Arena fighters at a later date.
-
-- [ ] Describe any novel or unique curve logic or mathematical models implemented in the contracts
-
-- [ ] Please list specific ERC20 that your protocol is anticipated to interact with. Could be "any" (literally anything, fee on transfer tokens, ERC777 tokens and so forth) or a list of tokens you envision using on launch.
-
-- [ ] Please list specific ERC721 that your protocol is anticipated to interact with.
-
-- [ ] Which blockchains will this code be deployed to, and are considered in scope for this audit?
-
-- [ ] Please list all trusted roles (e.g. operators, slashers, pausers, etc.), the privileges they hold, and any conditions under which privilege escalation is expected/allowable
-
-- [ ] In the event of a DOS, could you outline a minimum duration after which you would consider a finding to be valid? This question is asked in the context of most systems' capacity to handle DoS attacks gracefully for a certain period.
-
-- [ ] Is any part of your implementation intended to conform to any EIP's? If yes, please list the contracts in this format:
-
--  `Contract1`: Should comply with `ERC/EIPX`
-
--  `Contract2`: Should comply with `ERC/EIPY`
+- `AAMintPass.sol`: This contract creates mint passes for those who have qualified, which are claimable for AI Arena fighters at a later date. In order for a player to redeem their mint pass for a fighter, they will call the `redeemMintPass` function in `FighterFarm.sol`, which burns their mint pass and creates a fighter NFT.
+- The result of a ranked battle can result in one of the following (depending on their current state):
+	- `$NRN staked == 0` **(Condition)**
+		- No impact on points or stake
+	- `$NRN staked > 0` **(Condition)**
+		- Win **(Condition)**
+			- `stake at risk > 0` **(Condition)**
+				- Reclaim stake at risk for this round
+			- `stake at risk == 0` **(Condition)**
+				- Increase points
+		- Lose **(Condition)**
+			- `points > 0` **(Condition)**
+				- Decrease points
+			- `points == 0` **(Condition)**
+				- Move some of staked *$NRN* to the `StakeAtRisk.sol` smart contract
+- The calculation for points is comprised of a `stakingFactor` and `eloFactor`.
+	- The staking factor is derived from the amount of *$NRN* a player has staked
+	- The ELO factor is derived from the fighter's ELO scored
+		- We maintain the flexibility to adjust how the ELO score is calculated off-chain
+- Players are able to divert part of their points to the `MergingPool.sol` smart contract. This contract will periodically raffle off new NFTs to be minted. The amount of NFTs to be minted through the Merging Pool will be managed in a way that keeps NFT inflation relatively low.
+- At the end of each round, we will distribute a fixed amount of *$NRN* between players proportional to the relative amount of points they have amassed.
+	- For example, let's say there are two player
   
 
 ## Attack ideas (Where to look for bugs)
