@@ -10,6 +10,7 @@ import {RankedBattle} from "../src/RankedBattle.sol";
 import {FighterFarm} from "../src/FighterFarm.sol";
 import {AiArenaHelper} from "../src/AiArenaHelper.sol";
 import "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
+import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
 
 contract VoltageManagerTest is Test {
     /*//////////////////////////////////////////////////////////////
@@ -173,15 +174,23 @@ contract VoltageManagerTest is Test {
     //////////////////////////////////////////////////////////////*/
 
     /// @notice Test minting a game items and paying with $NRN.
-    function testMintGameItem(address reciever) public {
-        _fundUserWith4kNeuronByTreasury(reciever);
-        vm.prank(reciever);
-        _gameItemsContract.mint(0, 2); //paying 2 $NRN for 2 batteries
-        assertEq(_gameItemsContract.balanceOf(reciever, 0) >= 2, true);
+    function testMintGameItem(address receiver) public {
+        // Check if receiver supports the ERC1155 token receiver interface
+        if (!ERC165Checker.supportsInterface(receiver, type(IERC1155Receiver).interfaceId)) {
+            vm.expectRevert("Receiver does not support ERC1155 token receipt");
+        } else {
+            _fundUserWith4kNeuronByTreasury(receiver);
+            vm.prank(receiver);
+            _gameItemsContract.mint(0, 2); //paying 2 $NRN for 2 batteries
+            assertEq(_gameItemsContract.balanceOf(receiver, 0) >= 2, true);
+        }
     }
 
     /// @notice Helper function to fund an account with 4k $NRN tokens.
     function _fundUserWith4kNeuronByTreasury(address user) internal {
+        if (msg.sender == address(0)) {
+            vm.expectRevert("ERC20: transfer to the zero addres");
+        }
         vm.prank(_treasuryAddress);
         _neuronContract.transfer(user, 4_000 * 10 ** 18);
         assertEq(4_000 * 10 ** 18 == _neuronContract.balanceOf(user), true);
