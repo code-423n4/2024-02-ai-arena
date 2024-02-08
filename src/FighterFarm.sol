@@ -100,6 +100,7 @@ contract FighterFarm is ERC721, ERC721Enumerable {
     /// @notice Sets the owner address, the delegated address.
     /// @param ownerAddress Address of contract deployer.
     /// @param delegatedAddress Address of delegated signer for messages.
+    /// @param treasuryAddress_ Community treasury address.
     constructor(address ownerAddress, address delegatedAddress, address treasuryAddress_)
         ERC721("AI Arena Fighter", "FTR")
     {

@@ -61,7 +61,8 @@ contract RankedBattle {
     /// @notice Current round number.
     uint256 public roundId = 0;
 
-    /// @notice Number of basis points for lost rounds.
+    /// @notice Amount of basis points that get taken away from a player's stake when they lose in 
+    /// a point deficit.
     uint256 public bpsLostPerLoss = 10;
 
     /// The StakeAtRisk contract address.
@@ -129,7 +130,7 @@ contract RankedBattle {
     /// @notice Mapping of token id to staking factor.
     mapping(uint256 => uint256) public stakingFactor;
 
-    /// @notice Maps the token ID to the round ID and indicates whether it is staked or not.
+    /// @notice Indicates whether we have calculated the staking factor for a given round and token.
     mapping(uint256 => mapping(uint256 => bool)) _calculatedStakingFactor;
 
     /*//////////////////////////////////////////////////////////////
@@ -317,6 +318,7 @@ contract RankedBattle {
     /// @param mergingPortion The portion of points that get redirected to the merging pool.
     /// @param battleResult The result of the battle.
     /// @param eloFactor Multiple derived from ELO to be applied to the base points earned.
+    /// @param initiatorBool Whether this was the fighter that initiated the battle or not
     function updateBattleRecord(
         uint256 tokenId, 
         uint256 mergingPortion,
