@@ -175,9 +175,9 @@ git submodule update --init --recursive
 Install libraries using forge and compile contracts.
 
 ```bash
-forge  install
+forge install
 
-forge  build
+forge build
 ```
 
 After installing and building contracts you can run this command to execute all the test scripts:
@@ -189,7 +189,7 @@ forge test
 If you would like to execute an individual test script you could do so like this:
 
 ```bash
-forge test --match-path test/AiArenaHelper.t.sol  -vvvv
+forge test --match-path test/AiArenaHelper.t.sol -vvvv
 ```
 
 To print the gas report of contracts simply run:
@@ -212,7 +212,7 @@ To run [slither](https://github.com/crytic/slither) from root, run:
 
 ```bash
 
-slither  .
+slither .
 
 ```  
 
@@ -230,7 +230,7 @@ Then run this command to view the graph:
 
 ```bash
 
- xdot src/FighterFarm.sol.inheritance-graph.dot 
+xdot src/FighterFarm.sol.inheritance-graph.dot 
 
 ```  
 
