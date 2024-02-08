@@ -20,12 +20,12 @@ contract AAMintPassTest is Test, IERC721Receiver {
         return this.onERC721Received.selector;
     }
 
-    function test_isAdmin() public {
+    function testIsAdmin() public {
         assertEq(mintPass.isAdmin(address(this)), true);
         assertEq(mintPass.isAdmin(msg.sender), false);
     }
 
-    function test_setPaused() public {
+    function testSetPaused() public {
         // Non-admin should not be able to set paused
         vm.prank(msg.sender);
         vm.expectRevert();
@@ -40,7 +40,7 @@ contract AAMintPassTest is Test, IERC721Receiver {
         assertEq(mintPass.mintingPaused(), false);
     }
 
-    function test_setDelegatedAddress() public {
+    function testSetDelegatedAddress() public {
         // Non-founder should not be able to set delegated address
         vm.prank(msg.sender);
         vm.expectRevert();
@@ -52,7 +52,7 @@ contract AAMintPassTest is Test, IERC721Receiver {
         console.log(mintPass.delegatedAddress(), "delegatedAddress");
     }
 
-    function test_transferOwnership() public {
+    function testTransferOwnership() public {
         // Non-founder should not be able to transfer ownership
         vm.prank(msg.sender);
         vm.expectRevert();
@@ -64,7 +64,7 @@ contract AAMintPassTest is Test, IERC721Receiver {
         assertEq(mintPass.founderAddress(), msg.sender);
     }
 
-    function test_addAdmin() public {
+    function testAddAdmin() public {
         // Non-founder should not be able to add admins
         vm.prank(msg.sender);
         vm.expectRevert();
@@ -77,7 +77,7 @@ contract AAMintPassTest is Test, IERC721Receiver {
         assertEq(mintPass.isAdmin(msg.sender), true);
     }
 
-    function test_removeAdmin() public {
+    function testRemoveAdmin() public {
         // Non-founder should not be able to remove admins
         vm.prank(msg.sender);
         vm.expectRevert();
@@ -90,7 +90,7 @@ contract AAMintPassTest is Test, IERC721Receiver {
         assertEq(mintPass.isAdmin(address(this)), false);
     }
 
-    function test_setFighterFarmAddress() public {
+    function testSetFighterFarmAddress() public {
         // Non-founder should not be able to set fighter farm address
         vm.prank(msg.sender);
         vm.expectRevert();
@@ -101,7 +101,7 @@ contract AAMintPassTest is Test, IERC721Receiver {
         assertEq(mintPass.fighterFarmContractAddress(), address(this));
     }
 
-    function test_claimMintPass() public {
+    function testClaimMintPass() public {
         // Non-delegated address should not be able to claim mint pass
         uint8[2] memory numToMint = [1, 0];
         bytes memory signature = abi.encodePacked(

@@ -10,8 +10,9 @@ import {RankedBattle} from "../src/RankedBattle.sol";
 import {FighterFarm} from "../src/FighterFarm.sol";
 import {AiArenaHelper} from "../src/AiArenaHelper.sol";
 import "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
+import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
 
-contract StakeAtRiskTest is Test {
+contract VoltageManagerTest is Test {
     /*//////////////////////////////////////////////////////////////
                                 CONSTANTS
     //////////////////////////////////////////////////////////////*/
@@ -125,7 +126,7 @@ contract StakeAtRiskTest is Test {
     /// @notice Test a player using a voltage battery and checks if the voltage was updated correctly.
     function testUseVolatgeBattery() public {
         address player = vm.addr(3);
-        testMintGameItem(player);
+        _mintGameItemForReceiver(player);
         uint256 currentVoltage = _voltageManagerContract.ownerVoltage(player);
         emit log_uint(currentVoltage);
         vm.prank(player);
@@ -138,7 +139,7 @@ contract StakeAtRiskTest is Test {
         address player = _ownerAddress;
         uint256 ownerVoltageReplenishTime = _voltageManagerContract.ownerVoltageReplenishTime(player);
         uint8 voltageSpendAmount = 1;
-        testMintGameItem(player);
+        _mintGameItemForReceiver(player);
         uint256 currentVoltage = _voltageManagerContract.ownerVoltage(player);
         // vm.startPrank(player);
         _voltageManagerContract.useVoltageBattery();
@@ -155,7 +156,7 @@ contract StakeAtRiskTest is Test {
         address player = _ownerAddress;
         uint256 ownerVoltageReplenishTime = _voltageManagerContract.ownerVoltageReplenishTime(player);
         uint8 voltageSpendAmount = 1;
-        testMintGameItem(player);
+        _mintGameItemForReceiver(player);
         uint256 currentVoltage = _voltageManagerContract.ownerVoltage(player);
         // vm.startPrank(player);
         // _voltageManagerContract.useVoltageBattery();
@@ -173,11 +174,11 @@ contract StakeAtRiskTest is Test {
     //////////////////////////////////////////////////////////////*/
 
     /// @notice Test minting a game items and paying with $NRN.
-    function testMintGameItem(address reciever) public {
-        _fundUserWith4kNeuronByTreasury(reciever);
-        vm.prank(reciever);
+    function _mintGameItemForReceiver(address receiver) internal {
+        _fundUserWith4kNeuronByTreasury(receiver);
+        vm.prank(receiver);
         _gameItemsContract.mint(0, 2); //paying 2 $NRN for 2 batteries
-        assertEq(_gameItemsContract.balanceOf(reciever, 0) >= 2, true);
+        assertEq(_gameItemsContract.balanceOf(receiver, 0) >= 2, true);
     }
 
     /// @notice Helper function to fund an account with 4k $NRN tokens.
