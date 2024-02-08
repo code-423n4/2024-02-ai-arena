@@ -52,17 +52,17 @@ contract StakeAtRisk {
                                CONSTRUCTOR
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Sets the addresses for the treasury, neuron contract and ranked battle contract.
+    /// @notice Sets the community treasury address and ranked battle contract address.
     /// Instantiates the Neuron contract.
-    /// @param _treasuryAddress The address of the treasury contract
+    /// @param treasuryAddress_ The address of the treasury contract
     /// @param nrnAddress The address of the Neuron contract
     /// @param rankedBattleAddress The address of the Ranked Battle contract
     constructor(
-        address _treasuryAddress,
+        address treasuryAddress_,
         address nrnAddress,
         address rankedBattleAddress
     ) {
-        treasuryAddress = _treasuryAddress;
+        treasuryAddress = treasuryAddress_;
         _rankedBattleAddress = rankedBattleAddress;   
         _neuronInstance = Neuron(nrnAddress);
     }

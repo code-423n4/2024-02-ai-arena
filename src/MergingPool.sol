@@ -63,7 +63,7 @@ contract MergingPool {
                                CONSTRUCTOR
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Sets the address for the owner, ranked battle, and fighter farm contracts.
+    /// @notice Sets the address for the owner and ranked battle smart contract.
     /// Instantiates the fighter farm contract and sets the owner to be an admin
     /// @param ownerAddress Address of contract deployer.
     /// @param rankedBattleAddress Address of ranked battle contract.

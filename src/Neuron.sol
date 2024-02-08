@@ -60,9 +60,9 @@ contract Neuron is ERC20, AccessControl {
     //////////////////////////////////////////////////////////////*/
 
     /// @notice Grants roles to the ranked battle contract. 
-    /// @notice Mints the initial supply to the treasury address.
+    /// @notice Mints the initial supply of tokens.
     /// @param ownerAddress The address of the owner who deploys the contract
-    /// @param treasuryAddress_ The address of the treasury where the initial supply is minted
+    /// @param treasuryAddress_ The address of the community treasury
     /// @param contributorAddress The address that will distribute NRNs to early contributors when 
     /// the initial supply is minted.
     constructor(address ownerAddress, address treasuryAddress_, address contributorAddress)
