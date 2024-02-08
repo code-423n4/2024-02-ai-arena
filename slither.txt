@@ -1,0 +1,408 @@
+INFO:Detectors:
+FixedPointMathLib.rpow(uint256,uint256,uint256) (src/FixedPointMathLib.sol#74-160) performs a multiplication on the result of a division:
+	- x = xxRound_rpow_asm_0 / scalar (src/FixedPointMathLib.sol#131)
+	- zx_rpow_asm_0 = z * x (src/FixedPointMathLib.sol#136)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#divide-before-multiply
+INFO:Detectors:
+Reentrancy in RankedBattle._addResultPoints(uint8,uint256,uint256,uint256,address) (src/RankedBattle.sol#414-498):
+	External calls:
+	- _mergingPoolInstance.addPoints(tokenId,mergingPoints) (src/RankedBattle.sol#449)
+	- _stakeAtRiskInstance.reclaimNRN(curStakeAtRisk,tokenId,fighterOwner) (src/RankedBattle.sol#459)
+	State variables written after the call(s):
+	- amountStaked[tokenId] += curStakeAtRisk (src/RankedBattle.sol#460)
+	RankedBattle.amountStaked (src/RankedBattle.sol#127) can be used in cross function reentrancies:
+	- RankedBattle._addResultPoints(uint8,uint256,uint256,uint256,address) (src/RankedBattle.sol#414-498)
+	- RankedBattle._getStakingFactor(uint256,uint256) (src/RankedBattle.sol#517-532)
+	- RankedBattle.amountStaked (src/RankedBattle.sol#127)
+	- RankedBattle.stakeNRN(uint256,uint256) (src/RankedBattle.sol#243-264)
+	- RankedBattle.unstakeNRN(uint256,uint256) (src/RankedBattle.sol#269-289)
+	- RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool) (src/RankedBattle.sol#320-347)
+Reentrancy in RankedBattle._addResultPoints(uint8,uint256,uint256,uint256,address) (src/RankedBattle.sol#414-498):
+	External calls:
+	- success = _neuronInstance.transfer(_stakeAtRiskAddress,curStakeAtRisk) (src/RankedBattle.sol#491)
+	- _stakeAtRiskInstance.updateAtRiskRecords(curStakeAtRisk,tokenId,fighterOwner) (src/RankedBattle.sol#493)
+	State variables written after the call(s):
+	- amountStaked[tokenId] -= curStakeAtRisk (src/RankedBattle.sol#494)
+	RankedBattle.amountStaked (src/RankedBattle.sol#127) can be used in cross function reentrancies:
+	- RankedBattle._addResultPoints(uint8,uint256,uint256,uint256,address) (src/RankedBattle.sol#414-498)
+	- RankedBattle._getStakingFactor(uint256,uint256) (src/RankedBattle.sol#517-532)
+	- RankedBattle.amountStaked (src/RankedBattle.sol#127)
+	- RankedBattle.stakeNRN(uint256,uint256) (src/RankedBattle.sol#243-264)
+	- RankedBattle.unstakeNRN(uint256,uint256) (src/RankedBattle.sol#269-289)
+	- RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool) (src/RankedBattle.sol#320-347)
+Reentrancy in MergingPool.claimRewards(string[],string[],uint256[2][]) (src/MergingPool.sol#139-167):
+	External calls:
+	- _fighterFarmInstance.mintFromMergingPool(msg.sender,modelURIs[claimIndex],modelTypes[claimIndex],customAttributes[claimIndex]) (src/MergingPool.sol#154-159)
+	State variables written after the call(s):
+	- numRoundsClaimed[msg.sender] += 1 (src/MergingPool.sol#150)
+	MergingPool.numRoundsClaimed (src/MergingPool.sol#48) can be used in cross function reentrancies:
+	- MergingPool.claimRewards(string[],string[],uint256[2][]) (src/MergingPool.sol#139-167)
+	- MergingPool.getUnclaimedRewards(address) (src/MergingPool.sol#172-185)
+	- MergingPool.numRoundsClaimed (src/MergingPool.sol#48)
+Reentrancy in GameItems.mint(uint256,uint256) (src/GameItems.sol#147-176):
+	External calls:
+	- _neuronInstance.approveSpender(msg.sender,price) (src/GameItems.sol#163)
+	- success = _neuronInstance.transferFrom(msg.sender,treasuryAddress,price) (src/GameItems.sol#164)
+	State variables written after the call(s):
+	- allGameItemAttributes[tokenId].itemsRemaining -= quantity (src/GameItems.sol#171)
+	GameItems.allGameItemAttributes (src/GameItems.sol#55) can be used in cross function reentrancies:
+	- GameItems._replenishDailyAllowance(uint256) (src/GameItems.sol#312-315)
+	- GameItems.adjustTransferability(uint256,bool) (src/GameItems.sol#126-134)
+	- GameItems.allGameItemAttributes (src/GameItems.sol#55)
+	- GameItems.createGameItem(string,string,bool,bool,uint256,uint256,uint16) (src/GameItems.sol#208-235)
+	- GameItems.getAllowanceRemaining(address,uint256) (src/GameItems.sol#268-274)
+	- GameItems.mint(uint256,uint256) (src/GameItems.sol#147-176)
+	- GameItems.remainingSupply(uint256) (src/GameItems.sol#279-281)
+	- GameItems.safeTransferFrom(address,address,uint256,uint256,bytes) (src/GameItems.sol#291-303)
+	- GameItems.uniqueTokensOutstanding() (src/GameItems.sol#285-287)
+	- _replenishDailyAllowance(tokenId) (src/GameItems.sol#167)
+		- allowanceRemaining[msg.sender][tokenId] = allGameItemAttributes[tokenId].dailyAllowance (src/GameItems.sol#313)
+	GameItems.allowanceRemaining (src/GameItems.sol#74) can be used in cross function reentrancies:
+	- GameItems._replenishDailyAllowance(uint256) (src/GameItems.sol#312-315)
+	- GameItems.allowanceRemaining (src/GameItems.sol#74)
+	- GameItems.getAllowanceRemaining(address,uint256) (src/GameItems.sol#268-274)
+	- GameItems.mint(uint256,uint256) (src/GameItems.sol#147-176)
+	- allowanceRemaining[msg.sender][tokenId] -= quantity (src/GameItems.sol#169)
+	GameItems.allowanceRemaining (src/GameItems.sol#74) can be used in cross function reentrancies:
+	- GameItems._replenishDailyAllowance(uint256) (src/GameItems.sol#312-315)
+	- GameItems.allowanceRemaining (src/GameItems.sol#74)
+	- GameItems.getAllowanceRemaining(address,uint256) (src/GameItems.sol#268-274)
+	- GameItems.mint(uint256,uint256) (src/GameItems.sol#147-176)
+	- _replenishDailyAllowance(tokenId) (src/GameItems.sol#167)
+		- dailyAllowanceReplenishTime[msg.sender][tokenId] = uint32(block.timestamp + 86400) (src/GameItems.sol#314)
+	GameItems.dailyAllowanceReplenishTime (src/GameItems.sol#77) can be used in cross function reentrancies:
+	- GameItems._replenishDailyAllowance(uint256) (src/GameItems.sol#312-315)
+	- GameItems.dailyAllowanceReplenishTime (src/GameItems.sol#77)
+	- GameItems.getAllowanceRemaining(address,uint256) (src/GameItems.sol#268-274)
+	- GameItems.mint(uint256,uint256) (src/GameItems.sol#147-176)
+Reentrancy in FighterFarm.reRoll(uint8,uint8) (src/FighterFarm.sol#369-390):
+	External calls:
+	- _neuronInstance.approveSpender(msg.sender,rerollCost) (src/FighterFarm.sol#374)
+	- success = _neuronInstance.transferFrom(msg.sender,treasuryAddress,rerollCost) (src/FighterFarm.sol#375)
+	State variables written after the call(s):
+	- numRerolls[tokenId] += 1 (src/FighterFarm.sol#377)
+	FighterFarm.numRerolls (src/FighterFarm.sol#79) can be used in cross function reentrancies:
+	- FighterFarm.numRerolls (src/FighterFarm.sol#79)
+	- FighterFarm.reRoll(uint8,uint8) (src/FighterFarm.sol#369-390)
+Reentrancy in StakeAtRisk.reclaimNRN(uint256,uint256,address) (src/StakeAtRisk.sol#93-107):
+	External calls:
+	- success = _neuronInstance.transfer(_rankedBattleAddress,nrnToReclaim) (src/StakeAtRisk.sol#100)
+	State variables written after the call(s):
+	- stakeAtRisk[roundId][fighterId] -= nrnToReclaim (src/StakeAtRisk.sol#102)
+	StakeAtRisk.stakeAtRisk (src/StakeAtRisk.sol#46) can be used in cross function reentrancies:
+	- StakeAtRisk.getStakeAtRisk(uint256) (src/StakeAtRisk.sol#132-134)
+	- StakeAtRisk.reclaimNRN(uint256,uint256,address) (src/StakeAtRisk.sol#93-107)
+	- StakeAtRisk.stakeAtRisk (src/StakeAtRisk.sol#46)
+	- StakeAtRisk.updateAtRiskRecords(uint256,uint256,address) (src/StakeAtRisk.sol#115-127)
+Reentrancy in StakeAtRisk.setNewRound(uint256) (src/StakeAtRisk.sol#78-84):
+	External calls:
+	- success = _sweepLostStake() (src/StakeAtRisk.sol#80)
+		- _neuronInstance.transfer(treasuryAddress,totalStakeAtRisk[roundId]) (src/StakeAtRisk.sol#143)
+	State variables written after the call(s):
+	- roundId = roundId_ (src/StakeAtRisk.sol#82)
+	StakeAtRisk.roundId (src/StakeAtRisk.sol#27) can be used in cross function reentrancies:
+	- StakeAtRisk._sweepLostStake() (src/StakeAtRisk.sol#142-144)
+	- StakeAtRisk.getStakeAtRisk(uint256) (src/StakeAtRisk.sol#132-134)
+	- StakeAtRisk.reclaimNRN(uint256,uint256,address) (src/StakeAtRisk.sol#93-107)
+	- StakeAtRisk.roundId (src/StakeAtRisk.sol#27)
+	- StakeAtRisk.setNewRound(uint256) (src/StakeAtRisk.sol#78-84)
+	- StakeAtRisk.updateAtRiskRecords(uint256,uint256,address) (src/StakeAtRisk.sol#115-127)
+Reentrancy in RankedBattle.stakeNRN(uint256,uint256) (src/RankedBattle.sol#243-264):
+	External calls:
+	- _neuronInstance.approveStaker(msg.sender,address(this),amount) (src/RankedBattle.sol#249)
+	- success = _neuronInstance.transferFrom(msg.sender,address(this),amount) (src/RankedBattle.sol#250)
+	- _fighterFarmInstance.updateFighterStaking(tokenId,true) (src/RankedBattle.sol#253)
+	State variables written after the call(s):
+	- amountStaked[tokenId] += amount (src/RankedBattle.sol#255)
+	RankedBattle.amountStaked (src/RankedBattle.sol#127) can be used in cross function reentrancies:
+	- RankedBattle._addResultPoints(uint8,uint256,uint256,uint256,address) (src/RankedBattle.sol#414-498)
+	- RankedBattle._getStakingFactor(uint256,uint256) (src/RankedBattle.sol#517-532)
+	- RankedBattle.amountStaked (src/RankedBattle.sol#127)
+	- RankedBattle.stakeNRN(uint256,uint256) (src/RankedBattle.sol#243-264)
+	- RankedBattle.unstakeNRN(uint256,uint256) (src/RankedBattle.sol#269-289)
+	- RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool) (src/RankedBattle.sol#320-347)
+Reentrancy in VoltageManager.useVoltageBattery() (src/VoltageManager.sol#95-101):
+	External calls:
+	- _gameItemsContractInstance.burn(msg.sender,0,1) (src/VoltageManager.sol#98)
+	State variables written after the call(s):
+	- ownerVoltage[msg.sender] = 100 (src/VoltageManager.sol#99)
+	VoltageManager.ownerVoltage (src/VoltageManager.sol#41) can be used in cross function reentrancies:
+	- VoltageManager._replenishVoltage(address) (src/VoltageManager.sol#119-122)
+	- VoltageManager.ownerVoltage (src/VoltageManager.sol#41)
+	- VoltageManager.spendVoltage(address,uint8) (src/VoltageManager.sol#107-114)
+	- VoltageManager.useVoltageBattery() (src/VoltageManager.sol#95-101)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-1
+INFO:Detectors:
+FighterFarm.getAllFighterInfo(uint256) (src/FighterFarm.sol#420-436) ignores return value by FighterOps.viewFighterInfo(fighters[tokenId],ownerOf(tokenId)) (src/FighterFarm.sol#435)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return
+INFO:Detectors:
+StakeAtRisk.setNewRound(uint256) (src/StakeAtRisk.sol#78-84) should emit an event for: 
+	- roundId = roundId_ (src/StakeAtRisk.sol#82) 
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-events-arithmetic
+INFO:Detectors:
+AAMintPass.constructor(address,address)._delegatedAddress (src/AAMintPass.sol#44) lacks a zero-check on :
+		- delegatedAddress = _delegatedAddress (src/AAMintPass.sol#47)
+AAMintPass.constructor(address,address)._founderAddress (src/AAMintPass.sol#44) lacks a zero-check on :
+		- founderAddress = _founderAddress (src/AAMintPass.sol#48)
+AAMintPass.transferOwnership(address)._newFounderAddress (src/AAMintPass.sol#55) lacks a zero-check on :
+		- founderAddress = _newFounderAddress (src/AAMintPass.sol#58)
+AAMintPass.setFighterFarmAddress(address)._fighterFarmAddress (src/AAMintPass.sol#79) lacks a zero-check on :
+		- fighterFarmContractAddress = _fighterFarmAddress (src/AAMintPass.sol#81)
+AAMintPass.setDelegatedAddress(address)._delegatedAddress (src/AAMintPass.sol#86) lacks a zero-check on :
+		- delegatedAddress = _delegatedAddress (src/AAMintPass.sol#88)
+AiArenaHelper.transferOwnership(address).newOwnerAddress (src/AiArenaHelper.sol#61) lacks a zero-check on :
+		- _ownerAddress = newOwnerAddress (src/AiArenaHelper.sol#63)
+FighterFarm.constructor(address,address,address).ownerAddress (src/FighterFarm.sol#103) lacks a zero-check on :
+		- _ownerAddress = ownerAddress (src/FighterFarm.sol#106)
+FighterFarm.constructor(address,address,address).delegatedAddress (src/FighterFarm.sol#103) lacks a zero-check on :
+		- _delegatedAddress = delegatedAddress (src/FighterFarm.sol#107)
+FighterFarm.constructor(address,address,address).treasuryAddress_ (src/FighterFarm.sol#103) lacks a zero-check on :
+		- treasuryAddress = treasuryAddress_ (src/FighterFarm.sol#108)
+FighterFarm.transferOwnership(address).newOwnerAddress (src/FighterFarm.sol#119) lacks a zero-check on :
+		- _ownerAddress = newOwnerAddress (src/FighterFarm.sol#121)
+FighterFarm.setMergingPoolAddress(address).mergingPoolAddress (src/FighterFarm.sol#170) lacks a zero-check on :
+		- _mergingPoolAddress = mergingPoolAddress (src/FighterFarm.sol#172)
+GameItems.constructor(address,address).ownerAddress (src/GameItems.sol#95) lacks a zero-check on :
+		- _ownerAddress = ownerAddress (src/GameItems.sol#96)
+GameItems.constructor(address,address).treasuryAddress_ (src/GameItems.sol#95) lacks a zero-check on :
+		- treasuryAddress = treasuryAddress_ (src/GameItems.sol#97)
+GameItems.transferOwnership(address).newOwnerAddress (src/GameItems.sol#108) lacks a zero-check on :
+		- _ownerAddress = newOwnerAddress (src/GameItems.sol#110)
+MergingPool.constructor(address,address,address).ownerAddress (src/MergingPool.sol#72) lacks a zero-check on :
+		- _ownerAddress = ownerAddress (src/MergingPool.sol#76)
+MergingPool.constructor(address,address,address).rankedBattleAddress (src/MergingPool.sol#73) lacks a zero-check on :
+		- _rankedBattleAddress = rankedBattleAddress (src/MergingPool.sol#77)
+MergingPool.transferOwnership(address).newOwnerAddress (src/MergingPool.sol#89) lacks a zero-check on :
+		- _ownerAddress = newOwnerAddress (src/MergingPool.sol#91)
+Neuron.constructor(address,address,address).ownerAddress (src/Neuron.sol#68) lacks a zero-check on :
+		- _ownerAddress = ownerAddress (src/Neuron.sol#71)
+Neuron.constructor(address,address,address).treasuryAddress_ (src/Neuron.sol#68) lacks a zero-check on :
+		- treasuryAddress = treasuryAddress_ (src/Neuron.sol#72)
+Neuron.transferOwnership(address).newOwnerAddress (src/Neuron.sol#85) lacks a zero-check on :
+		- _ownerAddress = newOwnerAddress (src/Neuron.sol#87)
+RankedBattle.constructor(address,address,address,address).ownerAddress (src/RankedBattle.sol#146) lacks a zero-check on :
+		- _ownerAddress = ownerAddress (src/RankedBattle.sol#151)
+RankedBattle.constructor(address,address,address,address).gameServerAddress (src/RankedBattle.sol#147) lacks a zero-check on :
+		- _gameServerAddress = gameServerAddress (src/RankedBattle.sol#152)
+RankedBattle.transferOwnership(address).newOwnerAddress (src/RankedBattle.sol#166) lacks a zero-check on :
+		- _ownerAddress = newOwnerAddress (src/RankedBattle.sol#168)
+RankedBattle.setGameServerAddress(address).gameServerAddress (src/RankedBattle.sol#183) lacks a zero-check on :
+		- _gameServerAddress = gameServerAddress (src/RankedBattle.sol#185)
+RankedBattle.setStakeAtRiskAddress(address).stakeAtRiskAddress (src/RankedBattle.sol#191) lacks a zero-check on :
+		- _stakeAtRiskAddress = stakeAtRiskAddress (src/RankedBattle.sol#193)
+StakeAtRisk.constructor(address,address,address)._treasuryAddress (src/StakeAtRisk.sol#61) lacks a zero-check on :
+		- treasuryAddress = _treasuryAddress (src/StakeAtRisk.sol#65)
+StakeAtRisk.constructor(address,address,address).rankedBattleAddress (src/StakeAtRisk.sol#63) lacks a zero-check on :
+		- _rankedBattleAddress = rankedBattleAddress (src/StakeAtRisk.sol#66)
+VoltageManager.constructor(address,address).ownerAddress (src/VoltageManager.sol#53) lacks a zero-check on :
+		- _ownerAddress = ownerAddress (src/VoltageManager.sol#54)
+VoltageManager.transferOwnership(address).newOwnerAddress (src/VoltageManager.sol#66) lacks a zero-check on :
+		- _ownerAddress = newOwnerAddress (src/VoltageManager.sol#68)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation
+INFO:Detectors:
+FighterFarm._createNewFighter(address,uint256,string,string,uint8,uint8,uint256[2]) (src/FighterFarm.sol#483-530) has external calls inside a loop: attrs = _aiArenaHelperInstance.createPhysicalAttributes(newDna,generation[fighterType],iconsType,dendroidBool) (src/FighterFarm.sol#509-514)
+FighterFarm.redeemMintPass(uint256[],uint8[],uint8[],string[],string[],string[]) (src/FighterFarm.sol#232-261) has external calls inside a loop: require(bool)(msg.sender == _mintpassInstance.ownerOf(mintpassIdsToBurn[i])) (src/FighterFarm.sol#249)
+FighterFarm.redeemMintPass(uint256[],uint8[],uint8[],string[],string[],string[]) (src/FighterFarm.sol#232-261) has external calls inside a loop: _mintpassInstance.burn(mintpassIdsToBurn[i]) (src/FighterFarm.sol#250)
+MergingPool.pickWinner(uint256[]) (src/MergingPool.sol#118-132) has external calls inside a loop: currentWinnerAddresses[i] = _fighterFarmInstance.ownerOf(winners[i]) (src/MergingPool.sol#125)
+MergingPool.claimRewards(string[],string[],uint256[2][]) (src/MergingPool.sol#139-167) has external calls inside a loop: _fighterFarmInstance.mintFromMergingPool(msg.sender,modelURIs[claimIndex],modelTypes[claimIndex],customAttributes[claimIndex]) (src/MergingPool.sol#154-159)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop
+INFO:Detectors:
+Reentrancy in RankedBattle._addResultPoints(uint8,uint256,uint256,uint256,address) (src/RankedBattle.sol#414-498):
+	External calls:
+	- _mergingPoolInstance.addPoints(tokenId,mergingPoints) (src/RankedBattle.sol#449)
+	- _stakeAtRiskInstance.reclaimNRN(curStakeAtRisk,tokenId,fighterOwner) (src/RankedBattle.sol#459)
+	State variables written after the call(s):
+	- accumulatedPointsPerAddress[fighterOwner][roundId] += points (src/RankedBattle.sol#465)
+	- accumulatedPointsPerFighter[tokenId][roundId] += points (src/RankedBattle.sol#464)
+	- totalAccumulatedPoints[roundId] += points (src/RankedBattle.sol#466)
+Reentrancy in FighterFarm.reRoll(uint8,uint8) (src/FighterFarm.sol#369-390):
+	External calls:
+	- _neuronInstance.approveSpender(msg.sender,rerollCost) (src/FighterFarm.sol#374)
+	- success = _neuronInstance.transferFrom(msg.sender,treasuryAddress,rerollCost) (src/FighterFarm.sol#375)
+	State variables written after the call(s):
+	- _tokenURIs[tokenId] =  (src/FighterFarm.sol#388)
+	- fighters[tokenId].element = element (src/FighterFarm.sol#380)
+	- fighters[tokenId].weight = weight (src/FighterFarm.sol#381)
+	- fighters[tokenId].physicalAttributes = _aiArenaHelperInstance.createPhysicalAttributes(newDna,generation[fighterType],fighters[tokenId].iconsType,fighters[tokenId].dendroidBool) (src/FighterFarm.sol#382-387)
+Reentrancy in StakeAtRisk.reclaimNRN(uint256,uint256,address) (src/StakeAtRisk.sol#93-107):
+	External calls:
+	- success = _neuronInstance.transfer(_rankedBattleAddress,nrnToReclaim) (src/StakeAtRisk.sol#100)
+	State variables written after the call(s):
+	- amountLost[fighterOwner] -= nrnToReclaim (src/StakeAtRisk.sol#104)
+	- totalStakeAtRisk[roundId] -= nrnToReclaim (src/StakeAtRisk.sol#103)
+Reentrancy in RankedBattle.setNewRound() (src/RankedBattle.sol#232-238):
+	External calls:
+	- _stakeAtRiskInstance.setNewRound(roundId) (src/RankedBattle.sol#236)
+	State variables written after the call(s):
+	- rankedNrnDistribution[roundId] = rankedNrnDistribution[roundId - 1] (src/RankedBattle.sol#237)
+Reentrancy in RankedBattle.stakeNRN(uint256,uint256) (src/RankedBattle.sol#243-264):
+	External calls:
+	- _neuronInstance.approveStaker(msg.sender,address(this),amount) (src/RankedBattle.sol#249)
+	- success = _neuronInstance.transferFrom(msg.sender,address(this),amount) (src/RankedBattle.sol#250)
+	- _fighterFarmInstance.updateFighterStaking(tokenId,true) (src/RankedBattle.sol#253)
+	State variables written after the call(s):
+	- _calculatedStakingFactor[tokenId][roundId] = true (src/RankedBattle.sol#261)
+	- globalStakedAmount += amount (src/RankedBattle.sol#256)
+	- stakingFactor[tokenId] = _getStakingFactor(tokenId,_stakeAtRiskInstance.getStakeAtRisk(tokenId)) (src/RankedBattle.sol#257-260)
+Reentrancy in RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool) (src/RankedBattle.sol#320-347):
+	External calls:
+	- _addResultPoints(battleResult,tokenId,eloFactor,mergingPortion,fighterOwner) (src/RankedBattle.sol#341)
+		- _mergingPoolInstance.addPoints(tokenId,mergingPoints) (src/RankedBattle.sol#449)
+		- _stakeAtRiskInstance.reclaimNRN(curStakeAtRisk,tokenId,fighterOwner) (src/RankedBattle.sol#459)
+		- success = _neuronInstance.transfer(_stakeAtRiskAddress,curStakeAtRisk) (src/RankedBattle.sol#491)
+		- _stakeAtRiskInstance.updateAtRiskRecords(curStakeAtRisk,tokenId,fighterOwner) (src/RankedBattle.sol#493)
+	- _voltageManagerInstance.spendVoltage(fighterOwner,VOLTAGE_COST) (src/RankedBattle.sol#344)
+	State variables written after the call(s):
+	- totalBattles += 1 (src/RankedBattle.sol#346)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-2
+INFO:Detectors:
+Reentrancy in RankedBattle._addResultPoints(uint8,uint256,uint256,uint256,address) (src/RankedBattle.sol#414-498):
+	External calls:
+	- _mergingPoolInstance.addPoints(tokenId,mergingPoints) (src/RankedBattle.sol#449)
+	- _stakeAtRiskInstance.reclaimNRN(curStakeAtRisk,tokenId,fighterOwner) (src/RankedBattle.sol#459)
+	Event emitted after the call(s):
+	- PointsChanged(tokenId,points,true) (src/RankedBattle.sol#468)
+Reentrancy in RankedBattle.claimNRN() (src/RankedBattle.sol#293-310):
+	External calls:
+	- _neuronInstance.mint(msg.sender,claimableNRN) (src/RankedBattle.sol#307)
+	Event emitted after the call(s):
+	- Claimed(msg.sender,claimableNRN) (src/RankedBattle.sol#308)
+Reentrancy in MergingPool.claimRewards(string[],string[],uint256[2][]) (src/MergingPool.sol#139-167):
+	External calls:
+	- _fighterFarmInstance.mintFromMergingPool(msg.sender,modelURIs[claimIndex],modelTypes[claimIndex],customAttributes[claimIndex]) (src/MergingPool.sol#154-159)
+	Event emitted after the call(s):
+	- Claimed(msg.sender,claimIndex) (src/MergingPool.sol#165)
+Reentrancy in StakeAtRisk.reclaimNRN(uint256,uint256,address) (src/StakeAtRisk.sol#93-107):
+	External calls:
+	- success = _neuronInstance.transfer(_rankedBattleAddress,nrnToReclaim) (src/StakeAtRisk.sol#100)
+	Event emitted after the call(s):
+	- ReclaimedStake(fighterId,nrnToReclaim) (src/StakeAtRisk.sol#105)
+Reentrancy in RankedBattle.stakeNRN(uint256,uint256) (src/RankedBattle.sol#243-264):
+	External calls:
+	- _neuronInstance.approveStaker(msg.sender,address(this),amount) (src/RankedBattle.sol#249)
+	- success = _neuronInstance.transferFrom(msg.sender,address(this),amount) (src/RankedBattle.sol#250)
+	- _fighterFarmInstance.updateFighterStaking(tokenId,true) (src/RankedBattle.sol#253)
+	Event emitted after the call(s):
+	- Staked(msg.sender,amount) (src/RankedBattle.sol#262)
+Reentrancy in RankedBattle.unstakeNRN(uint256,uint256) (src/RankedBattle.sol#269-289):
+	External calls:
+	- success = _neuronInstance.transfer(msg.sender,amount) (src/RankedBattle.sol#282)
+	- _fighterFarmInstance.updateFighterStaking(tokenId,false) (src/RankedBattle.sol#285)
+	Event emitted after the call(s):
+	- Unstaked(msg.sender,amount) (src/RankedBattle.sol#287)
+Reentrancy in VoltageManager.useVoltageBattery() (src/VoltageManager.sol#95-101):
+	External calls:
+	- _gameItemsContractInstance.burn(msg.sender,0,1) (src/VoltageManager.sol#98)
+	Event emitted after the call(s):
+	- VoltageRemaining(msg.sender,ownerVoltage[msg.sender]) (src/VoltageManager.sol#100)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3
+INFO:Detectors:
+GameItems.mint(uint256,uint256) (src/GameItems.sol#147-176) uses timestamp for comparisons
+	Dangerous comparisons:
+	- require(bool)(dailyAllowanceReplenishTime[msg.sender][tokenId] <= block.timestamp || quantity <= allowanceRemaining[msg.sender][tokenId]) (src/GameItems.sol#158-161)
+	- dailyAllowanceReplenishTime[msg.sender][tokenId] <= block.timestamp (src/GameItems.sol#166)
+GameItems.getAllowanceRemaining(address,uint256) (src/GameItems.sol#268-274) uses timestamp for comparisons
+	Dangerous comparisons:
+	- dailyAllowanceReplenishTime[owner][tokenId] <= block.timestamp (src/GameItems.sol#270)
+RankedBattle.updateBattleRecord(uint256,uint256,uint8,uint256,bool) (src/RankedBattle.sol#320-347) uses timestamp for comparisons
+	Dangerous comparisons:
+	- require(bool)(! initiatorBool || _voltageManagerInstance.ownerVoltageReplenishTime(fighterOwner) <= block.timestamp || _voltageManagerInstance.ownerVoltage(fighterOwner) >= VOLTAGE_COST) (src/RankedBattle.sol#332-336)
+VoltageManager.spendVoltage(address,uint8) (src/VoltageManager.sol#107-114) uses timestamp for comparisons
+	Dangerous comparisons:
+	- ownerVoltageReplenishTime[spender] <= block.timestamp (src/VoltageManager.sol#109)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#block-timestamp
+INFO:Detectors:
+FixedPointMathLib.mulDivDown(uint256,uint256,uint256) (src/FixedPointMathLib.sol#34-51) uses assembly
+	- INLINE ASM (src/FixedPointMathLib.sol#39-50)
+FixedPointMathLib.mulDivUp(uint256,uint256,uint256) (src/FixedPointMathLib.sol#53-72) uses assembly
+	- INLINE ASM (src/FixedPointMathLib.sol#58-71)
+FixedPointMathLib.rpow(uint256,uint256,uint256) (src/FixedPointMathLib.sol#74-160) uses assembly
+	- INLINE ASM (src/FixedPointMathLib.sol#79-159)
+FixedPointMathLib.sqrt(uint256) (src/FixedPointMathLib.sol#166-221) uses assembly
+	- INLINE ASM (src/FixedPointMathLib.sol#167-220)
+Verification.verify(bytes32,bytes,address) (src/Verification.sol#6-41) uses assembly
+	- INLINE ASM (src/Verification.sol#21-37)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#assembly-usage
+INFO:Detectors:
+GameItems.mint(uint256,uint256) (src/GameItems.sol#147-176) compares to a boolean constant:
+	-require(bool)(allGameItemAttributes[tokenId].finiteSupply == false || (allGameItemAttributes[tokenId].finiteSupply == true && quantity <= allGameItemAttributes[tokenId].itemsRemaining)) (src/GameItems.sol#151-157)
+RankedBattle.stakeNRN(uint256,uint256) (src/RankedBattle.sol#243-264) compares to a boolean constant:
+	-require(bool,string)(hasUnstaked[tokenId][roundId] == false,Cannot add stake after unstaking this round) (src/RankedBattle.sol#247)
+RankedBattle._addResultPoints(uint8,uint256,uint256,uint256,address) (src/RankedBattle.sol#414-498) compares to a boolean constant:
+	-_calculatedStakingFactor[tokenId][roundId] == false (src/RankedBattle.sol#431)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#boolean-equality
+INFO:Detectors:
+AAMintPass.createMintPass(address,string) (src/AAMintPass.sol#164-169) has costly operations inside a loop:
+	- numTokensOutstanding ++ (src/AAMintPass.sol#165)
+MergingPool.pickWinner(uint256[]) (src/MergingPool.sol#118-132) has costly operations inside a loop:
+	- totalPoints -= fighterPoints[winners[i]] (src/MergingPool.sol#126)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#costly-operations-inside-a-loop
+INFO:Detectors:
+RankedBattle._addResultPoints(uint8,uint256,uint256,uint256,address) (src/RankedBattle.sol#414-498) has a high cyclomatic complexity (13).
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#cyclomatic-complexity
+INFO:Detectors:
+FixedPointMathLib.divWadDown(uint256,uint256) (src/FixedPointMathLib.sol#22-24) is never used and should be removed
+FixedPointMathLib.divWadUp(uint256,uint256) (src/FixedPointMathLib.sol#26-28) is never used and should be removed
+FixedPointMathLib.mulDivDown(uint256,uint256,uint256) (src/FixedPointMathLib.sol#34-51) is never used and should be removed
+FixedPointMathLib.mulDivUp(uint256,uint256,uint256) (src/FixedPointMathLib.sol#53-72) is never used and should be removed
+FixedPointMathLib.mulWadDown(uint256,uint256) (src/FixedPointMathLib.sol#14-16) is never used and should be removed
+FixedPointMathLib.mulWadUp(uint256,uint256) (src/FixedPointMathLib.sol#18-20) is never used and should be removed
+FixedPointMathLib.rpow(uint256,uint256,uint256) (src/FixedPointMathLib.sol#74-160) is never used and should be removed
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dead-code
+INFO:Detectors:
+Pragma version^0.8.13 (src/AAMintPass.sol#2) allows old versions
+Pragma version>=0.8.0<0.9.0 (src/AiArenaHelper.sol#3) is too complex
+Pragma version>=0.8.0<0.9.0 (src/FighterFarm.sol#2) is too complex
+Pragma version>=0.8.0<0.9.0 (src/FighterOps.sol#2) is too complex
+Pragma version>=0.8.0 (src/FixedPointMathLib.sol#2) allows old versions
+Pragma version>=0.8.0<0.9.0 (src/GameItems.sol#2) is too complex
+Pragma version>=0.8.0<0.9.0 (src/MergingPool.sol#2) is too complex
+Pragma version>=0.8.0<0.9.0 (src/Neuron.sol#2) is too complex
+Pragma version>=0.8.0<0.9.0 (src/RankedBattle.sol#2) is too complex
+Pragma version>=0.8.0<0.9.0 (src/StakeAtRisk.sol#2) is too complex
+Pragma version>=0.8.0<0.9.0 (src/Verification.sol#2) is too complex
+Pragma version>=0.8.0<0.9.0 (src/VoltageManager.sol#2) is too complex
+solc-0.8.13 is not recommended for deployment
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+INFO:Detectors:
+Parameter AAMintPass.transferOwnership(address)._newFounderAddress (src/AAMintPass.sol#55) is not in mixedCase
+Parameter AAMintPass.addAdmin(address)._newAdmin (src/AAMintPass.sol#65) is not in mixedCase
+Parameter AAMintPass.setFighterFarmAddress(address)._fighterFarmAddress (src/AAMintPass.sol#79) is not in mixedCase
+Parameter AAMintPass.setDelegatedAddress(address)._delegatedAddress (src/AAMintPass.sol#86) is not in mixedCase
+Parameter AAMintPass.setPaused(bool)._state (src/AAMintPass.sol#93) is not in mixedCase
+Parameter AAMintPass.claimMintPass(uint8[2],bytes,string[])._tokenURIs (src/AAMintPass.sol#112) is not in mixedCase
+Parameter AAMintPass.burn(uint256)._tokenId (src/AAMintPass.sol#137) is not in mixedCase
+Parameter AAMintPass.tokenURI(uint256)._tokenId (src/AAMintPass.sol#156) is not in mixedCase
+Parameter AAMintPass.createMintPass(address,string)._receiver (src/AAMintPass.sol#164) is not in mixedCase
+Parameter AAMintPass.createMintPass(address,string)._tokenURI (src/AAMintPass.sol#164) is not in mixedCase
+Parameter FighterFarm.supportsInterface(bytes4)._interfaceId (src/FighterFarm.sol#409) is not in mixedCase
+Parameter GameItems.setTokenURI(uint256,string)._tokenURI (src/GameItems.sol#194) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions
+INFO:Detectors:
+FixedPointMathLib.sqrt(uint256) (src/FixedPointMathLib.sol#166-221) uses literals with too many digits:
+	- ! y_sqrt_asm_0 < 0x100000000000000000000000000000000 (src/FixedPointMathLib.sol#175-178)
+FixedPointMathLib.sqrt(uint256) (src/FixedPointMathLib.sol#166-221) uses literals with too many digits:
+	- ! y_sqrt_asm_0 < 0x10000000000000000 (src/FixedPointMathLib.sol#179-182)
+FixedPointMathLib.sqrt(uint256) (src/FixedPointMathLib.sol#166-221) uses literals with too many digits:
+	- ! y_sqrt_asm_0 < 0x100000000 (src/FixedPointMathLib.sol#183-186)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#too-many-digits
+INFO:Detectors:
+FighterFarm.rerollCost (src/FighterFarm.sol#39) should be constant 
+GameItems.name (src/GameItems.sol#49) should be constant 
+GameItems.symbol (src/GameItems.sol#52) should be constant 
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#state-variables-that-could-be-declared-constant
+INFO:Detectors:
+FighterFarm._delegatedAddress (src/FighterFarm.sol#54) should be immutable 
+FighterFarm.treasuryAddress (src/FighterFarm.sol#48) should be immutable 
+GameItems.treasuryAddress (src/GameItems.sol#58) should be immutable 
+MergingPool._fighterFarmInstance (src/MergingPool.sol#41) should be immutable 
+MergingPool._rankedBattleAddress (src/MergingPool.sol#38) should be immutable 
+Neuron.treasuryAddress (src/Neuron.sol#46) should be immutable 
+RankedBattle._fighterFarmInstance (src/RankedBattle.sol#84) should be immutable 
+RankedBattle._voltageManagerInstance (src/RankedBattle.sol#87) should be immutable 
+StakeAtRisk._neuronInstance (src/StakeAtRisk.sol#36) should be immutable 
+StakeAtRisk._rankedBattleAddress (src/StakeAtRisk.sol#33) should be immutable 
+StakeAtRisk.treasuryAddress (src/StakeAtRisk.sol#30) should be immutable 
+VoltageManager._gameItemsContractInstance (src/VoltageManager.sol#28) should be immutable 
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#state-variables-that-could-be-declared-immutable
+INFO:Slither:. analyzed (33 contracts with 93 detectors), 124 result(s) found
