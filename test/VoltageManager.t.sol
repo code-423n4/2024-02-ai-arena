@@ -126,7 +126,7 @@ contract VoltageManagerTest is Test {
     /// @notice Test a player using a voltage battery and checks if the voltage was updated correctly.
     function testUseVolatgeBattery() public {
         address player = vm.addr(3);
-        testMintGameItem(player);
+        _mintGameItemForReceiver(player);
         uint256 currentVoltage = _voltageManagerContract.ownerVoltage(player);
         emit log_uint(currentVoltage);
         vm.prank(player);
@@ -139,7 +139,7 @@ contract VoltageManagerTest is Test {
         address player = _ownerAddress;
         uint256 ownerVoltageReplenishTime = _voltageManagerContract.ownerVoltageReplenishTime(player);
         uint8 voltageSpendAmount = 1;
-        testMintGameItem(player);
+        _mintGameItemForReceiver(player);
         uint256 currentVoltage = _voltageManagerContract.ownerVoltage(player);
         // vm.startPrank(player);
         _voltageManagerContract.useVoltageBattery();
@@ -156,7 +156,7 @@ contract VoltageManagerTest is Test {
         address player = _ownerAddress;
         uint256 ownerVoltageReplenishTime = _voltageManagerContract.ownerVoltageReplenishTime(player);
         uint8 voltageSpendAmount = 1;
-        testMintGameItem(player);
+        _mintGameItemForReceiver(player);
         uint256 currentVoltage = _voltageManagerContract.ownerVoltage(player);
         // vm.startPrank(player);
         // _voltageManagerContract.useVoltageBattery();
@@ -174,23 +174,15 @@ contract VoltageManagerTest is Test {
     //////////////////////////////////////////////////////////////*/
 
     /// @notice Test minting a game items and paying with $NRN.
-    function testMintGameItem(address receiver) public {
-        // Check if receiver supports the ERC1155 token receiver interface
-        if (!ERC165Checker.supportsInterface(receiver, type(IERC1155Receiver).interfaceId)) {
-            vm.expectRevert("Receiver does not support ERC1155 token receipt");
-        } else {
-            _fundUserWith4kNeuronByTreasury(receiver);
-            vm.prank(receiver);
-            _gameItemsContract.mint(0, 2); //paying 2 $NRN for 2 batteries
-            assertEq(_gameItemsContract.balanceOf(receiver, 0) >= 2, true);
-        }
+    function _mintGameItemForReceiver(address receiver) internal {
+        _fundUserWith4kNeuronByTreasury(receiver);
+        vm.prank(receiver);
+        _gameItemsContract.mint(0, 2); //paying 2 $NRN for 2 batteries
+        assertEq(_gameItemsContract.balanceOf(receiver, 0) >= 2, true);
     }
 
     /// @notice Helper function to fund an account with 4k $NRN tokens.
     function _fundUserWith4kNeuronByTreasury(address user) internal {
-        if (msg.sender == address(0)) {
-            vm.expectRevert("ERC20: transfer to the zero addres");
-        }
         vm.prank(_treasuryAddress);
         _neuronContract.transfer(user, 4_000 * 10 ** 18);
         assertEq(4_000 * 10 ** 18 == _neuronContract.balanceOf(user), true);
