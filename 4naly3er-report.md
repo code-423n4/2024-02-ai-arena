@@ -38,7 +38,7 @@
 | [GAS-2](#GAS-2) | Cache array length outside of loop | 1 |
 | [GAS-3](#GAS-3) | State variables should be cached in stack variables rather than re-reading them from storage | 3 |
 | [GAS-4](#GAS-4) | Use calldata instead of memory for function arguments that do not get mutated | 9 |
-| [GAS-5](#GAS-5) | For Operations that will not overflow, you could use unchecked | 188 |
+| [GAS-5](#GAS-5) | For Operations that will not overflow, you could use unchecked | 186 |
 | [GAS-6](#GAS-6) | Use Custom Errors | 17 |
 | [GAS-7](#GAS-7) | Don't initialize variables with default value | 26 |
 | [GAS-8](#GAS-8) | Long revert strings | 8 |
@@ -98,11 +98,11 @@ File: src/Neuron.sol
 ```solidity
 File: src/RankedBattle.sol
 
-100:     mapping(address => bool) public isAdmin;
+101:     mapping(address => bool) public isAdmin;
 
-124:     mapping(uint256 => mapping(uint256 => bool)) public hasUnstaked;
+125:     mapping(uint256 => mapping(uint256 => bool)) public hasUnstaked;
 
-133:     mapping(uint256 => mapping(uint256 => bool)) _calculatedStakingFactor;
+134:     mapping(uint256 => mapping(uint256 => bool)) _calculatedStakingFactor;
 
 ```
 
@@ -111,9 +111,9 @@ File: src/RankedBattle.sol
 ```solidity
 File: src/VoltageManager.sol
 
-35:     mapping(address => bool) public allowedVoltageSpenders;
+33:     mapping(address => bool) public allowedVoltageSpenders;
 
-44:     mapping(address => bool) public isAdmin;
+42:     mapping(address => bool) public isAdmin;
 
 ```
 
@@ -128,7 +128,7 @@ If not cached, the solidity compiler will always read the length of the array du
 ```solidity
 File: src/FighterFarm.sol
 
-248:         for (uint16 i = 0; i < mintpassIdsToBurn.length; i++) {
+249:         for (uint16 i = 0; i < mintpassIdsToBurn.length; i++) {
 
 ```
 
@@ -145,7 +145,7 @@ The instances below point to the second+ access of a state variable within a fun
 ```solidity
 File: src/FighterFarm.sol
 
-375:         bool success = _neuronInstance.transferFrom(msg.sender, treasuryAddress, rerollCost);
+376:         bool success = _neuronInstance.transferFrom(msg.sender, treasuryAddress, rerollCost);
 
 ```
 
@@ -209,7 +209,7 @@ File: src/GameItems.sol
 
 ### <a name="GAS-5"></a>[GAS-5] For Operations that will not overflow, you could use unchecked
 
-*Instances (188)*:
+*Instances (186)*:
 
 ```solidity
 File: src/AiArenaHelper.sol
@@ -299,35 +299,35 @@ File: src/FighterFarm.sol
 
 39:     uint256 public rerollCost = 1000 * 10**18;    
 
-130:         generation[fighterType] += 1;
+131:         generation[fighterType] += 1;
 
-131:         maxRerollsAllowed[fighterType] += 1;
+132:         maxRerollsAllowed[fighterType] += 1;
 
-206:         uint16 totalToMint = uint16(numToMint[0] + numToMint[1]);
+207:         uint16 totalToMint = uint16(numToMint[0] + numToMint[1]);
 
-208:         nftsClaimed[msg.sender][0] += numToMint[0];
+209:         nftsClaimed[msg.sender][0] += numToMint[0];
 
-209:         nftsClaimed[msg.sender][1] += numToMint[1];
+210:         nftsClaimed[msg.sender][1] += numToMint[1];
 
-210:         for (uint16 i = 0; i < totalToMint; i++) {
+211:         for (uint16 i = 0; i < totalToMint; i++) {
 
-210:         for (uint16 i = 0; i < totalToMint; i++) {
+211:         for (uint16 i = 0; i < totalToMint; i++) {
 
-248:         for (uint16 i = 0; i < mintpassIdsToBurn.length; i++) {
+249:         for (uint16 i = 0; i < mintpassIdsToBurn.length; i++) {
 
-248:         for (uint16 i = 0; i < mintpassIdsToBurn.length; i++) {
+249:         for (uint16 i = 0; i < mintpassIdsToBurn.length; i++) {
 
-292:         numTrained[tokenId] += 1;
+293:         numTrained[tokenId] += 1;
 
-293:         totalNumTrained += 1;
+294:         totalNumTrained += 1;
 
-377:             numRerolls[tokenId] += 1;
+378:             numRerolls[tokenId] += 1;
 
-395:         return "ipfs://bafybeifztjs4yuwhqi7bvzhw2ufksynkoiwxss2gnti6j4v25l7iwz7y44";
+396:         return "ipfs://bafybeifztjs4yuwhqi7bvzhw2ufksynkoiwxss2gnti6j4v25l7iwz7y44";
 
-395:         return "ipfs://bafybeifztjs4yuwhqi7bvzhw2ufksynkoiwxss2gnti6j4v25l7iwz7y44";
+396:         return "ipfs://bafybeifztjs4yuwhqi7bvzhw2ufksynkoiwxss2gnti6j4v25l7iwz7y44";
 
-470:         uint256 weight = dna % 31 + 65;
+471:         uint256 weight = dna % 31 + 65;
 
 ```
 
@@ -353,10 +353,6 @@ File: src/GameItems.sol
 95:     constructor(address ownerAddress, address treasuryAddress_) ERC1155("https://ipfs.io/ipfs/") {
 
 95:     constructor(address ownerAddress, address treasuryAddress_) ERC1155("https://ipfs.io/ipfs/") {
-
-127:         require(msg.sender == _ownerAddress); // Add this check in the transfer functions
-
-127:         require(msg.sender == _ownerAddress); // Add this check in the transfer functions
 
 149:         uint256 price = allGameItemAttributes[tokenId].itemPrice * quantity;
 
@@ -501,107 +497,107 @@ File: src/RankedBattle.sol
 
 9: import { FixedPointMathLib } from './FixedPointMathLib.sol';
 
-156:         rankedNrnDistribution[0] = 5000 * 10**18;
+157:         rankedNrnDistribution[0] = 5000 * 10**18;
 
-156:         rankedNrnDistribution[0] = 5000 * 10**18;
+157:         rankedNrnDistribution[0] = 5000 * 10**18;
 
-156:         rankedNrnDistribution[0] = 5000 * 10**18;
+157:         rankedNrnDistribution[0] = 5000 * 10**18;
 
-219:         rankedNrnDistribution[roundId] = newDistribution * 10**18;
+220:         rankedNrnDistribution[roundId] = newDistribution * 10**18;
 
-219:         rankedNrnDistribution[roundId] = newDistribution * 10**18;
+220:         rankedNrnDistribution[roundId] = newDistribution * 10**18;
 
-219:         rankedNrnDistribution[roundId] = newDistribution * 10**18;
+220:         rankedNrnDistribution[roundId] = newDistribution * 10**18;
 
-235:         roundId += 1;
+236:         roundId += 1;
 
-237:         rankedNrnDistribution[roundId] = rankedNrnDistribution[roundId - 1];
+238:         rankedNrnDistribution[roundId] = rankedNrnDistribution[roundId - 1];
 
-255:             amountStaked[tokenId] += amount;
+256:             amountStaked[tokenId] += amount;
 
-256:             globalStakedAmount += amount;
+257:             globalStakedAmount += amount;
 
-274:         amountStaked[tokenId] -= amount;
+275:         amountStaked[tokenId] -= amount;
 
-275:         globalStakedAmount -= amount;
+276:         globalStakedAmount -= amount;
 
-298:         for (uint32 currentRound = lowerBound; currentRound < roundId; currentRound++) {
+299:         for (uint32 currentRound = lowerBound; currentRound < roundId; currentRound++) {
 
-298:         for (uint32 currentRound = lowerBound; currentRound < roundId; currentRound++) {
+299:         for (uint32 currentRound = lowerBound; currentRound < roundId; currentRound++) {
 
-300:             claimableNRN += (
+301:             claimableNRN += (
 
-301:                 accumulatedPointsPerAddress[msg.sender][currentRound] * nrnDistribution   
+302:                 accumulatedPointsPerAddress[msg.sender][currentRound] * nrnDistribution   
 
-302:             ) / totalAccumulatedPoints[currentRound];
+303:             ) / totalAccumulatedPoints[currentRound];
 
-303:             numRoundsClaimed[msg.sender] += 1;
+304:             numRoundsClaimed[msg.sender] += 1;
 
-306:             amountClaimed[msg.sender] += claimableNRN;
+307:             amountClaimed[msg.sender] += claimableNRN;
 
-340:         if (amountStaked[tokenId] + stakeAtRisk > 0) {
+342:         if (amountStaked[tokenId] + stakeAtRisk > 0) {
 
-346:         totalBattles += 1;
+348:         totalBattles += 1;
 
-388:         for (uint32 i = lowerBound; i < roundId; i++) {
+390:         for (uint32 i = lowerBound; i < roundId; i++) {
 
-388:         for (uint32 i = lowerBound; i < roundId; i++) {
+390:         for (uint32 i = lowerBound; i < roundId; i++) {
 
-390:             claimableNRN += (
+392:             claimableNRN += (
 
-391:                 accumulatedPointsPerAddress[claimer][i] * nrnDistribution
+393:                 accumulatedPointsPerAddress[claimer][i] * nrnDistribution
 
-392:             ) / totalAccumulatedPoints[i];
+394:             ) / totalAccumulatedPoints[i];
 
-437:         curStakeAtRisk = (bpsLostPerLoss * (amountStaked[tokenId] + stakeAtRisk)) / 10**4;
+439:         curStakeAtRisk = (bpsLostPerLoss * (amountStaked[tokenId] + stakeAtRisk)) / 10**4;
 
-437:         curStakeAtRisk = (bpsLostPerLoss * (amountStaked[tokenId] + stakeAtRisk)) / 10**4;
+439:         curStakeAtRisk = (bpsLostPerLoss * (amountStaked[tokenId] + stakeAtRisk)) / 10**4;
 
-437:         curStakeAtRisk = (bpsLostPerLoss * (amountStaked[tokenId] + stakeAtRisk)) / 10**4;
+439:         curStakeAtRisk = (bpsLostPerLoss * (amountStaked[tokenId] + stakeAtRisk)) / 10**4;
 
-437:         curStakeAtRisk = (bpsLostPerLoss * (amountStaked[tokenId] + stakeAtRisk)) / 10**4;
+439:         curStakeAtRisk = (bpsLostPerLoss * (amountStaked[tokenId] + stakeAtRisk)) / 10**4;
 
-437:         curStakeAtRisk = (bpsLostPerLoss * (amountStaked[tokenId] + stakeAtRisk)) / 10**4;
+439:         curStakeAtRisk = (bpsLostPerLoss * (amountStaked[tokenId] + stakeAtRisk)) / 10**4;
 
-443:                 points = stakingFactor[tokenId] * eloFactor;
+445:                 points = stakingFactor[tokenId] * eloFactor;
 
-447:             uint256 mergingPoints = (points * mergingPortion) / 100;
+449:             uint256 mergingPoints = (points * mergingPortion) / 100;
 
-447:             uint256 mergingPoints = (points * mergingPortion) / 100;
+449:             uint256 mergingPoints = (points * mergingPortion) / 100;
 
-448:             points -= mergingPoints;
+450:             points -= mergingPoints;
 
-460:                 amountStaked[tokenId] += curStakeAtRisk;
+462:                 amountStaked[tokenId] += curStakeAtRisk;
 
-464:             accumulatedPointsPerFighter[tokenId][roundId] += points;
+466:             accumulatedPointsPerFighter[tokenId][roundId] += points;
 
-465:             accumulatedPointsPerAddress[fighterOwner][roundId] += points;
+467:             accumulatedPointsPerAddress[fighterOwner][roundId] += points;
 
-466:             totalAccumulatedPoints[roundId] += points;
+468:             totalAccumulatedPoints[roundId] += points;
 
-479:                 points = stakingFactor[tokenId] * eloFactor;
+481:                 points = stakingFactor[tokenId] * eloFactor;
 
-483:                 accumulatedPointsPerFighter[tokenId][roundId] -= points;
+485:                 accumulatedPointsPerFighter[tokenId][roundId] -= points;
 
-484:                 accumulatedPointsPerAddress[fighterOwner][roundId] -= points;
+486:                 accumulatedPointsPerAddress[fighterOwner][roundId] -= points;
 
-485:                 totalAccumulatedPoints[roundId] -= points;
+487:                 totalAccumulatedPoints[roundId] -= points;
 
-494:                     amountStaked[tokenId] -= curStakeAtRisk;
+496:                     amountStaked[tokenId] -= curStakeAtRisk;
 
-505:             fighterBattleRecord[tokenId].wins += 1;
+507:             fighterBattleRecord[tokenId].wins += 1;
 
-507:             fighterBattleRecord[tokenId].ties += 1;
+509:             fighterBattleRecord[tokenId].ties += 1;
 
-509:             fighterBattleRecord[tokenId].loses += 1;
+511:             fighterBattleRecord[tokenId].loses += 1;
 
-526:           (amountStaked[tokenId] + stakeAtRisk) / 10**18
+528:           (amountStaked[tokenId] + stakeAtRisk) / 10**18
 
-526:           (amountStaked[tokenId] + stakeAtRisk) / 10**18
+528:           (amountStaked[tokenId] + stakeAtRisk) / 10**18
 
-526:           (amountStaked[tokenId] + stakeAtRisk) / 10**18
+528:           (amountStaked[tokenId] + stakeAtRisk) / 10**18
 
-526:           (amountStaked[tokenId] + stakeAtRisk) / 10**18
+528:           (amountStaked[tokenId] + stakeAtRisk) / 10**18
 
 ```
 
@@ -635,9 +631,9 @@ File: src/VoltageManager.sol
 
 4: import { GameItems } from "./GameItems.sol";
 
-112:         ownerVoltage[spender] -= voltageSpent;
+110:         ownerVoltage[spender] -= voltageSpent;
 
-121:         ownerVoltageReplenishTime[owner] = uint32(block.timestamp + 1 days);
+119:         ownerVoltageReplenishTime[owner] = uint32(block.timestamp + 1 days);
 
 ```
 
@@ -662,7 +658,7 @@ File: src/AiArenaHelper.sol
 ```solidity
 File: src/FighterFarm.sol
 
-372:         require(_neuronInstance.balanceOf(msg.sender) >= rerollCost, "Not enough NRN for reroll");
+373:         require(_neuronInstance.balanceOf(msg.sender) >= rerollCost, "Not enough NRN for reroll");
 
 ```
 
@@ -704,17 +700,17 @@ File: src/Neuron.sol
 ```solidity
 File: src/RankedBattle.sol
 
-244:         require(amount > 0, "Amount cannot be 0");
+245:         require(amount > 0, "Amount cannot be 0");
 
-245:         require(_fighterFarmInstance.ownerOf(tokenId) == msg.sender, "Caller does not own fighter");
+246:         require(_fighterFarmInstance.ownerOf(tokenId) == msg.sender, "Caller does not own fighter");
 
-246:         require(_neuronInstance.balanceOf(msg.sender) >= amount, "Stake amount exceeds balance");
+247:         require(_neuronInstance.balanceOf(msg.sender) >= amount, "Stake amount exceeds balance");
 
-247:         require(hasUnstaked[tokenId][roundId] == false, "Cannot add stake after unstaking this round");
+248:         require(hasUnstaked[tokenId][roundId] == false, "Cannot add stake after unstaking this round");
 
-270:         require(_fighterFarmInstance.ownerOf(tokenId) == msg.sender, "Caller does not own fighter");
+271:         require(_fighterFarmInstance.ownerOf(tokenId) == msg.sender, "Caller does not own fighter");
 
-294:         require(numRoundsClaimed[msg.sender] < roundId, "Already claimed NRNs for this period");
+295:         require(numRoundsClaimed[msg.sender] < roundId, "Already claimed NRNs for this period");
 
 ```
 
@@ -761,9 +757,9 @@ File: src/AiArenaHelper.sol
 ```solidity
 File: src/FighterFarm.sol
 
-210:         for (uint16 i = 0; i < totalToMint; i++) {
+211:         for (uint16 i = 0; i < totalToMint; i++) {
 
-248:         for (uint16 i = 0; i < mintpassIdsToBurn.length; i++) {
+249:         for (uint16 i = 0; i < mintpassIdsToBurn.length; i++) {
 
 ```
 
@@ -819,11 +815,11 @@ File: src/RankedBattle.sol
 
 62:     uint256 public roundId = 0;
 
-295:         uint256 claimableNRN = 0;
+296:         uint256 claimableNRN = 0;
 
-385:         uint256 claimableNRN = 0;
+387:         uint256 claimableNRN = 0;
 
-425:         uint256 points = 0;
+427:         uint256 points = 0;
 
 ```
 
@@ -874,9 +870,9 @@ File: src/Neuron.sol
 ```solidity
 File: src/RankedBattle.sol
 
-247:         require(hasUnstaked[tokenId][roundId] == false, "Cannot add stake after unstaking this round");
+248:         require(hasUnstaked[tokenId][roundId] == false, "Cannot add stake after unstaking this round");
 
-294:         require(numRoundsClaimed[msg.sender] < roundId, "Already claimed NRNs for this period");
+295:         require(numRoundsClaimed[msg.sender] < roundId, "Already claimed NRNs for this period");
 
 ```
 
@@ -921,9 +917,9 @@ File: src/AiArenaHelper.sol
 ```solidity
 File: src/FighterFarm.sol
 
-210:         for (uint16 i = 0; i < totalToMint; i++) {
+211:         for (uint16 i = 0; i < totalToMint; i++) {
 
-248:         for (uint16 i = 0; i < mintpassIdsToBurn.length; i++) {
+249:         for (uint16 i = 0; i < mintpassIdsToBurn.length; i++) {
 
 ```
 
@@ -960,9 +956,9 @@ File: src/Neuron.sol
 ```solidity
 File: src/RankedBattle.sol
 
-298:         for (uint32 currentRound = lowerBound; currentRound < roundId; currentRound++) {
+299:         for (uint32 currentRound = lowerBound; currentRound < roundId; currentRound++) {
 
-388:         for (uint32 i = lowerBound; i < roundId; i++) {
+390:         for (uint32 i = lowerBound; i < roundId; i++) {
 
 ```
 
@@ -1018,7 +1014,7 @@ File: src/RankedBattle.sol
 ```solidity
 File: src/FighterFarm.sol
 
-207:         require(modelHashes.length == totalToMint && modelTypes.length == totalToMint);
+208:         require(modelHashes.length == totalToMint && modelTypes.length == totalToMint);
 
 ```
 
@@ -1096,21 +1092,21 @@ File: src/RankedBattle.sol
 
 2: pragma solidity >=0.8.0 <0.9.0;
 
-234:         require(totalAccumulatedPoints[roundId] > 0);
+235:         require(totalAccumulatedPoints[roundId] > 0);
 
-244:         require(amount > 0, "Amount cannot be 0");
+245:         require(amount > 0, "Amount cannot be 0");
 
-305:         if (claimableNRN > 0) {
+306:         if (claimableNRN > 0) {
 
-340:         if (amountStaked[tokenId] + stakeAtRisk > 0) {
+342:         if (amountStaked[tokenId] + stakeAtRisk > 0) {
 
-458:             if (curStakeAtRisk > 0) {
+460:             if (curStakeAtRisk > 0) {
 
-467:             if (points > 0) {
+469:             if (points > 0) {
 
-477:             if (accumulatedPointsPerFighter[tokenId][roundId] > 0) {
+479:             if (accumulatedPointsPerFighter[tokenId][roundId] > 0) {
 
-486:                 if (points > 0) {
+488:                 if (points > 0) {
 
 ```
 
@@ -1134,7 +1130,7 @@ File: src/VoltageManager.sol
 
 2: pragma solidity >=0.8.0 <0.9.0;
 
-97:         require(_gameItemsContractInstance.balanceOf(msg.sender, 0) > 0);
+95:         require(_gameItemsContractInstance.balanceOf(msg.sender, 0) > 0);
 
 ```
 
@@ -1168,15 +1164,15 @@ File: src/AiArenaHelper.sol
 ```solidity
 File: src/FighterFarm.sol
 
-106:         _ownerAddress = ownerAddress;
+107:         _ownerAddress = ownerAddress;
 
-107:         _delegatedAddress = delegatedAddress;
+108:         _delegatedAddress = delegatedAddress;
 
-108:         treasuryAddress = treasuryAddress_;
+109:         treasuryAddress = treasuryAddress_;
 
-121:         _ownerAddress = newOwnerAddress;
+122:         _ownerAddress = newOwnerAddress;
 
-172:         _mergingPoolAddress = mergingPoolAddress;
+173:         _mergingPoolAddress = mergingPoolAddress;
 
 ```
 
@@ -1224,15 +1220,15 @@ File: src/Neuron.sol
 ```solidity
 File: src/RankedBattle.sol
 
-151:         _ownerAddress = ownerAddress;
+152:         _ownerAddress = ownerAddress;
 
-152:         _gameServerAddress = gameServerAddress;
+153:         _gameServerAddress = gameServerAddress;
 
-168:         _ownerAddress = newOwnerAddress;
+169:         _ownerAddress = newOwnerAddress;
 
-185:         _gameServerAddress = gameServerAddress;
+186:         _gameServerAddress = gameServerAddress;
 
-193:         _stakeAtRiskAddress = stakeAtRiskAddress;
+194:         _stakeAtRiskAddress = stakeAtRiskAddress;
 
 ```
 
@@ -1241,7 +1237,7 @@ File: src/RankedBattle.sol
 ```solidity
 File: src/StakeAtRisk.sol
 
-65:         treasuryAddress = _treasuryAddress;
+65:         treasuryAddress = treasuryAddress_;
 
 66:         _rankedBattleAddress = rankedBattleAddress;   
 
@@ -1252,9 +1248,9 @@ File: src/StakeAtRisk.sol
 ```solidity
 File: src/VoltageManager.sol
 
-54:         _ownerAddress = ownerAddress;
+52:         _ownerAddress = ownerAddress;
 
-68:         _ownerAddress = newOwnerAddress;
+66:         _ownerAddress = newOwnerAddress;
 
 ```
 
@@ -1288,35 +1284,35 @@ File: src/AiArenaHelper.sol
 ```solidity
 File: src/FighterFarm.sol
 
-109:         numElements[0] = 3;
+110:         numElements[0] = 3;
 
-200:             numToMint[0], 
+201:             numToMint[0], 
 
-201:             numToMint[1],
+202:             numToMint[1],
 
-202:             nftsClaimed[msg.sender][0],
+203:             nftsClaimed[msg.sender][0],
 
-203:             nftsClaimed[msg.sender][1]
+204:             nftsClaimed[msg.sender][1]
 
-206:         uint16 totalToMint = uint16(numToMint[0] + numToMint[1]);
+207:         uint16 totalToMint = uint16(numToMint[0] + numToMint[1]);
 
-206:         uint16 totalToMint = uint16(numToMint[0] + numToMint[1]);
+207:         uint16 totalToMint = uint16(numToMint[0] + numToMint[1]);
 
-208:         nftsClaimed[msg.sender][0] += numToMint[0];
+209:         nftsClaimed[msg.sender][0] += numToMint[0];
 
-208:         nftsClaimed[msg.sender][0] += numToMint[0];
+209:         nftsClaimed[msg.sender][0] += numToMint[0];
 
-209:         nftsClaimed[msg.sender][1] += numToMint[1];
+210:         nftsClaimed[msg.sender][1] += numToMint[1];
 
-209:         nftsClaimed[msg.sender][1] += numToMint[1];
+210:         nftsClaimed[msg.sender][1] += numToMint[1];
 
-216:                 i < numToMint[0] ? 0 : 1,
+217:                 i < numToMint[0] ? 0 : 1,
 
-498:         if (customAttributes[0] == 100) {
+499:         if (customAttributes[0] == 100) {
 
-502:             element = customAttributes[0];
+503:             element = customAttributes[0];
 
-503:             weight = customAttributes[1];
+504:             weight = customAttributes[1];
 
 ```
 
@@ -1325,7 +1321,7 @@ File: src/FighterFarm.sol
 ```solidity
 File: src/RankedBattle.sol
 
-156:         rankedNrnDistribution[0] = 5000 * 10**18;
+157:         rankedNrnDistribution[0] = 5000 * 10**18;
 
 ```
 
@@ -1355,45 +1351,45 @@ File: src/AiArenaHelper.sol
 ```solidity
 File: src/FighterFarm.sol
 
-120:         require(msg.sender == _ownerAddress);
+121:         require(msg.sender == _ownerAddress);
 
-129:         require(msg.sender == _ownerAddress);
+130:         require(msg.sender == _ownerAddress);
 
-139:         require(msg.sender == _ownerAddress);
+140:         require(msg.sender == _ownerAddress);
 
-147:         require(msg.sender == _ownerAddress);
+148:         require(msg.sender == _ownerAddress);
 
-155:         require(msg.sender == _ownerAddress);
+156:         require(msg.sender == _ownerAddress);
 
-163:         require(msg.sender == _ownerAddress);
+164:         require(msg.sender == _ownerAddress);
 
-171:         require(msg.sender == _ownerAddress);
+172:         require(msg.sender == _ownerAddress);
 
-180:         require(msg.sender == _delegatedAddress);
+181:         require(msg.sender == _delegatedAddress);
 
-205:         require(Verification.verify(msgHash, signature, _delegatedAddress));
+206:         require(Verification.verify(msgHash, signature, _delegatedAddress));
 
-207:         require(modelHashes.length == totalToMint && modelTypes.length == totalToMint);
+208:         require(modelHashes.length == totalToMint && modelTypes.length == totalToMint);
 
-242:         require(
+243:         require(
 
-249:             require(msg.sender == _mintpassInstance.ownerOf(mintpassIdsToBurn[i]));
+250:             require(msg.sender == _mintpassInstance.ownerOf(mintpassIdsToBurn[i]));
 
-268:         require(hasStakerRole[msg.sender]);
+269:         require(hasStakerRole[msg.sender]);
 
-289:         require(msg.sender == ownerOf(tokenId));
+290:         require(msg.sender == ownerOf(tokenId));
 
-320:         require(msg.sender == _mergingPoolAddress);
+321:         require(msg.sender == _mergingPoolAddress);
 
-345:         require(_ableToTransfer(tokenId, to));
+346:         require(_ableToTransfer(tokenId, to));
 
-362:         require(_ableToTransfer(tokenId, to));
+363:         require(_ableToTransfer(tokenId, to));
 
-370:         require(msg.sender == ownerOf(tokenId));
+371:         require(msg.sender == ownerOf(tokenId));
 
-371:         require(numRerolls[tokenId] < maxRerollsAllowed[fighterType]);
+372:         require(numRerolls[tokenId] < maxRerollsAllowed[fighterType]);
 
-494:         require(balanceOf(to) < MAX_FIGHTERS_ALLOWED);
+495:         require(balanceOf(to) < MAX_FIGHTERS_ALLOWED);
 
 ```
 
@@ -1406,7 +1402,7 @@ File: src/GameItems.sol
 
 118:         require(msg.sender == _ownerAddress);
 
-127:         require(msg.sender == _ownerAddress); // Add this check in the transfer functions
+127:         require(msg.sender == _ownerAddress);
 
 140:         require(msg.sender == _ownerAddress);
 
@@ -1469,31 +1465,31 @@ File: src/Neuron.sol
 ```solidity
 File: src/RankedBattle.sol
 
-167:         require(msg.sender == _ownerAddress);
+168:         require(msg.sender == _ownerAddress);
 
-176:         require(msg.sender == _ownerAddress);
+177:         require(msg.sender == _ownerAddress);
 
-184:         require(msg.sender == _ownerAddress);
+185:         require(msg.sender == _ownerAddress);
 
-192:         require(msg.sender == _ownerAddress);
+193:         require(msg.sender == _ownerAddress);
 
-201:         require(msg.sender == _ownerAddress);
+202:         require(msg.sender == _ownerAddress);
 
-209:         require(msg.sender == _ownerAddress);
+210:         require(msg.sender == _ownerAddress);
 
-218:         require(isAdmin[msg.sender]);
+219:         require(isAdmin[msg.sender]);
 
-226:         require(isAdmin[msg.sender]);
+227:         require(isAdmin[msg.sender]);
 
-233:         require(isAdmin[msg.sender]);
+234:         require(isAdmin[msg.sender]);
 
-234:         require(totalAccumulatedPoints[roundId] > 0);
+235:         require(totalAccumulatedPoints[roundId] > 0);
 
-329:         require(msg.sender == _gameServerAddress);
+331:         require(msg.sender == _gameServerAddress);
 
-330:         require(mergingPortion <= 100);
+332:         require(mergingPortion <= 100);
 
-332:         require(
+334:         require(
 
 ```
 
@@ -1502,17 +1498,17 @@ File: src/RankedBattle.sol
 ```solidity
 File: src/VoltageManager.sol
 
-67:         require(msg.sender == _ownerAddress);
+65:         require(msg.sender == _ownerAddress);
 
-76:         require(msg.sender == _ownerAddress);
+74:         require(msg.sender == _ownerAddress);
 
-85:         require(isAdmin[msg.sender]);
+83:         require(isAdmin[msg.sender]);
 
-96:         require(ownerVoltage[msg.sender] < 100);
+94:         require(ownerVoltage[msg.sender] < 100);
 
-97:         require(_gameItemsContractInstance.balanceOf(msg.sender, 0) > 0);
+95:         require(_gameItemsContractInstance.balanceOf(msg.sender, 0) > 0);
 
-108:         require(spender == msg.sender || allowedVoltageSpenders[msg.sender]);
+106:         require(spender == msg.sender || allowedVoltageSpenders[msg.sender]);
 
 ```
 
@@ -1620,7 +1616,7 @@ File: src/StakeAtRisk.sol
 ```solidity
 File: src/VoltageManager.sol
 
-18:     event VoltageRemaining(address spender, uint8 voltage);  
+16:     event VoltageRemaining(address spender, uint8 voltage);  
 
 ```
 
@@ -1655,21 +1651,21 @@ File: src/AiArenaHelper.sol
 ```solidity
 File: src/FighterFarm.sol
 
-312:     function mintFromMergingPool(
+313:     function mintFromMergingPool(
 
-337:     function transferFrom(
+338:     function transferFrom(
 
-354:     function safeTransferFrom(
+355:     function safeTransferFrom(
 
-369:     function reRoll(uint8 tokenId, uint8 fighterType) public {
+370:     function reRoll(uint8 tokenId, uint8 fighterType) public {
 
-394:     function contractURI() public pure returns (string memory) {
+395:     function contractURI() public pure returns (string memory) {
 
-401:     function tokenURI(uint256 tokenId) public view override(ERC721) returns (string memory) {
+402:     function tokenURI(uint256 tokenId) public view override(ERC721) returns (string memory) {
 
-409:     function supportsInterface(bytes4 _interfaceId)
+410:     function supportsInterface(bytes4 _interfaceId)
 
-420:     function getAllFighterInfo(
+421:     function getAllFighterInfo(
 
 ```
 
@@ -1725,7 +1721,7 @@ File: src/Neuron.sol
 ```solidity
 File: src/RankedBattle.sol
 
-384:     function getUnclaimedNRN(address claimer) public view returns(uint256) {
+386:     function getUnclaimedNRN(address claimer) public view returns(uint256) {
 
 ```
 
@@ -1734,9 +1730,9 @@ File: src/RankedBattle.sol
 ```solidity
 File: src/VoltageManager.sol
 
-95:     function useVoltageBattery() public {
+93:     function useVoltageBattery() public {
 
-107:     function spendVoltage(address spender, uint8 voltageSpent) public {
+105:     function spendVoltage(address spender, uint8 voltageSpent) public {
 
 ```
 
@@ -1774,7 +1770,7 @@ File: src/Neuron.sol
 ```solidity
 File: src/FighterFarm.sol
 
-375:         bool success = _neuronInstance.transferFrom(msg.sender, treasuryAddress, rerollCost);
+376:         bool success = _neuronInstance.transferFrom(msg.sender, treasuryAddress, rerollCost);
 
 ```
 
@@ -1792,11 +1788,11 @@ File: src/GameItems.sol
 ```solidity
 File: src/RankedBattle.sol
 
-250:         bool success = _neuronInstance.transferFrom(msg.sender, address(this), amount);
+251:         bool success = _neuronInstance.transferFrom(msg.sender, address(this), amount);
 
-282:         bool success = _neuronInstance.transfer(msg.sender, amount);
+283:         bool success = _neuronInstance.transfer(msg.sender, amount);
 
-491:                 bool success = _neuronInstance.transfer(_stakeAtRiskAddress, curStakeAtRisk);
+493:                 bool success = _neuronInstance.transfer(_stakeAtRiskAddress, curStakeAtRisk);
 
 ```
 
