@@ -11,7 +11,7 @@ import {FighterFarm} from "../src/FighterFarm.sol";
 import {AiArenaHelper} from "../src/AiArenaHelper.sol";
 import "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
 
-contract StakeAtRiskTest is Test {
+contract VoltageManagerTest is Test {
     /*//////////////////////////////////////////////////////////////
                                 CONSTANTS
     //////////////////////////////////////////////////////////////*/
