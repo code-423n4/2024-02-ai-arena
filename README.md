@@ -88,7 +88,6 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
 - All of the [OpenZepplin](https://github.com/OpenZeppelin) contracts (used for `ERC20`, `ERC721`, `ERC1155`) used as the base for our smart contracts
 - The `FixedPointMathLib.sol` library created by [solmate](https://github.com/transmissions11/solmate/tree/main)
 - The `Verification.sol` library
-- The `FighterOps.sol` library
 - The `AAMintPass.sol` smart contract since it is already deployed and completed minting
   
 # Additional Context
@@ -125,7 +124,7 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
 
 - How many contracts are in scope?: 8
 
-- Total SLoC for these contracts?: 1197
+- Total SLoC for these contracts?: 1271
 
 - How many external imports are there?: 5
 
