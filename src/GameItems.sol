@@ -124,7 +124,7 @@ contract GameItems is ERC1155 {
     /// @param tokenId The token id for the specific game item being adjusted.
     /// @param transferable Whether the game item is transferable or not
     function adjustTransferability(uint256 tokenId, bool transferable) external {
-        require(msg.sender == _ownerAddress); // Add this check in the transfer functions
+        require(msg.sender == _ownerAddress);
         allGameItemAttributes[tokenId].transferable = transferable;
         if (transferable) {
           emit Unlocked(tokenId);
@@ -307,7 +307,7 @@ contract GameItems is ERC1155 {
     //////////////////////////////////////////////////////////////*/    
 
     /// @notice Replenishes the daily allowance for the specified game item token.
-    /// @dev This function is called when a user buys a battery after the replenish interval has passed.
+    /// @dev This function is called when a user buys a game item after the replenish interval has passed.
     /// @param tokenId The ID of the game item token.
     function _replenishDailyAllowance(uint256 tokenId) private {
         allowanceRemaining[msg.sender][tokenId] = allGameItemAttributes[tokenId].dailyAllowance;

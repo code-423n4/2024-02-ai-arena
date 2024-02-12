@@ -146,7 +146,7 @@ contract AAMintPass is ERC721, ERC721Burnable {
         return numTokensOutstanding;
     }
 
-    /// @dev Set the delagated address (Founder-Only)
+    /// @notice The contract URI
     function contractURI() public pure returns (string memory) {
         return "ipfs://bafybeifdvzwsjpxrkbyhqpz3y57j7nwm3eyyc3feqppqggslea3g5kk3jq";
     }

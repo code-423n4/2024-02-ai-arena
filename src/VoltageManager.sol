@@ -5,9 +5,7 @@ import { GameItems } from "./GameItems.sol";
 
 /// @title VoltageManager 
 /// @author ArenaX Labs Inc.
-/// @notice Manages the voltage system for game items
-/// @dev This contract allows the management of voltage for game items and 
-/// provides functions for using and replenishing voltage.
+/// @notice Manages the voltage system for AI Arena
 contract VoltageManager {
 
     /*//////////////////////////////////////////////////////////////

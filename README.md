@@ -44,7 +44,7 @@ AI Arena is a PvP platform fighting game where the fighters are AIs that were tr
 - **Generation**: This primarily affects the visual appearance
 - **Weight**: Determines the battle attributes
 - **Element**: Determines its special abilities
-- **Fighter Type**: Indicates whether its a regular Champion, Icons, or Dendroid
+- **Fighter Type**: Indicates whether its a regular Champion or Dendroid
 - **Model Data**: Comprising of the model type and model hash
   
 Players are able to enter their NFT fighters into ranked battle to earn rewards in our native token _$NRN_. Our token is an ERC20 token, as defined in the `Neuron.sol` smart contract. During deployment, we grant our `RankedBattle.sol` smart contract the `MINTER` and `STAKER` roles in order to facilitate our reward system. Additionally, the `FighterFarm.sol` and `GameItems.sol` smart contracts are granted the `SPENDER` role to allow for in-game purchases with our native token.
@@ -73,9 +73,10 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
 
 |File|SLOC|Description|Libraries|
 |:-|:-:|:-|:-|
-|_Contracts (8)_|
-|[src/AiArenaHelper.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/AAMintPass.sol)|95|This contract generates and manages an AI Arena fighters physical attributes.| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) [`@FighterOps/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterOps.sol)|
+|_Contracts (9)_|
+|[src/AiArenaHelper.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/AiArenaHelper.sol)|95|This contract creates mint passes for those who have qualified, which are claimable for AI Arena fighters at a later date| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) [`@FighterOps/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterOps.sol)|
 |[src/FighterFarm.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterFarm.sol)|327|This contract manages the creation, ownership, and redemption of AI Arena Fighter NFTs, including the ability to mint new NFTs from a merging pool or through the redemption of mint passes.| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) [`@FighterOps/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterOps.sol) [`@Verification/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/Verification.sol)|
+|[src/FighterOps.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterOps.sol)|74|This library defines the Fighter struct and contains methods for fetching information about a fighter.|
 |[src/GameItems.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/GameItems.sol)|163|This contract represents a collection of game items used in AI Arena.| [`@openzeppelin/*`](https://openzeppelin.com/contracts/)|
 |[src/MergingPool.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/MergingPool.sol)|110|This contract allows users to potentially earn a new fighter NFT.| |
 |[src/Neuron.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/Neuron.sol)|92|The Neuron token is used for various functions within the platform, including staking, governance, and rewards.| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
@@ -113,7 +114,7 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
     - We maintain the flexibility to adjust how the ELO score is calculated off-chain
 - Players are able to divert part of their points to the `MergingPool.sol` smart contract. This contract will periodically raffle off new NFTs to be minted. The amount of NFTs to be minted through the Merging Pool will be managed in a way that keeps NFT inflation relatively low.
 - At the end of each round, we will distribute a fixed amount of _$NRN_ between players proportional to the relative amount of points they have amassed.
-  - For example, let's say there are two player
+  - For example, let's say there are two players: A and B. Player A earned 500 points and player B earned 1500 points. If we were to distribute 1000 NRN for that round, then player A would receive 250 NRN and player B would receive 750 NRN.
 - **NOTE**: The asymmetry in point increase/decrease as well as _$NRNs_ gained vs potentially lost is an intentional design in our economy.
 
 ## Scoping Details
@@ -124,7 +125,7 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
 
 - How many contracts are in scope?: 8
 
-- Total SLoC for these contracts?: 1197
+- Total SLoC for these contracts?: 1271
 
 - How many external imports are there?: 5
 
