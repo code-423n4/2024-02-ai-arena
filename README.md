@@ -73,7 +73,7 @@ Lastly, each wallet has **voltage** that it has to manage. Every 24 hours from t
 
 |File|SLOC|Description|Libraries|
 |:-|:-:|:-|:-|
-|_Contracts (8)_|
+|_Contracts (9)_|
 |[src/AiArenaHelper.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/AiArenaHelper.sol)|95|This contract creates mint passes for those who have qualified, which are claimable for AI Arena fighters at a later date| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) [`@FighterOps/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterOps.sol)|
 |[src/FighterFarm.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterFarm.sol)|327|This contract manages the creation, ownership, and redemption of AI Arena Fighter NFTs, including the ability to mint new NFTs from a merging pool or through the redemption of mint passes.| [`@openzeppelin/*`](https://openzeppelin.com/contracts/) [`@FighterOps/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterOps.sol) [`@Verification/*`](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/Verification.sol)|
 |[src/FighterOps.sol](https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/FighterOps.sol)|74|This library defines the Fighter struct and contains methods for fetching information about a fighter.|
