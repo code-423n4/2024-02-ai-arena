@@ -367,7 +367,7 @@ contract FighterFarm is ERC721, ERC721Enumerable {
     /// @notice Rolls a new fighter with random traits.
     /// @param tokenId ID of the fighter being re-rolled.
     /// @param fighterType The fighter type.
-    function reRoll(uint8 tokenId, uint8 fighterType) public {
+    function reRoll(uint256 tokenId, uint8 fighterType) public {
         require(msg.sender == ownerOf(tokenId));
         require(numRerolls[tokenId] < maxRerollsAllowed[fighterType]);
         require(_neuronInstance.balanceOf(msg.sender) >= rerollCost, "Not enough NRN for reroll");
