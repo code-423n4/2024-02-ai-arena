@@ -352,16 +352,19 @@ contract FighterFarm is ERC721, ERC721Enumerable {
     /// @param from Address of the current owner.
     /// @param to Address of the new owner.
     /// @param tokenId ID of the fighter being transferred.
+    /// @param data Additional data.
     function safeTransferFrom(
-        address from, 
-        address to, 
-        uint256 tokenId
+        address from,
+        address to,
+        uint256 tokenId,
+        bytes memory data
     ) 
         public 
-        override(ERC721, IERC721)
+        virtual 
+        override(ERC721, IERC721) 
     {
         require(_ableToTransfer(tokenId, to));
-        _safeTransfer(from, to, tokenId, "");
+        _safeTransfer(from, to, tokenId, data);
     }
 
     /// @notice Rolls a new fighter with random traits.
