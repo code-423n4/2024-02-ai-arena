@@ -133,6 +133,15 @@ contract FighterFarm is ERC721, ERC721Enumerable {
         return generation[fighterType];
     }
 
+    /// @notice Updates the number of elements for a given generation.
+    /// @dev Only the owner address is authorized to call this function.
+    /// @param newNumElements number of elements for the generation.
+    /// @param generation_ generation to be updated.
+    function setNumElements(uint8 newNumElements, uint8 generation_) external {
+        require(msg.sender == _ownerAddress);
+        numElements[generation_] = newNumElements;
+    }
+
     /// @notice Adds a new address that is allowed to stake fighters on behalf of users.
     /// @dev Only the owner address is authorized to call this function.
     /// @param newStaker The address of the new staker
