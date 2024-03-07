@@ -302,6 +302,24 @@ contract GameItems is ERC1155 {
         super.safeTransferFrom(from, to, tokenId, amount, data);
     }
 
+    /// @notice Safely transfers an batch of NFTs from one address to another.
+    /// @dev Added a check to see if the game item is transferable.
+    function safeBatchTransferFrom(
+        address from,
+        address to,
+        uint256[] memory ids,
+        uint256[] memory amounts,
+        bytes memory data
+    ) 
+        public 
+        override(ERC1155) 
+    {
+        for (uint256 i; i < ids.length; i++) {
+            require(allGameItemAttributes[ids[i]].transferable);
+        }
+        super.safeBatchTransferFrom(from, to, ids, amounts, data);
+    }
+
     /*//////////////////////////////////////////////////////////////
                             PRIVATE FUNCTIONS
     //////////////////////////////////////////////////////////////*/    
