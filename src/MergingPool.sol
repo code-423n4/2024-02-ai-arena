@@ -2,11 +2,13 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 import { FighterFarm } from "./FighterFarm.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+
 
 /// @title MergingPool
 /// @author ArenaX Labs Inc.
 /// @notice This contract allows users to potentially earn a new fighter NFT.
-contract MergingPool {
+contract MergingPool is ReentrancyGuard{
 
     /*//////////////////////////////////////////////////////////////
                                 EVENTS
@@ -141,7 +143,7 @@ contract MergingPool {
         string[] calldata modelTypes,
         uint256[2][] calldata customAttributes
     ) 
-        external 
+        external nonReentrant
     {
         uint256 winnersLength;
         uint32 claimIndex = 0;
