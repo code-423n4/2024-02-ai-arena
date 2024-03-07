@@ -321,7 +321,7 @@ contract FighterFarm is ERC721, ERC721Enumerable {
         require(msg.sender == _mergingPoolAddress);
         _createNewFighter(
             to, 
-            uint256(keccak256(abi.encode(msg.sender, fighters.length))), 
+            uint256(keccak256(abi.encode(to, fighters.length))), 
             modelHash, 
             modelType,
             0,
