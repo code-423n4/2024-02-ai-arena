@@ -205,7 +205,7 @@ contract MergingPool is ReentrancyGuard{
     /// @param maxId The maximum token ID up to which the points will be retrieved.
     /// @return An array of points corresponding to the fighters' token IDs.
     function getFighterPoints(uint256 maxId) public view returns(uint256[] memory) {
-        uint256[] memory points = new uint256[](1);
+        uint256[] memory points = new uint256[](maxId);
         for (uint256 i = 0; i < maxId; i++) {
             points[i] = fighterPoints[i];
         }
