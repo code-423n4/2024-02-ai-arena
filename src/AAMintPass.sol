@@ -122,7 +122,7 @@ contract AAMintPass is ERC721, ERC721Burnable {
             passesClaimed[msg.sender][1],
             _tokenURIs
         )));
-        require(Verification.verify(msgHash, signature, delegatedAddress));
+        require(Verification.verify(delegatedAddress, msgHash, signature));
         uint16 totalToMint = uint16(numToMint[0] + numToMint[1]);
         require(_tokenURIs.length == totalToMint);
         passesClaimed[msg.sender][0] += numToMint[0];

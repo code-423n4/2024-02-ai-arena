@@ -212,7 +212,7 @@ contract FighterFarm is ERC721, ERC721Enumerable {
             nftsClaimed[msg.sender][0],
             nftsClaimed[msg.sender][1]
         )));
-        require(Verification.verify(msgHash, signature, _delegatedAddress));
+        require(Verification.verify(_delegatedAddress, msgHash, signature));
         uint16 totalToMint = uint16(numToMint[0] + numToMint[1]);
         require(modelHashes.length == totalToMint && modelTypes.length == totalToMint);
         nftsClaimed[msg.sender][0] += numToMint[0];
