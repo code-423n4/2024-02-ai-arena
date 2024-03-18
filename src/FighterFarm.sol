@@ -239,13 +239,15 @@ contract FighterFarm is ERC721, ERC721Enumerable {
     /// @param fighterTypes Array of fighter types corresponding to the fighters being minted.
     /// @param modelHashes Array of ML model hashes corresponding to the fighters being minted. 
     /// @param modelTypes Array of ML model types corresponding to the fighters being minted.
+    /// @param signature Signature of the redeem message.
     function redeemMintPass(
         uint256[] calldata mintpassIdsToBurn,
         uint8[] calldata fighterTypes,
         uint8[] calldata iconsTypes,
         string[] calldata mintPassDnas,
         string[] calldata modelHashes,
-        string[] calldata modelTypes
+        string[] calldata modelTypes,
+        bytes calldata signature
     ) 
         external 
     {
@@ -253,8 +255,21 @@ contract FighterFarm is ERC721, ERC721Enumerable {
             mintpassIdsToBurn.length == mintPassDnas.length && 
             mintPassDnas.length == fighterTypes.length && 
             fighterTypes.length == modelHashes.length &&
-            modelHashes.length == modelTypes.length
+            modelHashes.length == modelTypes.length &&
+            modelTypes.length == iconsTypes.length
         );
+
+         bytes32 msgHash = bytes32(keccak256(abi.encode(
+          mintpassIdsToBurn,
+          fighterTypes,
+          iconsTypes,
+          mintPassDnas,
+          modelHashes,
+          modelTypes
+        )));
+
+        require(Verification.verify(_delegatedAddress, msgHash, signature));
+
         for (uint16 i = 0; i < mintpassIdsToBurn.length; i++) {
             require(msg.sender == _mintpassInstance.ownerOf(mintpassIdsToBurn[i]));
             _mintpassInstance.burn(mintpassIdsToBurn[i]);
