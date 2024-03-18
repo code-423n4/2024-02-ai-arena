@@ -133,6 +133,9 @@ contract RankedBattle {
     /// @notice Indicates whether we have calculated the staking factor for a given round and token.
     mapping(uint256 => mapping(uint256 => bool)) _calculatedStakingFactor;
 
+    /// @notice Maps token ID to round ID to starting address.
+    mapping(uint256 => mapping(uint256 => address)) public addressStartedRound;
+
     /*//////////////////////////////////////////////////////////////
                                CONSTRUCTOR
     //////////////////////////////////////////////////////////////*/
@@ -336,6 +339,13 @@ contract RankedBattle {
             _voltageManagerInstance.ownerVoltageReplenishTime(fighterOwner) <= block.timestamp || 
             _voltageManagerInstance.ownerVoltage(fighterOwner) >= VOLTAGE_COST
         );
+
+        if (addressStartedRound[tokenId][roundId] == address(0)) {
+          addressStartedRound[tokenId][roundId] = fighterOwner;
+        }
+        else {
+          require(addressStartedRound[tokenId][roundId] == fighterOwner);
+        }
 
         _updateRecord(tokenId, battleResult);
         uint256 stakeAtRisk = _stakeAtRiskInstance.getStakeAtRisk(tokenId);
