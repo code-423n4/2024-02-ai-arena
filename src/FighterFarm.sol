@@ -403,7 +403,7 @@ contract FighterFarm is ERC721, ERC721Enumerable {
         bool success = _neuronInstance.transferFrom(msg.sender, treasuryAddress, rerollCost);
         if (success) {
             numRerolls[tokenId] += 1;
-            uint256 dna = uint256(keccak256(abi.encode(msg.sender, tokenId, numRerolls[tokenId])));
+            uint256 dna = uint256(keccak256(abi.encode(tokenId, numRerolls[tokenId])));
             (uint256 element, uint256 weight, uint256 newDna) = _createFighterBase(dna, fighterType);
             fighters[tokenId].element = element;
             fighters[tokenId].weight = weight;
