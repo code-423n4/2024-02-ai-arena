@@ -220,7 +220,7 @@ contract FighterFarm is ERC721, ERC721Enumerable {
         for (uint16 i = 0; i < totalToMint; i++) {
             _createNewFighter(
                 msg.sender, 
-                uint256(keccak256(abi.encode(msg.sender, fighters.length))),
+                uint256(keccak256(abi.encode(msg.sender, nftsClaimed[msg.sender][0], nftsClaimed[msg.sender][1]))),
                 modelHashes[i], 
                 modelTypes[i],
                 i < numToMint[0] ? 0 : 1,
