@@ -294,12 +294,13 @@ contract RankedBattle {
 
     /// @notice Claims NRN tokens for the specified rounds.
     /// @dev Caller can only claim once per round.
-    function claimNRN() external {
+    function claimNRN(uint32 totalRoundsToConsider) external {
         require(numRoundsClaimed[msg.sender] < roundId, "Already claimed NRNs for this period");
         uint256 claimableNRN = 0;
         uint256 nrnDistribution;
         uint32 lowerBound = numRoundsClaimed[msg.sender];
-        for (uint32 currentRound = lowerBound; currentRound < roundId; currentRound++) {
+        require(lowerBound + totalRoundsToConsider < roundId, "RankedBattle: totalRoundsToConsider exceeds the limit");
+        for (uint32 currentRound = lowerBound; currentRound < lowerBound + totalRoundsToConsider; currentRound++) {
             nrnDistribution = getNrnDistribution(currentRound);
             claimableNRN += (
                 accumulatedPointsPerAddress[msg.sender][currentRound] * nrnDistribution   
