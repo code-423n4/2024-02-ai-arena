@@ -79,6 +79,14 @@ contract Neuron is ERC20, AccessControl {
                             EXTERNAL FUNCTIONS
     //////////////////////////////////////////////////////////////*/
 
+    /// @notice Sets the treasury address.
+    /// @dev Only the owner address is authorized to call this function.
+    /// @param treasuryAddress_ Address of the new treasury.
+    function setTreasuryAddress(address treasuryAddress_) external {
+        require(msg.sender == _ownerAddress);
+        treasuryAddress = treasuryAddress_;
+    }
+
     /// @notice Transfers ownership from one address to another.
     /// @dev Only the owner address is authorized to call this function.
     /// @param newOwnerAddress The address of the new owner
@@ -117,6 +125,7 @@ contract Neuron is ERC20, AccessControl {
     /// @param access Whether the address has admin access or not.
     function adjustAdminAccess(address adminAddress, bool access) external {
         require(msg.sender == _ownerAddress);
+        require(isAdmin[adminAddress] != access, "Nothing to change");
         isAdmin[adminAddress] = access;
     }  
 

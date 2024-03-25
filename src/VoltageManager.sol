@@ -72,6 +72,7 @@ contract VoltageManager {
     /// @param access Whether the address has admin access or not.
     function adjustAdminAccess(address adminAddress, bool access) external {
         require(msg.sender == _ownerAddress);
+        require(isAdmin[adminAddress] != access, "Nothing to change");
         isAdmin[adminAddress] = access;
     }  
 
@@ -81,6 +82,7 @@ contract VoltageManager {
     /// @param allowed Whether the spender is allowed or not
     function adjustAllowedVoltageSpenders(address allowedVoltageSpender, bool allowed) external {
         require(isAdmin[msg.sender]);
+        require(isAdmin[allowedVoltageSpender] != allowed, "Nothing to change");
         allowedVoltageSpenders[allowedVoltageSpender] = allowed;
     }
 

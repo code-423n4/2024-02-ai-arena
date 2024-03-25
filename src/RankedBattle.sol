@@ -16,7 +16,7 @@ import { FixedPointMathLib } from './FixedPointMathLib.sol';
 contract RankedBattle {
 
     /// @dev Extend functionality of the FixedPointMathLib library to the uint data type.
-    using FixedPointMathLib for uint;
+    using FixedPointMathLib for uint256;
 
     /*//////////////////////////////////////////////////////////////
                                 EVENTS
@@ -48,6 +48,9 @@ contract RankedBattle {
     /*//////////////////////////////////////////////////////////////
                             STATE VARIABLES
     //////////////////////////////////////////////////////////////*/
+
+    /// @notice BPS_DIVISOR
+    uint256 BPS_DIVISOR = 10**4;
 
     /// @notice Voltage cost per match initiated
     uint8 public constant VOLTAGE_COST = 10;
@@ -178,6 +181,7 @@ contract RankedBattle {
     /// @param access Whether the address has admin access or not.
     function adjustAdminAccess(address adminAddress, bool access) external {
         require(msg.sender == _ownerAddress);
+        require(isAdmin[adminAddress] != access, "Nothing to change");
         isAdmin[adminAddress] = access;
     }  
 
@@ -299,7 +303,7 @@ contract RankedBattle {
         uint256 claimableNRN = 0;
         uint256 nrnDistribution;
         uint32 lowerBound = numRoundsClaimed[msg.sender];
-        require(lowerBound + totalRoundsToConsider < roundId, "RankedBattle: totalRoundsToConsider exceeds the limit");
+        require(lowerBound + totalRoundsToConsider <= roundId, "RankedBattle: totalRoundsToConsider exceeds the limit");
         for (uint32 currentRound = lowerBound; currentRound < lowerBound + totalRoundsToConsider; currentRound++) {
             nrnDistribution = getNrnDistribution(currentRound);
             claimableNRN += (
@@ -355,8 +359,8 @@ contract RankedBattle {
         }
         if (initiatorBool) {
             _voltageManagerInstance.spendVoltage(fighterOwner, VOLTAGE_COST);
+            totalBattles += 1;
         }
-        totalBattles += 1;
     }
 
     /// @notice Gets the battle record for a token.
@@ -391,7 +395,7 @@ contract RankedBattle {
         return rankedNrnDistribution[roundId_];
     }
 
-    /// @notice Gets the unclaimed NRN tokens for a specific address.
+    /// @notice Gets the amount of unclaimed rewards for a specific address.
     /// @param claimer The address of the claimer.
     /// @return The amount of unclaimed NRN tokens.
     function getUnclaimedNRN(address claimer) public view returns(uint256) {
@@ -423,7 +427,7 @@ contract RankedBattle {
     /// @param tokenId The ID of the token participating in the battle.
     /// @param eloFactor Multiple derived from ELO to be applied to the base points earned.
     /// @param mergingPortion The portion of points that get redirected to the merging pool.
-    /// @param fighterOwner The address which owns the fighter whos points are being altered.
+    /// @param fighterOwner The address which owns the fighter whose points are being altered.
     function _addResultPoints(
         uint8 battleResult, 
         uint256 tokenId, 
@@ -447,7 +451,7 @@ contract RankedBattle {
         }
 
         /// Potential amount of NRNs to put at risk or retrieve from the stake-at-risk contract
-        curStakeAtRisk = (bpsLostPerLoss * (amountStaked[tokenId] + stakeAtRisk)) / 10**4;
+        curStakeAtRisk = (bpsLostPerLoss * (amountStaked[tokenId] + stakeAtRisk)) / BPS_DIVISOR;
         if (battleResult == 0) {
             /// If the user won the match
 

@@ -81,7 +81,7 @@ contract AAMintPass is ERC721, ERC721Burnable {
         fighterFarmContractAddress = _fighterFarmAddress;
     }
 
-    /// @dev Set the delagated address (Founder-Only)
+    /// @dev Set the delegated address (Founder-Only)
     /// @param _delegatedAddress The new address to set
     function setDelegatedAddress(address _delegatedAddress) external {
         require(msg.sender == founderAddress);

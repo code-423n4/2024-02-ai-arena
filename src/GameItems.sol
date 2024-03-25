@@ -54,7 +54,7 @@ contract GameItems is ERC1155 {
     /// @notice List of all gameItemAttribute structs representing all game items.
     GameItemAttributes[] public allGameItemAttributes;
 
-    /// @notice The address that recieves funds of purchased game items.
+    /// @notice The address that receives funds of purchased game items.
     address public treasuryAddress;
 
     /// The address that has owner privileges (initially the contract deployer).
@@ -100,7 +100,15 @@ contract GameItems is ERC1155 {
 
     /*//////////////////////////////////////////////////////////////
                             EXTERNAL FUNCTIONS
-    //////////////////////////////////////////////////////////////*/    
+    //////////////////////////////////////////////////////////////*/   
+
+    /// @notice Sets the treasury address.
+    /// @dev Only the owner address is authorized to call this function.
+    /// @param treasuryAddress_ Address of the new treasury.
+    function setTreasuryAddress(address treasuryAddress_) external {
+        require(msg.sender == _ownerAddress);
+        treasuryAddress = treasuryAddress_;
+    } 
 
     /// @notice Transfers ownership from one address to another.
     /// @dev Only the owner address is authorized to call this function.
@@ -116,6 +124,7 @@ contract GameItems is ERC1155 {
     /// @param access Whether the address has admin access or not.
     function adjustAdminAccess(address adminAddress, bool access) external {
         require(msg.sender == _ownerAddress);
+        require(isAdmin[adminAddress] != access, "Nothing to change");
         isAdmin[adminAddress] = access;
     }  
 
@@ -193,6 +202,7 @@ contract GameItems is ERC1155 {
     /// @param _tokenURI The token id to be set
     function setTokenURI(uint256 tokenId, string memory _tokenURI) public {
         require(isAdmin[msg.sender]);
+        require(tokenId == _itemCount, "Token ID does not exist");
         _tokenURIs[tokenId] = _tokenURI;
     }
 

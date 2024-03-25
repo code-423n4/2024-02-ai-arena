@@ -71,7 +71,7 @@ contract StakeAtRiskTest is Test {
             new MergingPool(_ownerAddress, address(_rankedBattleContract), address(_fighterFarmContract));
 
         _stakeAtRiskContract =
-            new StakeAtRisk(_treasuryAddress, address(_neuronContract), address(_rankedBattleContract));
+            new StakeAtRisk(_ownerAddress, _treasuryAddress, address(_neuronContract), address(_rankedBattleContract));
 
         _voltageManagerContract.adjustAllowedVoltageSpenders(address(_rankedBattleContract), true);
 

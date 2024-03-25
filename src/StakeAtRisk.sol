@@ -22,6 +22,8 @@ contract StakeAtRisk {
     /*//////////////////////////////////////////////////////////////
                             STATE VARIABLES
     //////////////////////////////////////////////////////////////*/
+    /// The address that has owner privileges (initially the contract deployer).
+    address _ownerAddress;
 
     /// @notice The current roundId.
     uint256 public roundId = 0;    
@@ -58,10 +60,12 @@ contract StakeAtRisk {
     /// @param nrnAddress The address of the Neuron contract
     /// @param rankedBattleAddress The address of the Ranked Battle contract
     constructor(
+        address ownerAddress,
         address treasuryAddress_,
         address nrnAddress,
         address rankedBattleAddress
     ) {
+        _ownerAddress = ownerAddress;
         treasuryAddress = treasuryAddress_;
         _rankedBattleAddress = rankedBattleAddress;   
         _neuronInstance = Neuron(nrnAddress);
@@ -70,6 +74,14 @@ contract StakeAtRisk {
     /*//////////////////////////////////////////////////////////////
                             EXTERNAL FUNCTIONS
     //////////////////////////////////////////////////////////////*/
+
+    /// @notice Sets the treasury address.
+    /// @dev Only the owner address is authorized to call this function.
+    /// @param treasuryAddress_ Address of the new treasury.
+    function setTreasuryAddress(address treasuryAddress_) external {
+        require(msg.sender == _ownerAddress);
+        treasuryAddress = treasuryAddress_;
+    }
 
     /// @notice Sets a new round for staking
     /// @dev This function can only be called by the RankedBattle contract to set a new round for staking.

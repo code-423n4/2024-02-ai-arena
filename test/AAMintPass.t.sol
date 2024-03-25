@@ -101,6 +101,18 @@ contract AAMintPassTest is Test, IERC721Receiver {
         assertEq(mintPass.fighterFarmContractAddress(), address(this));
     }
 
+    function testSetDelegateAddress() public {
+        // Non-founder should not be able to set fighter farm address
+        vm.prank(msg.sender);
+        vm.expectRevert();
+        mintPass.setDelegatedAddress(address(this));
+        // Founder should be able to set fighter farm address
+        vm.prank(address(this));
+        mintPass.setDelegatedAddress(address(this));
+        assertEq(mintPass.delegatedAddress(), address(this));
+    }
+
+
     function testClaimMintPass() public {
         // Non-delegated address should not be able to claim mint pass
         uint8[2] memory numToMint = [1, 0];

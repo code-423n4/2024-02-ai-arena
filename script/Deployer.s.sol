@@ -48,7 +48,7 @@ contract DeployerScript is Script {
             new RankedBattle(deployerAddress, gameServerAddress, address(fighterFarm), address(voltageManager));
         MergingPool mergingPool = new MergingPool(deployerAddress, address(rankedBattle), address(fighterFarm));
         Neuron neuron = new Neuron(deployerAddress, treasuryAddress, contributorAddress);
-        StakeAtRisk stakeAtRisk = new StakeAtRisk(treasuryAddress, address(neuron), address(rankedBattle));
+        StakeAtRisk stakeAtRisk = new StakeAtRisk(deployerAddress, treasuryAddress, address(neuron), address(rankedBattle));
 
         // After Deployment ------------------------
         gameItems.setAllowedBurningAddresses(address(voltageManager));

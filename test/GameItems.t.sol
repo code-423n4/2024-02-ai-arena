@@ -5,28 +5,67 @@ import {Test, console, stdError} from "forge-std/Test.sol";
 import {Vm} from "forge-std/Vm.sol";
 import {GameItems} from "../src/GameItems.sol";
 import {Neuron} from "../src/Neuron.sol";
+import {FighterFarm} from "../src/FighterFarm.sol";
+import {MergingPool} from "../src/MergingPool.sol";
+import {RankedBattle} from "../src/RankedBattle.sol";
+import {VoltageManager} from "../src/VoltageManager.sol";
+import {AiArenaHelper} from "../src/AiArenaHelper.sol";
 import "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 
 contract GameItemsTest is Test {
+    uint8[][] internal _probabilities;
+
     address internal constant _DELEGATED_ADDRESS = 0x22F4441ad6DbD602dFdE5Cd8A38F6CAdE68860b0;
     address internal _ownerAddress;
     address internal _treasuryAddress;
     address internal _neuronContributorAddress;
 
+    FighterFarm internal _fighterFarmContract;
+    MergingPool internal _mergingPoolContract;
     GameItems internal _gameItemsContract;
+    VoltageManager internal _voltageManagerContract;
+    RankedBattle internal _rankedBattleContract;
+    AiArenaHelper internal _helperContract;
     Neuron internal _neuronContract;
+
+    function getProb() public {
+        _probabilities.push([25, 25, 13, 13, 9, 9]);
+        _probabilities.push([25, 25, 13, 13, 9, 1]);
+        _probabilities.push([25, 25, 13, 13, 9, 10]);
+        _probabilities.push([25, 25, 13, 13, 9, 23]);
+        _probabilities.push([25, 25, 13, 13, 9, 1]);
+        _probabilities.push([25, 25, 13, 13, 9, 3]);
+
+    }
 
     function setUp() public {
         _ownerAddress = address(this);
         _treasuryAddress = vm.addr(1);
         _neuronContributorAddress = vm.addr(2);
+        getProb();
 
         _gameItemsContract = new GameItems(_ownerAddress, _treasuryAddress);
         _neuronContract = new Neuron(_ownerAddress, _treasuryAddress, _neuronContributorAddress);
 
         _neuronContract.addSpender(address(_gameItemsContract));
 
+        _voltageManagerContract = new VoltageManager(_ownerAddress, address(_gameItemsContract));
+
+        _fighterFarmContract = new FighterFarm(_ownerAddress, _DELEGATED_ADDRESS, _treasuryAddress);
+        _helperContract = new AiArenaHelper(_probabilities);
+
+        _rankedBattleContract = new RankedBattle(
+            _ownerAddress, address(_fighterFarmContract), _DELEGATED_ADDRESS, address(_voltageManagerContract)
+        );
+
+        _mergingPoolContract =
+            new MergingPool(_ownerAddress, address(_rankedBattleContract), address(_fighterFarmContract));
+
         _gameItemsContract.instantiateNeuronContract(address(_neuronContract));
+        _fighterFarmContract.setMergingPoolAddress(address(_mergingPoolContract));
+        _fighterFarmContract.instantiateAIArenaHelperContract(address(_helperContract));
+        _mintFromMergingPool(_ownerAddress);
         _gameItemsContract.createGameItem("Battery", "https://ipfs.io/ipfs/", true, true, 10_000, 1 * 10 ** 18, 10);
     }
 
@@ -138,8 +177,9 @@ contract GameItemsTest is Test {
     /// @notice Test admin updating a game item's tokenURI.
     function testSetTokenURIFromAdmin() public {
         string memory newTokenURI = "test URI";
-        _gameItemsContract.setTokenURI(0, newTokenURI);
-        assertEq(_gameItemsContract.uri(0), newTokenURI);
+        _mintFromMergingPool(_ownerAddress);
+        _gameItemsContract.setTokenURI(1, newTokenURI);
+        assertEq(_gameItemsContract.uri(1), newTokenURI);
     }
 
     /// @notice Test that only an admin can update a game item's tokenURI.
@@ -242,6 +282,12 @@ contract GameItemsTest is Test {
                                HELPERS
     //////////////////////////////////////////////////////////////*/
 
+    /// @notice Helper function to mint an fighter nft to an address.
+    function _mintFromMergingPool(address to) internal {
+        vm.prank(address(_mergingPoolContract));
+        _fighterFarmContract.mintFromMergingPool(to, "_neuralNetHash", "original", [uint256(1), uint256(80)]);
+    }
+
     /// @notice Helper function to fund an account with 4k $NRN tokens.
     function _fundUserWith4kNeuronByTreasury(address user) internal {
         vm.prank(_treasuryAddress);
@@ -251,5 +297,11 @@ contract GameItemsTest is Test {
 
     function onERC1155Received(address, address, uint256, uint256, bytes memory) public pure returns (bytes4) {
         return this.onERC1155Received.selector;
+    }
+
+
+    function onERC721Received(address, address, uint256, bytes memory) public pure returns (bytes4) {
+        // Handle the token transfer here
+        return this.onERC721Received.selector;
     }
 }

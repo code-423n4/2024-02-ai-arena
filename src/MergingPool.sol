@@ -99,6 +99,7 @@ contract MergingPool is ReentrancyGuard{
     /// @param access Whether the address has admin access or not.
     function adjustAdminAccess(address adminAddress, bool access) external {
         require(msg.sender == _ownerAddress);
+        require(isAdmin[adminAddress] != access, "Nothing to change");
         isAdmin[adminAddress] = access;
     }   
 
@@ -117,7 +118,7 @@ contract MergingPool is ReentrancyGuard{
     /// @dev The function will update the winnerAddresses mapping with the addresses of the winners.
     /// @dev The function will also reset the fighterPoints of the winners to zero.
     /// @param winners The array of token IDs representing the winners.
-    function pickWinner(uint256[] calldata winners) external {
+    function pickWinners(uint256[] calldata winners) external {
         require(isAdmin[msg.sender]);
         require(winners.length == winnersPerPeriod, "Incorrect number of winners");
         require(!isSelectionComplete[roundId], "Winners are already selected");
@@ -150,10 +151,13 @@ contract MergingPool is ReentrancyGuard{
         uint32 claimIndex = 0;
         uint32 lowerBound = numRoundsClaimed[msg.sender];
         require(lowerBound + totalRoundsToConsider < roundId, "MergingPool: totalRoundsToConsider exceeds the limit");
+        uint8 generation = _fighterFarmInstance.generation(0);
         for (uint32 currentRound = lowerBound; currentRound < lowerBound + totalRoundsToConsider; currentRound++) {
             numRoundsClaimed[msg.sender] += 1;
             winnersLength = winnerAddresses[currentRound].length;
             for (uint32 j = 0; j < winnersLength; j++) {
+                require(customAttributes[j][0] < _fighterFarmInstance.numElements(generation), "MergingPool: element out of bounds");
+                require(customAttributes[j][1] >= 65 && customAttributes[j][1] <= 95, "MergingPool: weight out of bounds");
                 if (msg.sender == winnerAddresses[currentRound][j]) {
                     _fighterFarmInstance.mintFromMergingPool(
                         msg.sender,

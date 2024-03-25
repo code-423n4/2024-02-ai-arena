@@ -77,7 +77,7 @@ contract RankedBattleTest is Test {
             new MergingPool(_ownerAddress, address(_rankedBattleContract), address(_fighterFarmContract));
 
         _stakeAtRiskContract =
-            new StakeAtRisk(_treasuryAddress, address(_neuronContract), address(_rankedBattleContract));
+            new StakeAtRisk(_ownerAddress, _treasuryAddress, address(_neuronContract), address(_rankedBattleContract));
 
         _voltageManagerContract.adjustAllowedVoltageSpenders(address(_rankedBattleContract), true);
 
@@ -346,17 +346,17 @@ contract RankedBattleTest is Test {
         // 2 loss
         _rankedBattleContract.updateBattleRecord(0, 50, 0, 1500, true);
         vm.prank(address(_GAME_SERVER_ADDRESS));
-        _rankedBattleContract.updateBattleRecord(1, 50, 0, 1500, true);
+        _rankedBattleContract.updateBattleRecord(1, 20, 0, 1400, true);
         _rankedBattleContract.setNewRound();
         emit log_uint(_rankedBattleContract.accumulatedPointsPerAddress(staker, 0));
         emit log_uint(_rankedBattleContract.accumulatedPointsPerAddress(claimee, 0));
         emit log_uint(_rankedBattleContract.accumulatedPointsPerFighter(0, 0));
         emit log_uint(_rankedBattleContract.accumulatedPointsPerFighter(1, 0));
         vm.prank(staker);
-        _rankedBattleContract.claimNRN();
+        _rankedBattleContract.claimNRN(1);
         assertEq(_rankedBattleContract.amountClaimed(staker) > 0, true);
         vm.prank(claimee);
-        _rankedBattleContract.claimNRN();
+        _rankedBattleContract.claimNRN(1);
         assertEq(_rankedBattleContract.amountClaimed(claimee) > 0, true);
     }
 

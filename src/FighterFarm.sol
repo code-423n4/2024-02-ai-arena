@@ -75,7 +75,7 @@ contract FighterFarm is ERC721, ERC721Enumerable {
     /// @notice Mapping to keep track of whether a tokenId has staked or not.
     mapping(uint256 => bool) public fighterStaked;
 
-    /// @notice Mapping to keep track of how many times an nft has been re-rolled.
+    /// @notice Mapping to keep track of how many times an NFT has been re-rolled.
     mapping(uint256 => uint8) public numRerolls;
 
     /// @notice Mapping to indicate which addresses are able to stake fighters.
@@ -128,6 +128,7 @@ contract FighterFarm is ERC721, ERC721Enumerable {
     /// @return Generation count of the fighter type.
     function incrementGeneration(uint8 fighterType) external returns (uint8) {
         require(msg.sender == _ownerAddress);
+        require(fighterType == 0 || fighterType == 1);
         generation[fighterType] += 1;
         maxRerollsAllowed[fighterType] += 1;
         return generation[fighterType];
@@ -182,17 +183,34 @@ contract FighterFarm is ERC721, ERC721Enumerable {
         _mergingPoolAddress = mergingPoolAddress;
     }
 
+    /// @notice Sets the treasury address.
+    /// @dev Only the owner address is authorized to call this function.
+    /// @param treasuryAddress_ Address of the new treasury.
+    function setTreasuryAddress(address treasuryAddress_) external {
+        require(msg.sender == _ownerAddress);
+        treasuryAddress = treasuryAddress_;
+    }
+
+    /// @notice Sets the delegated address.
+    /// @dev Only the owner address is authorized to call this function.
+    /// @param delegatedAddress_ Address of the new delegate.
+    function setDelegatedAddress(address delegatedAddress_) external {
+        require(msg.sender == _ownerAddress);
+        _delegatedAddress = delegatedAddress_;
+    }
+
     /// @notice Sets the tokenURI for the given tokenId.
     /// @dev Only the delegated address is authorized to call this function.
     /// @param tokenId The ID of the token to set the URI for.
     /// @param newTokenURI The new URI to set for the given token.
     function setTokenURI(uint256 tokenId, string calldata newTokenURI) external {
         require(msg.sender == _delegatedAddress);
+        require(_exists(tokenId));
         _tokenURIs[tokenId] = newTokenURI;
     }
 
     /// @notice Enables users to claim a pre-determined number of fighters. 
-    /// @dev The function verifies the message signature is from the delegated address.
+    /// @dev The function verifies if the message signature is from the delegated address.
     /// @param numToMint Array specifying the number of fighters to be claimed for each fighter type.
     /// @param signature Signature of the claim message.
     /// @param modelHashes Array of hashes representing the machine learning models for each fighter.
