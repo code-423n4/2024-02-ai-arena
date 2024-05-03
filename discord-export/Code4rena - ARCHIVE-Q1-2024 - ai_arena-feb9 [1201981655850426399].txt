@@ -1,0 +1,6323 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q1-2024 / ai_arena-feb9
+==============================================================
+
+[02/06/2024 21:15] knownfactc4_29311 (pinned)
+Hello and welcome to the audit channel for the $60,500 in USDC **AI Arena** audit!
+
+ Audit opens 02/09/2024 20:00 and runs through 02/21/2024 20:00 (12 days).
+
+Please give a warm welcome to the AI Arena team, particularly @guppy and @Sonny, who will be available for questions either here in the channel or via DM in the EST timezone.
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel.  
+
+Audit Page: https://code4rena.com/audits/2024-02-ai-arena
+
+{Reactions}
+hi5 (10) 🚀 (4) 
+
+[02/07/2024 02:17] knownfactc4_29311
+Pinned a message.
+
+
+[02/08/2024 21:03] xkeywordx
+Hello guys, nice to virtually meet you
+
+{Reactions}
+👋 (3) 
+
+[02/09/2024 02:30] sihing_guppy
+Hello! nice to e-meet you 🙂
+
+{Reactions}
+🤝 (2) 
+
+[02/09/2024 05:42] jes16jupyter
+Hi. Is AI-arena solidity-based or rust-based?
+
+
+[02/09/2024 05:51] mctoady
+listing on #✋rsvp doesn't mention Rust so presumably Solidity
+
+{Reactions}
+thankyou (4) 👍 
+
+[02/09/2024 17:23] sihing_guppy
+It's Solidity-based
+
+
+[02/09/2024 17:25] haxatron1
+Contracts are gamefi?
+
+
+[02/09/2024 17:25] haxatron1
+It will be really interesting if so
+
+
+[02/09/2024 17:42] sihing_guppy
+yes some of our contracts have elements of gamefi in the sense that we have a game server that pushes game results on-chain, which affect how our tokens get distributed
+
+
+[02/09/2024 20:02] C4 (pinned)
+**Automated Findings / Publicly Known Issues**
+
+Reminder: all [Automated Findings / Publicly Known Issues](https://github.com/code-423n4/2024-02-ai-arena#automated-findings--publicly-known-issues) are out of scope and ineligible for awards.
+
+{Embed}
+https://github.com/code-423n4/2024-02-ai-arena
+GitHub - code-423n4/2024-02-ai-arena
+Contribute to code-423n4/2024-02-ai-arena development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/d185ff31-5ef0-41b0-ba2a-4d3e16734dba-14565
+
+
+[02/09/2024 20:02] kingx0001
+this should be funnn
+
+
+[02/09/2024 20:03] kingx0001
+would u advice a deep dive into `Feedforward neural network` ??
+
+
+[02/09/2024 20:03] kingx0001
+@guppy 👀
+
+
+[02/09/2024 20:06] thebrittfactor
+Pinned a message.
+
+
+[02/09/2024 20:08] sihing_guppy
+No need to understand neural nets for this smart contract audit
+
+
+[02/09/2024 20:08] sihing_guppy
+but if you want to get good at our game, then it would be a good idea haha
+
+
+[02/09/2024 20:15] kingx0001
+ha, niceeeee!
+
+
+[02/09/2024 20:15] surfer_05
+getting this error for `forge coverage` @guppy
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/image-8E365.png
+
+
+[02/09/2024 20:16] kingx0001
+i dont wanna go down rthe rabbit hole too miucch, hehehhe
+
+
+[02/09/2024 20:16] 0xsonny
+Look at the bottom of the GitHub readme
+
+{Reactions}
+👍 
+
+[02/09/2024 20:17] kingx0001
+after audit, lets see what unfolds:gummy_wink:
+
+{Reactions}
+🔥 
+
+[02/09/2024 20:34] 0xdetermination
+What L2 will the contracts be deployed on?
+
+
+[02/09/2024 20:39] 0xsonny
+Arbitrum
+
+{Reactions}
+❤️ (8) 
+
+[02/09/2024 20:49] forgebyola
+Cool
+
+
+[02/09/2024 20:49] forgebyola
+Is Nrn the only token that is expected to be used in the system?
+
+
+[02/09/2024 20:53] 0xsonny
+Yes
+
+{Reactions}
+✅ 
+
+[02/09/2024 20:56] poeaudits
+The setup functions in your tests should set up the contracts as they are intended to be deployed? Anything we should be aware of regarding the setup?
+
+
+[02/09/2024 21:05] 0xsonny
+In the setup function we instantiate contracts and execute any setup functions needed for individual tests on the contract instances
+
+
+[02/09/2024 21:10] poeaudits
+Is the deployment script a more accurate indication on how you are planning on launching the project as a whole?
+
+
+[02/09/2024 21:10] 0xsonny
+Correct
+
+
+[02/09/2024 21:11] 0xsonny
+Although it can change in the future it’s not like this deployment script will be the exact instance we use when we go live but it’s a good idea of it
+
+
+[02/09/2024 21:18] dimulski
+My bad, you have it but for some reason I see your name in yellow 🧐
+
+{Reactions}
+😎 
+
+[02/09/2024 21:21] mladenov0603
+@Sonny Can you please open your dms, i want to ask something in private if it's possible
+
+
+[02/09/2024 21:35] valkataaa
+how is user supposed to acquire dendroid?
+
+
+[02/09/2024 21:38] forgebyola
+Hey, can I know how voltage would be used in the arena
+
+
+[02/09/2024 21:40] 0xsonny
+Check updateBattleRecord function  in ranked battle contract pls
+
+{Reactions}
+✅ 
+
+[02/09/2024 21:42] 0xsonny
+I cant. Try creating a private convo/thread
+
+{Reactions}
+thankyou 
+
+[02/09/2024 21:46] 0xauditism
+how are players initially supposed to get NRN if you need to stake some in order to earn some
+
+
+[02/09/2024 21:49] 0xsonny
+Players can earn NRN by claiming NRN boxes or buying the token on exchanges when it comes out
+
+{Reactions}
+thankyou (4) 
+
+[02/09/2024 22:01] sihing_guppy
+Just to add, we are airdropping 8% of NRN to the community
+
+
+[02/09/2024 22:01] sihing_guppy
+NRN boxes, as Sonny mentioned, make up half of that
+
+
+[02/09/2024 22:01] sihing_guppy
+And the other half is actually through a play to airdrop campaign that we launched this week
+
+
+[02/09/2024 23:30] 0xtobiking
+I think the top point is cut off after "For example, let's say there are two player". This is at the end of the "Additional Context" section of the competition page.
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/Screenshot_2024-02-10_at_10.18.23_am-BC5BE.png
+
+
+[02/09/2024 23:44] sihing_guppy
+You're correct - my apologies! We will fix that ASAP
+
+{Reactions}
+👍 
+
+[02/09/2024 23:46] sihing_guppy
+This is what it should say:
+
+For example, let's say there are two players: A and B. Player A earned 500 points and player B earned 1500 points. If we were to distribute 1000 NRN for that round, then player A would receive 250 NRN and player B would receive 750 NRN.
+
+
+[02/09/2024 23:47] sihing_guppy
+Actually, I don't know if we can make PRs, so I will redirect people to this comment if it comes up again
+
+
+[02/10/2024 00:08] guy_in0xnito
+Which is the entry point for users ?
+
+
+[02/10/2024 00:25] liveactionllamac4
+I've went ahead and fixed this in the audit repo, since it was just fixing a missing example. 🙂 (note: the update may take a bit of time to push out to the website)
+
+
+[02/10/2024 00:28] sihing_guppy
+Entry point for a player in the game?
+
+
+[02/10/2024 00:29] guy_in0xnito
+In the smart contract?
+
+
+[02/10/2024 00:36] sihing_guppy
+But for a player, right?
+
+
+[02/10/2024 00:36] guy_in0xnito
+Ya ya
+
+
+[02/10/2024 00:37] sihing_guppy
+I would say it will generally be through the `redeemMintPass` function in the `FighterFarm.sol` smart contract
+
+
+[02/10/2024 00:37] sihing_guppy
+When we launch, this will be the only mechanism to get a fighter and actually play the game
+
+
+[02/10/2024 00:38] sihing_guppy
+over time, we will make use of `claimFighters` and `mintFromMergingPool` (but this is after the game has launched and competition has started)
+
+
+[02/10/2024 00:39] sihing_guppy
+Once they have a fighter in their wallet, there are many different actions they can take such as:
+
+1) Stock up on batteries
+2) Update their model
+3) Stake NRN
+etc
+
+
+[02/10/2024 00:39] sihing_guppy
+well technically they can stock up on batteries regardless (since we haven't token-gated it)
+
+
+[02/10/2024 00:43] guy_in0xnito
+Thanks
+
+
+[02/10/2024 01:44] tayzver
+@guppy sent a friend request
+
+
+[02/10/2024 02:22] mctoady
+is `FighterOps.sol` considered out of scope? not listed in either scope or out of scope so double checking
+
+
+[02/10/2024 02:38] sihing_guppy
+Apologies - we must have missed that from the scope
+
+
+[02/10/2024 02:38] sihing_guppy
+It should be in scope
+
+{Reactions}
+🫡 
+
+[02/10/2024 02:53] woolcentaur
+When a user calls `claimFighters` how will they know what signature to pass in?  In the test file it shows this 
+```
+bytes memory claimSignature = abi.encodePacked(
+            hex"407c44926b6805cf9755a88022102a9cb21cde80a210bc3ad1db2880f6ea16fa4e1363e7817d5d87e4e64ba29d59aedfb64524620e2180f41ff82ca9edf942d01c"
+        );
+```
+Where exactly does that long string come from?
+
+
+[02/10/2024 03:03] sihing_guppy
+Our server will give them the signature
+
+
+[02/10/2024 03:03] sihing_guppy
+They have to go through our application to claim
+
+
+[02/10/2024 03:04] woolcentaur
+Gotcha, thank you
+
+
+[02/10/2024 03:19] guy_in0xnito
+If fighter ops is in scope 
+Does that change the sloc ?
+
+
+[02/10/2024 03:25] sihing_guppy
+Yea I guess it would. I’m honestly indifferent as to whether its included in the scope or not (I’m not concerned about it). If code4rena would allow us to update the readme, then we can put it in scope and update the sloc, but if not then it’s fine
+
+
+[02/10/2024 04:26] Message Wolf#0225 (pinned)
+**Automated Findings / Publicly Known Issues**
+
+Automated findings output for the audit can be found [here](https://github.com/code-423n4/2024-02-ai-arena/blob/main/bot-report.md).
+
+*Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
+
+
+[02/10/2024 06:05] mctoady
+Why in your sites docs does it state the fighters DNA is generated using Chainlink VRF but in the code Dna is just a hash of `msg.sender, fighters.length`?
+
+Is there something I'm missing?
+
+
+[02/10/2024 07:53] visualbits
+@🦙 liveactionllama | C4
+`FighterOps.sol` should be in scope.
+
+
+[02/10/2024 07:57] 0xsorrynotsorry
+Pinned a message.
+
+
+[02/10/2024 10:05] sp1cymeatball
+@guppy @Sonny hey guys!  couple of questions:
+- what networks do you plan to deploy on?
+- why two-element array instead of one uint8 in https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/AAMintPass.sol#L110 ?
+
+
+[02/10/2024 10:06] 0xsl1
+check natspec
+
+
+[02/10/2024 10:08] sp1cymeatball
+oh, my bad. Thanks.
+
+{Reactions}
+👍 
+
+[02/10/2024 10:25] guy_in0xnito
+So for a user only way to get NRN. Is by winning right ?
+
+
+[02/10/2024 10:55] saint6704
+@MSaptarshi
+
+
+[02/10/2024 10:59] guy_in0xnito
+So generally a user can only play if he has NRN 
+And he can get that NRN by airdrop or boxes ?
+
+
+[02/10/2024 10:59] 0xsl1
+you are back for some competition? :chefskiss:
+
+{Reactions}
+legalchicken 
+
+[02/10/2024 11:01] saint6704
+trying this one ser
+
+{Reactions}
+🫡 
+
+[02/10/2024 11:04] daniel526
+@guppy @Sonny check private thread
+
+
+[02/10/2024 11:22] 0x11singh99
+Please ask C4 staff to add it now otherwise it may be left missed.
+
+
+[02/10/2024 11:33] sp1cymeatball
+Uh, I think src/AiArenaHelper.sol url  on the contest page leads to a wrong contract https://github.com/code-423n4/2024-02-ai-arena/blob/main/src/AAMintPass.sol . It's kinda confusing. Which contract is in scope? Both?
+
+
+[02/10/2024 11:35] 0xsl1
+While the link is apparently wrong `AiArenaHelper` should be in scope, while `AAMintPass` is explicitly out of scope
+
+
+[02/10/2024 11:45] guy_in0xnito
+It is in scope 
+See scope.txt AAA.....Pass is not in scope
+
+
+[02/10/2024 11:47] 0xsl1
+that’s what i said
+
+
+[02/10/2024 11:50] mladenov0603
+Does protocol plan to add new fighters in a feature?
+
+
+[02/10/2024 12:00] 0xsl1
+What is the specific reason for limiting number of fighters allowed per particular address?
+
+
+[02/10/2024 12:17] anjali_t
+if we allocate x% of points to merging pool then only 1-x% of points will define our share over $NRN reward pool right?? i mean allocated points won't win u any additional $NRN tokens
+
+
+[02/10/2024 12:17] guy_in0xnito
+Why are the address instance created in two step process ?
+
+
+[02/10/2024 12:18] shaka0x
+SLOC and description also correspond to AAMintPass, so should be updated
+
+
+[02/10/2024 12:29] guy_in0xnito
+Who are owners & admin in the protocol?
+
+
+[02/10/2024 12:52] haxatron1
+Any past audit?
+
+
+[02/10/2024 13:10] sihing_guppy
+You can still play without staking NRN, you just won’t win any points
+
+
+[02/10/2024 13:10] sihing_guppy
+Apologies, we will try to get this fixed
+
+
+[02/10/2024 13:16] sihing_guppy
+New fighters will be added via merging pool and potentially if we airdrop some in a tournament (but inflation will be low)
+
+
+[02/10/2024 13:17] sihing_guppy
+That is correct
+
+
+[02/10/2024 13:19] sp1cymeatball
+@guppy any additional info on physical attributes? What's the attribute probability? What if I call `createPhysicalAttributes` and it returns `FighterOps.FighterPhysicalAttributes(10, 35, 50, 45, 5, 1)`, what are these numbers?
+
+
+[02/10/2024 13:20] sihing_guppy
+Haha it would take a while to explain all the reasons here, but it is part of our economic design and aids in preventing smurfing via rotating through fighters at a large scale. Also we will only have 420 fighters at launch, so it would be quite unusual to hold more than 10
+
+{Reactions}
+👍 
+
+[02/10/2024 13:21] sihing_guppy
+Mint pass is not in scope
+
+
+[02/10/2024 13:21] mctoady
+pushing this back, think its quite important
+
+
+[02/10/2024 13:21] sihing_guppy
+No
+
+
+[02/10/2024 13:22] sihing_guppy
+We no longer use chainlink - our docs are outdated (I can look into updating them). Historically we used chainlink but there isn’t a need anymore, so we scrapped it
+
+{Reactions}
+👍 (3) 
+
+[02/10/2024 13:24] guy_in0xnito
+Any specific people set by protocol?
+
+
+[02/10/2024 13:25] guy_in0xnito
+But doesn't this tell different?
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/w1080quality80-17E6B.jpg
+
+
+[02/10/2024 13:25] sihing_guppy
+Owners will be either our operating company or AI Arena’s foundation (depending on the contract). Admins will be key people at either of these organizations that can make more day-to-day decisions. The intention is to progressively decentralize the admin roles
+
+
+[02/10/2024 13:26] sihing_guppy
+No - this is referring to the economic loop. To participate in the economic loop you have to stake, but you don’t have to participate in it
+
+
+[02/10/2024 13:30] guy_in0xnito
+So if we don't win any points 
+We dont get any nrn right ?
+
+
+[02/10/2024 13:35] sihing_guppy
+that is correct
+
+
+[02/10/2024 13:36] sihing_guppy
+It's important to note that we are not "play to earn"
+
+
+[02/10/2024 13:36] sihing_guppy
+You can only earn if you stake behind your fighter and are good at the game (i.e. have a relatively good win/loss ratio)
+
+
+[02/10/2024 13:37] sihing_guppy
+Similar in spirit to Numerai
+
+
+[02/10/2024 13:38] guy_in0xnito
+So a user has 2 options he can just enter to play the game 
+Or 
+A user who had NRN ( through stake/airdrop) can come to play then advance with the other staking options and all ?
+
+
+[02/10/2024 13:42] sihing_guppy
+yes that is correct
+
+
+[02/10/2024 13:42] sihing_guppy
+also, one might not want to stake initially if they don't know how they would do
+
+
+[02/10/2024 13:43] sihing_guppy
+If you compare it to something like trading where you can progressively increase you position in a trade as you get more conviction
+
+
+[02/10/2024 13:43] sihing_guppy
+Start with paper trading -> Enter a small position -> Increase your position
+
+
+[02/10/2024 13:43] sihing_guppy
+In our game the flow could be:
+
+Enter ranked without staking -> Start staking as you get conviction -> Increase your stake as you get better
+
+
+[02/10/2024 13:53] guy_in0xnito
+So basically a user enters just to play a game 
+Gets good at the game (wins) and now starts staking ( NRN. Which he recieved from airdrop)?
+
+
+[02/10/2024 13:53] sihing_guppy
+yes that is one potential flow
+
+
+[02/10/2024 13:53] sihing_guppy
+But most of our users will stake right away
+
+
+[02/10/2024 13:54] sihing_guppy
+because they've been playing the game in testnet for 2 years now
+
+
+[02/10/2024 13:54] sihing_guppy
+so they're quite comfortable with the mechanics
+
+
+[02/10/2024 13:54] sihing_guppy
+However, it is still important to provide the option to play without staking in order to boost stats when you don't necessarily want there to be economic consequences
+
+
+[02/10/2024 13:56] novamanbg
+Hello, how can I ask a private question?
+
+
+[02/10/2024 13:58] sihing_guppy
+You are able to create a private thread to ask questions
+
+
+[02/10/2024 14:02] shaka0x
+I meant that in README. AiArenaHelper SLOC and description are incorrectly referring to the SLOC and description of AAMintPass. And the same for the contract link, as @SpicyMeatball pointed out
+
+
+[02/10/2024 14:03] sihing_guppy
+yes that's correct - we are trying to have that corrected
+
+{Reactions}
+👍 (2) 
+
+[02/10/2024 14:04] sihing_guppy
+waiting on a response from Code4rena if they'll allow us to do so
+
+
+[02/10/2024 14:04] Deleted User
+@guppy   can you add here a list with all ``.sol``  files ? exactly the scope for this contest
+
+
+[02/10/2024 14:06] aslanbekaibimov
+its in scope.txt
+
+
+[02/10/2024 14:07] sihing_guppy
+Basically everything that is in github, and potentially FighterOps.sol depending on if c4 allows us to edit the README. I will keep you guys updated when they get back to me
+
+
+[02/10/2024 14:07] Deleted User
+i know that file, but previous msgs here says there are more or less , i can't understand
+
+
+[02/10/2024 14:11] aslanbekaibimov
+it does not really matter, contest page is the source of truth here
+
+{Reactions}
+👍 
+
+[02/10/2024 14:12] aslanbekaibimov
+it *could* be changed, but we'll be notified about that
+
+
+[02/10/2024 14:16] sihing_guppy
+Just updated the docs to remove mention of chainlink in generating the DNA
+
+
+[02/10/2024 14:16] mahdirostami
+hello, im getting this error:
+```
+$ forge build
+Error:
+error sending request for url (https://binaries.soliditylang.org/linux-amd64/solc-linux-amd64-v0.8.13+commit.abaa5c0e): error trying to connect: tls handshake eof
+
+Context:
+- Error #0: error trying to connect: tls handshake eof
+- Error #1: tls handshake eof
+```
+
+what is problem here
+
+
+[02/10/2024 14:18] ubl4nk
+retry with a VPN
+
+{Reactions}
+👍🏻 
+
+[02/10/2024 14:19] kingx0001
+same here, i got exhausted and just left it
+
+
+[02/10/2024 14:21] kingx0001
+----------
+just to be certain;
+
+- Whenever a new round wants to start, any $NRN in the `StakeAtRisk.sol` is considered lost and will be transferred to the treasury
+
+
+[02/10/2024 14:21] kingx0001
+@guppy
+
+
+[02/10/2024 14:21] mahdirostami
+Used windscribe, and solved
+
+
+[02/10/2024 14:22] stoicov12
+What does attribute probability exactly mean?
+
+
+[02/10/2024 14:25] sihing_guppy
+probability of getting that attribute
+
+
+[02/10/2024 14:25] stoicov12
+Does it differ from rarityScore
+
+
+[02/10/2024 14:25] sihing_guppy
+Correct
+
+{Reactions}
+👍 
+
+[02/10/2024 14:27] sihing_guppy
+rarityRank should probably be renamed now that you mention it - it's just a pseudorandom number, which we use in combination with the probabilities to get the index of the attribute
+
+
+[02/10/2024 14:28] sp1cymeatball
+So let's say we have probabilities [25, 25, 13, 13, 9, 9] for head, and rarity 50 if I call `dnaToIndex` I will get 3, right? What does 3 stand for?
+
+
+[02/10/2024 14:45] t0x1c.c0de
+@Jay | C4 Just wanted to highlight that this discord url seems to be inaccessible via the announcements channel. I had to search for it directly:
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/image-A0032.png
+
+{Reactions}
+thankyou (2) 
+
+[02/10/2024 14:46] sihing_guppy
+I believe it will be 2 because the cumulative probability at the second index is 50, and we have this check `cumProb >= rarityRank`
+
+
+[02/10/2024 14:46] t0x1c.c0de
+Not sure if others faced the same issue
+
+
+[02/10/2024 14:46] sihing_guppy
+The attribute index corresponds to a specific attribute in our game. We intentionally do not say what it is on-chain to keep some ambiguity. They will see it reflected in the metadata after they mint
+
+{Reactions}
+thankyou (2) 
+
+[02/10/2024 14:57] sp1cymeatball
+@guppy  if we have probability array [25, 25, 13, 13, 9, 9], are indexes 4, 5 correspond to a rarer attributes than 0 and 1, or it doesn't matter?
+
+
+[02/10/2024 14:57] sihing_guppy
+yes the lower probabilities are more rare
+
+
+[02/10/2024 14:57] sihing_guppy
+the position in the probability array does not matter
+
+
+[02/10/2024 14:58] sihing_guppy
+just the actual probabilities themselves
+
+
+[02/10/2024 15:00] sp1cymeatball
+I see, thanks
+
+
+[02/10/2024 15:00] ubl4nk
+@guppy What are game items ? what the usage ?
+
+
+[02/10/2024 15:06] sihing_guppy
+They can be anything in our game that we decide to add
+
+
+[02/10/2024 15:06] sihing_guppy
+Right now we only have 1 game item: Batteries
+
+
+[02/10/2024 15:06] sihing_guppy
+It is used to refill voltage (Which is lost after initiating a ranked battle)
+
+{Reactions}
+👍 
+
+[02/10/2024 15:07] amarfares
+I am guessing batteries will have an infinite amount?
+
+
+[02/10/2024 15:21] sihing_guppy
+Correct
+
+
+[02/10/2024 15:21] sihing_guppy
+Well, it could change when we launch
+
+
+[02/10/2024 15:21] sihing_guppy
+but that is the initial thinking
+
+
+[02/10/2024 15:22] guy_in0xnito
+So what is the formula for staking factor?
+
+
+[02/10/2024 15:26] sihing_guppy
+It should be in the bottom of the RankedBattle smart contract
+
+
+[02/10/2024 15:36] kartoonjoy
+Started a thread.
+
+
+[02/10/2024 15:37] guy_in0xnito
+Isn't it a quadratic derivative of the total stake
+
+
+[02/10/2024 15:56] sihing_guppy
+Yes that’s correct
+
+
+[02/10/2024 15:56] sihing_guppy
+We take the square root
+
+
+[02/10/2024 15:57] sihing_guppy
+To prevent NRN whales from having a strong advantage (which compounds each round that goes by)
+
+
+[02/10/2024 16:06] masol_66728
+on what chain is the game deployed ?
+
+
+[02/10/2024 16:09] mladenov0603
+How is determined type of fighter when user mint the NFT? Is one of the fighers is more rarer than another one
+
+
+[02/10/2024 16:15] sihing_guppy
+Arbitrum
+
+
+[02/10/2024 16:15] sihing_guppy
+Initially they will have a mintpass, which they redeem for a fighter
+
+
+[02/10/2024 16:15] sihing_guppy
+Dendroids are more rare than champions
+
+
+[02/10/2024 16:16] sihing_guppy
+Icons are a rare subtype of champions
+
+
+[02/10/2024 16:33] masol_66728
+is FighterOps out of scope ?
+
+
+[02/10/2024 16:36] 0x11singh99
+yes
+
+
+[02/10/2024 16:37] sihing_guppy
+At the moment yes, but we submitted a PR to put it in scope. Just waiting for a review from C4 which should come tomorrow
+
+
+[02/10/2024 16:37] sihing_guppy
+But you can treat it as out of scope for now
+
+{Reactions}
+👍 
+
+[02/10/2024 16:47] mladenov0603
+@guppy Can we discuss something in dm or i should create private thread
+
+
+[02/10/2024 16:47] t0x1c.c0de
+@guppy would it be correct to say that a `rarityRank` of 5 means it is more rare than a rarityRank of 2? Or is it the other way round?
+
+
+[02/10/2024 16:48] sihing_guppy
+Create a private thread please
+
+{Reactions}
+👍 
+
+[02/10/2024 16:48] sihing_guppy
+Sorry this was our fault for naming it `rarityRank` - this is simple the pseudorandom number that we use (in combination with the probability array) to determine the attributes
+
+
+[02/10/2024 16:49] sihing_guppy
+the probability array dictates the rarity
+
+
+[02/10/2024 16:49] sihing_guppy
+i.e. if you have an array of [80, 1, 9, 10], then the second element in this array is the most rare (i.e. lowest probability of being selected)
+
+{Reactions}
+thankyou 🔥 
+
+[02/10/2024 17:50] hgq2wnl
+Is the deployment outlined in Deployment.s.sol indicative of how these contracts are intended to be deployed/relate to eachother in production?
+
+
+[02/10/2024 17:51] 0xsonny
+Yes its a good example but not final for when we launch
+
+{Reactions}
+thankyou (2) 
+
+[02/10/2024 17:52] hgq2wnl
++ is any code for the models/off-chain components open source at this stage ?
+
+
+[02/10/2024 17:53] sihing_guppy
+No, all models and game server logic is out of scope and closed-source
+
+{Reactions}
+👍 (2) 
+
+[02/10/2024 17:59] 0xtekken
+```js
+function claimFighters(
+        uint8[2] calldata numToMint,
+```
+
+what kind of range of numbers are possible to be sitting in this arg?
+
+
+[02/10/2024 18:00] sihing_guppy
+it will be pretty small
+
+
+[02/10/2024 18:00] sihing_guppy
+the max amount of fighters someone can have in their wallet is 10
+
+
+[02/10/2024 18:00] sihing_guppy
+so that is the cap for numToMint
+
+
+[02/10/2024 18:02] 0xtekken
+so to understand it in context - this refers to how many of those 2 types one is minting? and the server determines that possible amount? and based on that allowance gives according `signature`?
+
+
+[02/10/2024 18:04] sihing_guppy
+that is correct
+
+
+[02/10/2024 18:05] dimulski
+0 - 255, how big numbers can uint8 hold
+
+{Reactions}
+👍 
+
+[02/10/2024 18:05] sihing_guppy
+For example, if you won two of 3 fighters in a tournament we had (let's say two of champions and 1 dendroid), then we'd create a signature for you to use onchain, where you would need to put [2, 1] for numToMint
+
+{Reactions}
+👍 
+
+[02/10/2024 18:08] 0xtekken
+```js
+        bytes32 msgHash = bytes32(
+            keccak256(
+                abi.encode(
+                    msg.sender, numToMint[0], numToMint[1], nftsClaimed[msg.sender][0], nftsClaimed[msg.sender][1]
+                )
+            )
+        );
+```
+
+so this part of the code also makes it impossible to re-use the signature since after the first claim-use, since the `nftsClaimed[msg.sender][0/1]` won't be same as before?
+
+
+[02/10/2024 18:09] sihing_guppy
+exactly, you got it
+
+{Reactions}
+❤️ 
+
+[02/10/2024 18:11] fktworld
+0 ~ 2^8 - 1
+
+{Reactions}
+🤝 
+
+[02/10/2024 18:13] sihing_guppy
+yea the range for uint8 is 0-255, sorry if I misunderstood your question
+
+{Reactions}
+🔆 
+
+[02/10/2024 18:13] sihing_guppy
+I thought your were asking what is the range we can expect from a user
+
+
+[02/10/2024 18:15] dimulski
+and my comment, answering like there are 4 bits in there 😄
+
+{Reactions}
+😂 🔆 
+
+[02/10/2024 19:04] brivan
+In `VoltageManager.sol` what does `allowedVoltageSpenders` represent? Does it mean that if an address is allowed to spend its voltage or not? And if yes at what cases an admin would change this allowance?
+
+
+[02/10/2024 19:07] sihing_guppy
+Yes that's correct - each address has voltage that they have to manage (you have to use voltage to initiate a ranked battle).
+
+
+[02/10/2024 19:07] sihing_guppy
+The admin would only add another spender if there is another game or protocol that we want to incorporate into our ecosystem
+
+
+[02/10/2024 19:08] sihing_guppy
+and we wanted voltage to regulate behaviour across games/protocols
+
+
+[02/10/2024 19:09] brivan
+So if I got this correct: for a wallet to be able to spend its voltage (and so, initiate a ranked battle) it needs to be allowed by an admin.
+
+
+[02/10/2024 19:10] sihing_guppy
+correct
+
+{Reactions}
+🫡 
+
+[02/10/2024 19:11] sihing_guppy
+I mean, users themselves can spend their own voltage - I'm just referring to the other allowed spenders (which will only be contracts that we approve)
+
+
+[02/10/2024 19:13] brivan
+Wallets can manage their voltage, protocols contracts need to be approved by the admin. Got it, thanks
+
+{Reactions}
+👍 
+
+[02/10/2024 19:19] 0xtekken
+the range is bound by your signature anyway... is there a scenario where the range goes over? It could render the function invalid
+
+
+[02/10/2024 19:20] sihing_guppy
+There is no scenario in which the range would go over - unless someone intentionally puts in incorrect data, in which case we want it to fail
+
+{Reactions}
+🤝 
+
+[02/10/2024 19:46] sp1cymeatball
+@guppy when is `updateBattleRecord` called?
+
+
+[02/10/2024 19:48] 0xsonny
+After a battle
+
+
+[02/10/2024 19:51] 0xtekken
+are there non-trade-able fighters? - as there are non-trade-able items, that's why I'm asking
+
+
+[02/10/2024 19:59] oualidpro
+@guppy please I have DM you can you check
+
+
+[02/10/2024 19:59] valkataaa
+what is the use of StakingFactor
+
+
+[02/10/2024 20:01] sihing_guppy
+It is used in the calculation for points after a ranked battle
+
+
+[02/10/2024 20:01] sihing_guppy
+i.e. points are a function of 1) if you won, 2) your staking factor, 3) your elo factor
+
+
+[02/10/2024 20:02] sihing_guppy
+Only if the fighter is staked or if the receiving wallet has hit the MAX amount of fighters
+
+{Reactions}
+👍 
+
+[02/10/2024 20:02] sihing_guppy
+please make a private thread instead of DM
+
+
+[02/10/2024 20:09] hgq2wnl
+(apologies for starting thread) and after a battle, is RankedBattle:setNewRound immediately called? Or is setNewRound triggered via some other means?
+
+
+[02/10/2024 20:10] sihing_guppy
+setNewRound is called on a discretionary basis
+
+{Reactions}
+👍 
+
+[02/10/2024 20:17] 0xtekken
+`hasStakerRole` who can become a stakerRole? Is that limited to infrastructure-related addresses only?
+
+
+[02/10/2024 20:18] hgq2wnl
+I may be wrong but I think the RankedBattle contract is intended to be a staker , going by the deploy script and tests. But would be good to know if others are intended.
+
+
+[02/10/2024 20:19] sihing_guppy
+Yes only RankedBattle for now
+
+{Reactions}
+👍 
+
+[02/10/2024 20:19] sihing_guppy
+it will only ever be a smart contract that we incorporate into our ecosystem
+
+
+[02/10/2024 20:20] sihing_guppy
+and will be subject to audit and review prior to being approved for that role
+
+{Reactions}
+👍 
+
+[02/10/2024 20:38] brivan
+Has this question been answered yet? I can't seem to find the answer on previous chats
+
+
+[02/10/2024 20:42] sp1cymeatball
+kind of, check my posts, also this comment https://discord.com/channels/810916927919620096/1201981655850426399/1205918488477311066
+
+{Reactions}
+🫡 
+
+[02/10/2024 21:30] Deleted User
+How many ``generation``  will be used in AiArenaHelper ?
+
+
+[02/10/2024 21:37] sihing_guppy
+This is unknown (still to be determined)
+
+
+[02/10/2024 21:38] sihing_guppy
+But likely we can expect double digits as an upper limit
+
+{Reactions}
+👍 
+
+[02/10/2024 22:13] Deleted User
+`generation` is like a checkpoint for the settings used  in creation of fighters ? like a new version of ``generation`` with other params
+
+
+[02/10/2024 22:30] mosharaf
+Are Neuron tokens   also a game item?
+
+
+[02/10/2024 22:32] sihing_guppy
+they are not - game items are ERC1155 and Neurons are ERC20
+
+
+[02/10/2024 23:59] aripse
+Probably not, it seems that’s more like a generation of Pokemon. Different generation can live in the same world at the same time and battle against each others.
+
+
+[02/11/2024 00:00] aripse
+If @guppy can confirm that ?
+
+
+[02/11/2024 00:01] sihing_guppy
+Yes you are correct
+
+{Reactions}
+👍 
+
+[02/11/2024 00:05] sihing_guppy (pinned)
+Also, I want to update you guys that the README has been updated and FighterOps.sol is now officially in scope
+
+{Reactions}
+🔥 (2) 👍 
+
+[02/11/2024 00:05] kartoonjoy
+Pinned a message.
+
+
+[02/11/2024 03:40] kaiziron
+is that the only chain that the contracts will be deployed?
+
+
+[02/11/2024 03:41] sihing_guppy
+That is the intention at the moment
+
+
+[02/11/2024 04:00] kaiziron
+will it be deployed to other chains in the future?
+
+
+[02/11/2024 04:12] mahdirostami
+Hello, currently are there only 2 fighter types?
+
+```
+    /// @notice Stores the current generation for each fighter type.
+    uint8[2] public generation = [0, 0];
+```
+
+
+[02/11/2024 04:36] sihing_guppy
+Undecided
+
+
+[02/11/2024 04:36] sihing_guppy
+Correct, Champions and Dendroids
+
+{Reactions}
+👍🏻 
+
+[02/11/2024 05:04] guy_in0xnito
+Why is fighter type represented the n uint ? 
+Is it like 0 for fighter A
+1 for fighter B
+
+
+[02/11/2024 05:26] daniel526
+@guppy @Sonny check private thread, kindly!
+
+
+[02/11/2024 05:33] 0xsonny
+0 represents champion 1 represents dendroid
+
+
+[02/11/2024 06:22] guy_in0xnito
+So how is generation & iconsType different?
+
+
+[02/11/2024 06:58] 0xtendency
+@PaperParachute @kartoonjoy | C4🎇🎇 
+This servers are meant to be private.
+I specifically created mine as private not sure about others.
+Is there a glitch?
+
+{Reactions}
+thankyou 
+
+[02/11/2024 07:00] 0xsonny
+Handled sorry about that
+
+
+[02/11/2024 07:03] 0xtendency
+Oh I see, you are a sponsor
+
+{Reactions}
+😎 
+
+[02/11/2024 07:21] mctoady
+yeah think there is an issue where the `wardens` discord role has higher ranking than the `sponsors` role so you see the yellow name not the pink one, maybe the C4 discord admin should switch them around
+
+{Reactions}
+👍 
+
+[02/11/2024 07:25] guy_in0xnito
+I think there was a photo of icon type where did it go ?
+
+
+[02/11/2024 07:31] guy_in0xnito
+How did you get this 
+Can you tell me where can i find more about this ?
+
+
+[02/11/2024 07:33] aslanbekaibimov
+the issue is that there are wardens who were sponsors in other contests, and they will be purple in the contests they arent sponsoring xD
+
+
+[02/11/2024 07:49] mctoady
+aah i seee, pain all round :kek:
+
+
+[02/11/2024 08:17] sp1cymeatball
+@guppy what is the average round duration? How many fights can be in one round?
+
+
+[02/11/2024 08:38] sp1cymeatball
+bruh...
+
+
+[02/11/2024 08:38] 0xsl1
+what?
+
+
+[02/11/2024 08:39] sp1cymeatball
+you might want to create a private thread for this 😆
+
+
+[02/11/2024 08:39] 0xsl1
+i just don't see anything sensitive here, but maybe you are right
+
+
+[02/11/2024 08:43] brivan
+What does rerolling a fighter mean?
+
+
+[02/11/2024 09:56] Deleted User
+Why in diff   test files there are different numbers of elements in arrays ```        probabilities.push([13, 7, 7, 13, 10, 13, 13, 10, 10, 4]);
+        probabilities.push([15, 15, 10, 7, 7, 15, 7, 10, 10, 4]);
+        probabilities.push([15, 15, 7, 4, 10, 10, 15, 10, 7, 7]);
+        probabilities.push([15, 7, 7, 10, 15, 4, 10, 10, 7, 15]);
+        probabilities.push([15, 10, 10, 7, 15, 10, 7, 15, 7, 4]);
+        probabilities.push([15, 15, 4, 10, 7, 7, 15, 10, 7, 10]); ```    here are 10 elements & in another file there are 6 elements, what exactly is probabilities in context of atributes   ?
+
+
+[02/11/2024 10:04] brivan
+According to the docs, each round lasts one week.
+
+{Reactions}
+🙏 (5) 
+
+[02/11/2024 10:12] stoicov12
+How is the dna of a fighter calculated?
+
+
+[02/11/2024 10:31] tarun1840
+Can you explain the minter, staker and the spender roles a bit more in detail? I dont quiet get it.
+
+
+[02/11/2024 10:45] amarfares
+How does the game server work? How do the results get pushed
+
+
+[02/11/2024 10:45] amarfares
+Do the battles themselves happen on the website and then the game server pushes it or what
+
+
+[02/11/2024 10:54] devblixt_
+who calculates the ML model hash and type?
+
+
+[02/11/2024 11:46] devblixt_
+also, what does rerolling a fighter mean?
+
+
+[02/11/2024 12:15] mylifechangefast.eth_70767
+Can the useVolatgeBattery be called by the msg.sender multiple times? @guppy
+
+
+[02/11/2024 12:16] forgebyola
+This may have already been asked but who gives an address the staking role, or more precisely how does an address bcome eligible to get staker role?
+
+
+[02/11/2024 12:23] 0xabhay.
+@guppy what do you mean by bool initiatorBool?
+
+
+[02/11/2024 12:35] mctoady
+There's literally docs above the function :kek:
+
+{Reactions}
+thankyou 
+
+[02/11/2024 12:37] erosjohn
+May I ask which chains this project will be deployed on?
+
+
+[02/11/2024 12:39] forgebyola
+arbitrum
+
+{Reactions}
+🙏 (2) 
+
+[02/11/2024 12:39] forgebyola
+according to the sponsors
+
+
+[02/11/2024 12:45] shaka0x
+med severity, @guppy  can be DoSed
+
+{Reactions}
+😂 (8) 
+
+[02/11/2024 12:51] mctoady
+umm? :kek:
+edit... OH :pepe_laugh:
+
+{Reactions}
+gummy_wink 
+
+[02/11/2024 12:55] haxatron1
+Relax guys sponsors need to sleep too... 😴
+
+
+[02/11/2024 12:57] devblixt_
+guys can someone tell me how to make a private thread lmfao
+
+
+[02/11/2024 13:02] sihing_guppy
+Still to be determined for the length of a round - it is discretionary. Likely to be bi-weekly though (roughly). Number of fights is unknown, it depends on factors like length of round, activity, and number of batteries purchased
+
+{Reactions}
+thankyou 
+
+[02/11/2024 13:03] sihing_guppy (pinned)
+You get a new appearance, weight and element
+
+
+[02/11/2024 13:04] sihing_guppy
+Battles happen server side, once it is completed then it is pushed onchain, and then sent to client to view
+
+
+[02/11/2024 13:05] sihing_guppy
+The team will only give it to smart contracts within our ecosystem after they have been audited, reviewed, and approved
+
+{Reactions}
+✅ (3) 
+
+[02/11/2024 13:05] shaflow_
+I think it might be clicking on the plus sign to the left of the input box, then clicking on 'Create Subarea,' not sure if I'm right.
+
+
+[02/11/2024 13:06] sihing_guppy
+Yes
+
+{Reactions}
+hi5 
+
+[02/11/2024 13:07] sihing_guppy
+In every match there are two AIs fighting, but only one person that initiates the fight. The one that initiates has to pay voltage
+
+{Reactions}
+👍 (3) 
+
+[02/11/2024 13:13] forkforkdog
+Any invariants defined by sponsor available?
+
+
+[02/11/2024 13:40] forgebyola
+How are fighter and icon types denominated from 0 to etc. Is there a doc for this?
+
+
+[02/11/2024 13:46] sihing_guppy
+We did not define any
+
+
+[02/11/2024 13:47] sihing_guppy
+This is not public (although one can infer from the comments in the smart contract).
+
+
+[02/11/2024 13:47] sihing_guppy
+The people who are receiving these icons know haha
+
+
+[02/11/2024 13:47] sihing_guppy
+It’s basically a set of special fighters for early supporters
+
+
+[02/11/2024 13:47] .justuzair
+what is element and what does the representing the element convey??
+
+for example this line in the contract what's it mean : 
+
+```
+if (customAttributes[0] == 100) { // q - what does 100 mean
+            (element, weight, newDna) = _createFighterBase(dna, fighterType);
+}
+```
+
+
+[02/11/2024 13:49] sihing_guppy
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/IMG_2481-220C0.png
+
+
+[02/11/2024 13:49] sihing_guppy
+It is defined here: https://docs.aiarena.io/gaming-competition/nft-makeup
+
+{Embed}
+https://docs.aiarena.io/gaming-competition/nft-makeup
+NFT Makeup
+AI-Powered NFTs
+
+
+[02/11/2024 13:49] .justuzair
+ok got it thanks
+
+
+[02/11/2024 13:49] forgebyola
+Okay
+
+
+[02/11/2024 13:50] sihing_guppy
+100 is a flag we use to determine if it’s a custom attribute or not
+
+{Reactions}
+✅ (2) 
+
+[02/11/2024 13:52] sihing_guppy
+Also if you create a private thread, please add both @Sonny  and myself, not just one of us
+
+{Reactions}
+🫡 (2) 
+
+[02/11/2024 14:57] t0x1c.c0de
+And these new attributes are completely random, decided by the protocol? Or can the user choose them?
+
+
+[02/11/2024 14:58] brivan
+To initiate a battle, it costs 10 VOLTAGE, this is deducted from the challenger's balance during the battle update, right? Not before
+
+
+[02/11/2024 15:03] sihing_guppy
+Yes during because if a bug was encountered during a match we don’t want to take away their voltage (we auto detect this)
+
+{Reactions}
+👍 
+
+[02/11/2024 15:04] sihing_guppy
+They are pseudorsndomly generated
+
+{Reactions}
+👍🏻 
+
+[02/11/2024 15:27] popelev.fedor
+hello. what is OZ version? i can not build with 5.0 and 4.9.5
+
+upd: 4.7.3
+
+
+[02/11/2024 15:33] guy_in0xnito
+Hey @guppy only chanpion can be created with varities right ? Dendroid will always be same ?
+
+
+[02/11/2024 15:41] sihing_guppy
+Correct
+
+
+[02/11/2024 15:41] sihing_guppy
+Dendroids are customizable in-game
+
+
+[02/11/2024 15:53] .justuzair
+what is `eloFactor`??
+
+```
+function updateBattleRecord(
+        uint256 tokenId,
+        uint256 mergingPortion,
+        uint8 battleResult,
+        uint256 eloFactor, // q - what is elo factor
+        bool initiatorBool
+    )
+```
+
+
+[02/11/2024 16:16] sihing_guppy
+It's a derivative of their ELO (which is how we rank fighters)
+
+
+[02/11/2024 16:16] sihing_guppy
+highter ELO means they are a better fighter
+
+
+[02/11/2024 16:18] erosjohn
+Excuse me, I have two questions:
+1. It is said in the introduction that MergingPool.sol allows users to stake their fighters to earn rewards, but I see no staking related functions. 
+2. Another question is, when will the pickWinner function be called?
+
+
+[02/11/2024 16:20] guy_in0xnito
+https://discord.com/channels/810916927919620096/1201981655850426399/1205883026131652638,.... Can anyone tell me how the rarity and dna to index is working?
+@guppy  can you please clarify this
+
+{Embed}
+https://discord.com/channels/810916927919620096/1201981655850426399/1205883026131652638,....
+Discord - A New Way to Chat with Friends & Communities
+Discord is the easiest way to communicate over voice, video, and text.  Chat, hang out, and stay close with your friends and communities.
+
+
+[02/11/2024 16:23] sihing_guppy
+This was our mistake - we are making a PR to fix this description
+
+{Reactions}
+✅ 
+
+[02/11/2024 16:28] brivan
+The stake happens on `RankedBattle` contract, right?
+
+
+[02/11/2024 16:32] tarun1840
+@guppy
+
+
+[02/11/2024 16:39] sihing_guppy
+yes
+
+
+[02/11/2024 16:40] erosjohn
+MergingPool.sol#pickWinner is used to periodically raffle off new NFTs to be minted. The winning rate is determined off-chain through the public variable MergingPool.sol#fighterPoints, is it right?
+
+
+[02/11/2024 16:40] sihing_guppy
+yes
+
+
+[02/11/2024 16:40] erosjohn
+I understand, thank you, sir.
+
+
+[02/11/2024 16:41] sihing_guppy
+Which part specifically do you need clarification on?
+
+
+[02/11/2024 16:42] sihing_guppy
+Which part is confusing?
+
+
+[02/11/2024 16:42] tarun1840
+i wanna know who has the persmission to mint and what do minters do
+
+
+[02/11/2024 16:44] guy_in0xnito
+How is it calculted ?
+Couldn't really get all things cleared from test caee
+
+
+[02/11/2024 16:46] sihing_guppy
+how is dna calculated?
+
+
+[02/11/2024 16:47] sihing_guppy
+It should be in the Deployer script
+
+
+[02/11/2024 16:47] tarun1840
+ah ok tyyy
+
+
+[02/11/2024 16:53] guy_in0xnito
+No  basically how the rarity thing works & how it is used in dnatotindex function?
+
+
+[02/11/2024 17:04] devblixt_
+can you talk a bit about model types @guppy ?
+
+{Reactions}
+👍 
+
+[02/11/2024 17:13] devblixt_
+this as well please
+
+
+[02/11/2024 17:15] masol_66728
+its answered here @devblixt
+
+{Reactions}
+❤️ 
+
+[02/11/2024 18:05] forgebyola
+Fighters can be transferred between different addresses right?
+
+
+[02/11/2024 18:12] 0xhelium
+Yes unless they are stacked
+
+
+[02/11/2024 18:31] forgebyola
+Okay thanks
+
+
+[02/11/2024 18:32] 0xloscar01
+Is the model URI the hash of the ML model associated with the fighter?
+
+(`MergingPool::claimRewards::modelURIs` == `FighterFarm::mintFromMergingPool::modelHash` ) ?
+
+
+[02/11/2024 18:33] 0xsonny
+yes
+
+{Reactions}
+thankyou 
+
+[02/11/2024 18:33] forgebyola
+you mean staked?
+
+
+[02/11/2024 18:35] 0xhelium
+Yes , unless owner used that fighter to stake some nrn.
+
+
+[02/11/2024 18:36] 0xsonny
+You can read more about model types here
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/Screenshot_2024-02-11_at_1.35.39_PM-EA66C.png
+
+{Reactions}
+❤️ (2) 
+
+[02/11/2024 19:28] forgebyola
+The treasury would just be a contract which holds the NRN in the system right?
+
+{Reactions}
+👍🏼 (2) 
+
+[02/11/2024 19:46] 0xhelium
+Imo more like an eoa, a multisig? Because there is no function call on it . Just transfer token back and forth
+
+{Reactions}
+👍🏼 (2) 
+
+[02/11/2024 20:29] 0xsynon
+Would it be possible to add it to `scope.txt` as well, just to avoid more confusion?
+
+
+[02/11/2024 20:49] 0xsonny
+Already in progress just waiting for C4 to update we’ll make announcement when they update it
+
+{Reactions}
+🙏 
+
+[02/11/2024 21:23] 0xsynon
+In this mapping:
+
+```solidity
+    /// @notice Maps address to fighter type to return the number of NFTs claimed.
+    mapping(address => mapping(uint8 => uint8)) public nftsClaimed;
+```
+
+is the inner mapping (`uint8 => uint8`) supposed to be the number claimed for each type (as in, the `uint8` key can either be `0` or `1`)?
+
+{Reactions}
+👀 
+
+[02/11/2024 21:38] 0xsonny
+Correct
+
+
+[02/11/2024 22:10] mosharaf
+On average  How many rounds will be there  per day ??
+
+
+[02/11/2024 22:13] sihing_guppy
+Rounds will likely be bi-weekly
+
+{Reactions}
+🫡 (3) 
+
+[02/11/2024 23:45] kingx0001
+under rankedbattle.sol, what is the meaning of `The basis points lost per loss`
+
+{Reactions}
+👀 
+
+[02/12/2024 00:06] ivand5690
+Would you please explain the rounds again? Are they responsible for the general round(Level) of the game? How do they change the gameplay?
+
+
+[02/12/2024 00:16] sihing_guppy
+If you are in a point deficit you can lose part of your stake - that is what it is refering to. If I staked 1000 NRN and I don't have any points and I lost a match, the 1 of my NRNs would become at risk (i.e. 1000 * 10 bps)
+
+{Reactions}
+🫡 
+
+[02/12/2024 00:16] sihing_guppy
+1 basis point = 0.01%
+
+
+[02/12/2024 00:17] sihing_guppy
+Rounds are discrete intervals in which we run the ranked competition
+
+
+[02/12/2024 00:17] sihing_guppy
+So for example, round 1 can be from today - Friday, then next round could be next monday to next Friday
+
+
+[02/12/2024 00:26] devpelz
+@guppy hello, please in what conditions wil game items become untransferrable?
+
+
+[02/12/2024 00:33] devpelz
+seen, never mind
+
+
+[02/12/2024 00:48] guy_in0xnito
+Pushing it again @guppy
+
+
+[02/12/2024 00:57] 0xhelium
+If you already plsyed any online battleground you can assume round are like season . It's just a time window for you to grind the ranks .
+
+{Reactions}
+🔥 
+
+[02/12/2024 03:59] kaiziron
+```The AAMintPass.sol smart contract since it is already deployed and completed minting```
+whats the address of the deployed contract?
+
+
+[02/12/2024 04:18] 0xsonny
+Contracts have only been deployed to testnet arbitrum not mainnet
+
+
+[02/12/2024 04:31] daniel526
+@Sonny @guppy please check private thread!
+
+
+[02/12/2024 05:44] prathik358
+Which are some of the important functions that a user would interact with?
+
+
+[02/12/2024 07:03] 0xabhay.
+In a typical Elo system, players start with a mean score of 1500. it is true?
+
+
+[02/12/2024 08:30] sp1cymeatball
+@guppy do you plan to add more fighter types in future?
+
+
+[02/12/2024 09:02] novamanbg
+Are the fighter types equally valuable?
+
+
+[02/12/2024 09:07] brivan
+I guess No, check the docs here: https://docs.aiarena.io/gaming-competition/nft-makeup
+Section `NFT Types`
+
+{Embed}
+https://docs.aiarena.io/gaming-competition/nft-makeup
+NFT Makeup
+AI-Powered NFTs
+
+
+[02/12/2024 09:10] novamanbg
+Ok thank you
+
+
+[02/12/2024 09:45] 0xtekken
+what's the range on dna numbers that are generated off-chain?
+
+
+[02/12/2024 10:33] 0xstriker
+hey guys can someone suggest some good security note taking extensions in vs code. I was using the (Security Notes) extension from (refactorsecurity) and once I turned my pc off all my notes were gone, so please do recommend something
+
+
+[02/12/2024 11:34] blnk_
+inline bookmarks
+
+{Reactions}
+👍 (5) 
+
+[02/12/2024 11:59] surfer_05
+Please update the competition page to 9 contracts. It says eight right now @KnownFact | C4
+
+{Reactions}
+✅ 
+
+[02/12/2024 12:07] zaevlad
+@guppy Players can use voltage to initiate a battle. So they can initiate the battle only one time a day for free, or they can buy batteries and initiate battles several times a day, is it correct?
+
+
+[02/12/2024 12:11] 0xsl1
+voltage cost is 10 so 10 battles per 100 voltage
+
+{Reactions}
+👍 (2) 
+
+[02/12/2024 12:12] smith3dx
+the Elo system is used only for ranking right?
+
+{Reactions}
+👍 
+
+[02/12/2024 12:14] 0xbtk
+and for calculating points
+
+
+[02/12/2024 12:16] smith3dx
+@btk the challenger is only accruses points in the match the opponent does not get any points right
+
+
+[02/12/2024 12:17] 0xsl1
+both players get their score updated, but only the initiator gets their voltage spent
+
+
+[02/12/2024 12:40] 0xlemon
+Your battery is recharged once per day and has 100 voltage. 10 voltage is used when initiating battle.
+
+
+[02/12/2024 13:04] ivand5690
+Does anyone know, whether the _tokenURIs[tokenId] are used somewhere, except from "Returns the URI where the token metadata is stored". Is this metadata important for rendering the player or something else? Asking for the FighterFarm.sol
+
+
+[02/12/2024 13:16] surfer_05
+```
+require(_gameItemsContractInstance.balanceOf(msg.sender, 0) > 0);    
+```
+why is the id `0` here ? any particular reason ? `VoltageManager.sol::useVoltageBattery`
+@guppy
+
+
+[02/12/2024 13:18] 0xsl1
+because it's erc1155 to support multiple items
+
+{Reactions}
+👍 (3) 
+
+[02/12/2024 13:21] surfer_05
+so, are we using id for different games? Like id 0 is for this particular game instance ?
+
+
+[02/12/2024 13:21] filmptz
+It seems the game item `id:0 ` refers to the battery item
+
+{Reactions}
+✅ (9) 
+
+[02/12/2024 13:27] brivan
+According to the script file, only one game item is created which is the battery, so id 0 should refer to the battery item.
+
+
+[02/12/2024 13:39] forkforkdog
+dats only me or this whole project is intended to be use by admins almost only lol
+
+
+[02/12/2024 13:52] devpelz
+will it be only that game item that would be created throughout the entirety of the game?
+
+
+[02/12/2024 13:56] anjali_t
+can anyone explain what `finalAttributeProbabilityIndexes` array refers to in `aiArenaHelper:createPhysicalAttributes` function
+
+
+[02/12/2024 13:56] anjali_t
+like what's the use
+
+
+[02/12/2024 13:56] brivan
+The sponsor already said that other items can be created after game launch, but for the moment there is only 1 game item, the battery
+
+
+[02/12/2024 14:08] forkforkdog
+here is the user function mapping if anyone interested
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/Screenshot_2024-02-12_at_17.08.04-0B86A.png
+
+{Reactions}
+🙏🏻 (5) 🔥 (3) 
+
+[02/12/2024 14:11] devpelz
+alright then thanks
+
+
+[02/12/2024 14:12] haxatron1
+What software did you use to get this?
+
+
+[02/12/2024 14:21] brivan
+Does the Elo factor start from 1500 ?
+
+
+[02/12/2024 14:26] surfer_05
+Why are we updating the attributeProbabilities twice? @guppy  Firstly calling the function and then manually?
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/image-08E4F.png
+
+
+[02/12/2024 14:44] sihing_guppy
+We do not plan on adding more fighting type - just expanding on the existing ones by incrementing the generations
+
+{Reactions}
+thankyou (2) 
+
+[02/12/2024 14:45] sihing_guppy
+IT's just used in marketplaces like Opensea (we just use the physical attributes directly from the contract in our game)
+
+
+[02/12/2024 14:47] sihing_guppy
+haha this is a mistake on our part
+
+
+[02/12/2024 15:02] xkeywordx
+Did any of you guys deploy all these on a testnet?
+
+
+[02/12/2024 15:18] sihing_guppy
+We've been running on testnet for about 2 years
+
+
+[02/12/2024 15:18] sihing_guppy
+or are you asking the others? haha
+
+
+[02/12/2024 15:19] sihing_guppy
+Hey guys, I want to say that everyone is doing a fantastic job, so keep it up! The rest of the day, I'll be busy deploying something for our game, so please direct your questions and threads to @Sonny
+
+{Reactions}
+👍 (7) 
+
+[02/12/2024 15:23] rspadi
+What is the point of rerolling a fighter ? Is there any advantage, possible gain... in doing so ? => FighterFarm::maxRerollsAllowed ?
+
+
+[02/12/2024 15:29] 0xbtk
+https://discord.com/channels/810916927919620096/1201981655850426399/1206223954793209966
+
+{Reactions}
+👍🏼 
+
+[02/12/2024 15:30] kartoonjoy
+Pinned a message.
+
+
+[02/12/2024 15:32] xkeywordx
+I meant someone else 🙂
+
+
+[02/12/2024 15:43] jvorex
+it's a good thing you can't spend testnet funds 🫢
+
+
+[02/12/2024 16:27] tarun1840
+Can someone explain what "Default DNA divisors for attributes" is? ty
+
+{Reactions}
+👀 
+
+[02/12/2024 17:03] guy_in0xnito
+@Sonny where are we staking the NFT?
+
+
+[02/12/2024 17:09] 0xsonny
+updateFighterStaking in fighterFarm
+
+
+[02/12/2024 17:20] 0xsonny
+it is an integer that we use to divide the DNA to get the pseudorandom number which is used to get the attribute index
+
+
+[02/12/2024 17:20] tarun1840
+ohh ok tysmm
+
+
+[02/12/2024 17:25] devpelz
+Hi @Sonny  please upon creation of fighters are all fighters meant to have same weight? if no please what effects does the weight have on the game fighters
+
+
+[02/12/2024 17:26] 0xsonny
+No their different and the elements and weights simple affect the way you train and play style
+
+
+[02/12/2024 17:27] devpelz
+okay thanks...
+
+
+[02/12/2024 17:27] forgebyola
+Hey can you post a clearer version? Thanks
+
+
+[02/12/2024 18:00] 0xabhay.
+`updateBattleRecord` function will called by gameServerAddress after the round ends?
+
+
+[02/12/2024 18:07] 0xsonny
+after each battle
+
+{Reactions}
+👍 (3) 
+
+[02/12/2024 18:11] ivand5690
+@Sonny why do you prevent certain GameItems from transfer, by using transferable? Is there any specific game restriction
+
+
+[02/12/2024 18:12] tayzver
+@Sonny i previously created a thread with only guppy on it. There is no problem if i tag you there instead of creating another thread right?
+
+{Reactions}
+👍🏼 
+
+[02/12/2024 18:25] 0xsonny
+if we wanted to issue a soulbound weapon we want to leave the option available and we also might not want the ability to transfer batteries in a certain period of time.
+
+
+[02/12/2024 18:52] mladenov0603
+Does protocol plan to add more attributes in `AiArenaHelper` contract and if yes, how they will be added?
+
+
+[02/12/2024 18:53] 0xsonny
+No plans atm for this but if we wanted too we can deploy a new contract with only new attributes
+
+
+[02/12/2024 18:55] bigveezus
+How is the “uint8[2] calldata numToMint” generated ??
+
+
+[02/12/2024 18:55] bigveezus
+From the delegated address ?
+
+
+[02/12/2024 18:55] bigveezus
+Or user generated ?
+
+
+[02/12/2024 18:56] 0xsonny
+user input
+
+
+[02/12/2024 18:58] 0xsonny
+you can check testClaimFighters in the FighterFarm test contract
+
+
+[02/12/2024 19:10] forgebyola
+Hey in claim fighters, the signature of the caller carries the info of whether they are permitted to mint the numMint they entered right
+
+
+[02/12/2024 19:14] 0xsonny
+Right
+
+{Reactions}
+👍🏼 
+
+[02/12/2024 19:15] 0xtekken
+If there is a transfer of a fighter nft, it keeps its stats( for example in rankedBattle)?
+
+
+[02/12/2024 19:19] 0xsonny
+Correct
+
+
+[02/12/2024 19:27] forgebyola
+And this is tracked offchain
+
+
+[02/12/2024 19:53] bigveezus
+What does reroll function do ? 
+Changes an old fighters traits ?
+
+
+[02/12/2024 19:56] brivan
+@BigVeezus
+
+
+[02/12/2024 19:56] saint6704
+https://discord.com/channels/810916927919620096/1201981655850426399/1206223954793209966
+
+
+[02/12/2024 20:01] 0xtekken
+does unstaking only a part of your staked NRN disqualify you from becoming a winner?
+
+
+[02/12/2024 20:13] 0xsonny
+no
+
+
+[02/12/2024 21:50] smith3dx
+is there a limit to the number of generations
+
+
+[02/12/2024 21:51] 0xsonny
+No
+
+
+[02/12/2024 22:42] 0xloscar01
+`Each time a fighter is trained and the user chooses to save the progress, the parameters are updated on IPFS, and the new hash is updated on Ethereum.`
+
+To use the model parameters, does the game look at the hash of the ML model associated with the fighter?
+
+
+[02/12/2024 23:13] kingx0001
+amazing!! can u please share me rhe file? cant zoom in, its blurry a bit
+
+
+[02/12/2024 23:24] 0xsonny
+yes
+
+
+[02/13/2024 01:15] bigveezus
+Is a gameItem created after every token or ?
+
+
+[02/13/2024 01:18] bigveezus
+And what does a gameItem do ?
+
+
+[02/13/2024 01:44] 0xsonny
+You read about it here 
+
+https://docs.aiarena.io/economic-system/201-economy-design#15909b0656cd431b991607bd4fb9a2cd
+
+{Embed}
+https://docs.aiarena.io/economic-system/201-economy-design
+Economy Overview
+Economic System Overview
+
+{Reactions}
+❤️ 
+
+[02/13/2024 02:58] shui1
+@Sonny hi! sent a question in the private thread
+
+{Reactions}
+👍🏼 
+
+[02/13/2024 04:12] guy_in0xnito
+@Sonny 
+Even if players have stake at risk
+If he wins his points are still going to merging pool right ?
+
+
+[02/13/2024 04:34] sihing_guppy
+It shouldn't
+
+
+[02/13/2024 04:34] sihing_guppy
+```
+if (stakeAtRisk == 0) {
+    points = stakingFactor[tokenId] * eloFactor;
+}
+```
+
+
+[02/13/2024 04:35] sihing_guppy
+we check to see if stake at risk is 0, and only then do we set points to a value > 0
+
+
+[02/13/2024 04:35] sihing_guppy
+`uint256 mergingPoints = (points * mergingPortion) / 100;`
+
+Merging points thus will be 0 if points are 0
+
+
+[02/13/2024 04:35] guy_in0xnito
+Even if he wins ?
+
+
+[02/13/2024 04:36] sihing_guppy
+yes that's if he wins
+
+
+[02/13/2024 05:16] guy_in0xnito
+@Sonny @guppy can anyone of you please check the private thread?
+
+
+[02/13/2024 05:59] blutorque
+modehash or modeltype are not specific to single fighter, does that mean two or more fighters can have same hash and type?
+
+
+[02/13/2024 07:15] devblixt_
+there are only like three types so i assume two fighters can have same type, but not sure about hash
+
+{Reactions}
+😂 
+
+[02/13/2024 07:19] devblixt_
+whoa did someone find a crit
+
+{Reactions}
+👀 
+
+[02/13/2024 07:52] nmirchev8
+Hey, what are the number of elements per generation?
+` numElements[0] = 3;` in this case 3?
+
+
+[02/13/2024 07:53] _polex
+here https://discord.com/channels/810916927919620096/1201981655850426399/1206235585723899904
+
+
+[02/13/2024 07:54] nmirchev8
+Nevermind... it is elements like water, fire, etc..
+
+{Reactions}
+🔥 
+
+[02/13/2024 07:54] nmirchev8
+Thanks
+
+
+[02/13/2024 07:55] _polex
+Yeah I guess they may add new elements for future generations
+
+
+[02/13/2024 08:01] nmirchev8
+But all this with hardcoded generation array seems that if there is a new generation, protocol has to redeploy all contracts?
+
+
+[02/13/2024 08:09] nmirchev8
+Can we say that if `modelType != original`, `dendroidBool` should always be true?
+
+
+[02/13/2024 08:11] _polex
+Yeah I noticed too😄 Idk how they intend to implement this
+
+
+[02/13/2024 08:23] 0xabhay.
+@guppy  Accept my friend request sir?
+
+
+[02/13/2024 08:32] 0xsl1
+modelType is different from fighterType which determines the value of dendroidBool
+
+{Reactions}
+✅ 
+
+[02/13/2024 08:34] nmirchev8
+What is  modelType then? What values can be set?
+
+
+[02/13/2024 08:34] 0xsl1
+it’s the type of ML model
+
+{Reactions}
+✅ 
+
+[02/13/2024 08:34] 0xsl1
+don’t know about values but it’s kinda irrelevant
+
+{Reactions}
+✅ 
+
+[02/13/2024 08:34] 0xsl1
+since all of the neural net logic has nothing to do with blockchain
+
+
+[02/13/2024 08:35] 0xsl1
+at least that’s how i get it
+
+
+[02/13/2024 08:37] poeaudits
+Some of the contracts have ways to update some of the peripheral contract addresses to effectively "upgrade" them.
+
+{Reactions}
+✅ 
+
+[02/13/2024 08:40] agilejune.cp
+@Sonny @guppy could you check my private thread, sir
+
+
+[02/13/2024 08:53] nmirchev8
+Lets say we have 6 different values for `head`
+`attributeProbabilities` would hold 6 values (for each possible attribute value)  and they should be ordered from most less rare to the rarest? Is this the logic behind determining rarity %?
+
+
+[02/13/2024 09:04] 0xlemon
+The order does not matter
+
+
+[02/13/2024 09:07] ivand5690
+same please
+
+
+[02/13/2024 09:07] nmirchev8
+Then how is the rarity really applied?
+
+
+[02/13/2024 09:08] nmirchev8
+If the range is larger?
+
+
+[02/13/2024 09:09] nmirchev8
+The probability is higher?
+
+
+[02/13/2024 09:10] 0xlemon
+If you have lets say the array [50, 1, 9, 10,  16, 14] the value 1 is the most rare and you would only get it if rarityRank = 51
+
+{Reactions}
+thankyou 
+
+[02/13/2024 09:11] nmirchev8
+I got it
+Thank you!
+
+{Reactions}
+👍 
+
+[02/13/2024 09:20] .justuzair
+`    /// @param battleResult The result of the battle (0: win, 1: tie, 2: loss).`
+This is what I found in natspec for the battleResult, but the docs have something else 
+
+Which one is true from both of them??
+@guppy @Sonny
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/image-F0414.png
+
+
+[02/13/2024 09:20] .justuzair
+Am I misunderstanding something in here?
+
+
+[02/13/2024 09:27] ubl4nk
+Look at the code
+0 is win
+
+
+[02/13/2024 09:27] .justuzair
+I know but why does it differ from the docs
+
+
+[02/13/2024 09:27] ubl4nk
+```
+function _updateRecord(uint256 tokenId, uint8 battleResult) private {
+        if (battleResult == 0) {
+            fighterBattleRecord[tokenId].wins += 1;
+        } else if (battleResult == 1) {
+            fighterBattleRecord[tokenId].ties += 1;
+        } else if (battleResult == 2) {
+            fighterBattleRecord[tokenId].loses += 1;
+        }
+    }
+```
+
+
+[02/13/2024 09:28] ubl4nk
+When battleResult is 0, then it means `Win`
+
+
+[02/13/2024 09:36] _polex
+docs are pretty outdated, it also says that uses chainlink VRF for randomness generation when in code is just pseudorandom
+
+
+[02/13/2024 09:36] .justuzair
+bruh I got it that's where I got the natspec from
+
+
+[02/13/2024 09:36] .justuzair
+Yeah I kinda felt that
+
+
+[02/13/2024 09:41] varun2791
+@guppy please accept friend request
+
+
+[02/13/2024 09:45] aripse
+Please create a private thread.
+
+{Reactions}
+thankyou 
+
+[02/13/2024 09:45] varun2791
+Okk
+
+
+[02/13/2024 10:05] brivan
+Can someone confirm if ELO starts always from 1500 ?
+
+
+[02/13/2024 10:20] 0xbtk
+> In a typical Elo system, players start with the mean score of 1500.  If players perform well (wins against their opponent), their Elo score rises. If they perform poorly (lose against their opponent), their Elo score falls.
+
+{Reactions}
+👍 
+
+[02/13/2024 10:22] saint6704
+what is `rankedNrnDistribution` ?
+Is it total amount of Nrn to be distributed for a particular round amongst the winners?
+
+
+[02/13/2024 10:22] surfer_05
+is the game going to have only one generation or there will be multiple generations ?
+
+
+[02/13/2024 10:28] brivan
+Yea
+
+
+[02/13/2024 10:38] blutorque
+how long a battle goes on in a particular round?
+
+
+[02/13/2024 10:40] nmirchev8
+Who will have `staker` roles in `FighterFarm`?
+
+
+[02/13/2024 10:41] blutorque
+RankBattle
+
+{Reactions}
+✅ (2) 
+
+[02/13/2024 10:43] brivan
+For the moment `RankedBattle` contract, the sponsor also said that they may give the role to other contracts that will be well audited.
+
+{Reactions}
+✅ (3) 
+
+[02/13/2024 10:45] donkicha
+Are the `Slither` findings eligible for awards, since it is not explicitly noted in the README? 🙃 
+
+In the README are noted only the 4naly3er report and the Automated Findings report.
+
+{Reactions}
+😂 (4) 
+
+[02/13/2024 10:51] haxatron1
+Pls do not report slither issues
+
+{Reactions}
+😆 (16) 😂 (3) 
+
+[02/13/2024 10:51] haxatron1
+🙏
+
+
+[02/13/2024 10:51] haxatron1
+For the sake of yourself and the judge
+
+
+[02/13/2024 10:52] donkicha
+Ok, no worries! Just asking. 🙂
+
+
+[02/13/2024 11:15] kirobrejka_80610
+lil goofy question, but how to make a private thread here?😅
+
+
+[02/13/2024 12:49] zaevlad
+@guppy @Sonny I little bit confused with a order of steps for the battle. It has to be like:
+
+1) set new round => stake NRN => update battle record
+2) update battle record => set new round => stake NRN
+3) stake NRN => set new round => update
+
+or other order?
+
+
+[02/13/2024 12:50] forkforkdog
+only admin can setNew round isnt it?
+
+{Reactions}
+👍 
+
+[02/13/2024 13:00] nmirchev8
+Is `eloFactor` raking points, which starts from 1500, or is something else
+
+
+[02/13/2024 13:02] _emrekocak
+Starts from 1500
+
+{Reactions}
+✅ (2) 
+
+[02/13/2024 13:04] aripse
+It is something else, real ELO is 1500 but here it is a factor calculated by the game server corresponding to your ELO but this factor is quadratic to avoid smurfing/elo manipulation.
+
+{Reactions}
+✅ 
+
+[02/13/2024 13:04] aripse
+I let @guppy and @Sonny confirm this information.
+
+
+[02/13/2024 13:06] nmirchev8
+Ahh okay, thanks!
+And do you know if a user can select in hom many matches to play, or if he participates in a round there is always a fixed number of fights for each player?
+
+
+[02/13/2024 13:09] aripse
+According to what I understand from the doc and answers here, you initiate at least 10 battles in one day (due to voltage). Using a battery, you can double/triple/… this. A round lasts for 1 week. If another player initiate the match, you have more battle which can modifiate your ELO, but points are only modified for your fighter if you have initiate the battle.
+
+{Reactions}
+✅ 
+
+[02/13/2024 13:14] nmirchev8
+But you can also initiate only one battle for the whole round if you want to?
+
+
+[02/13/2024 13:17] aripse
+Yes, search "Scenario 2" in this doc : https://docs.aiarena.io/gaming-competition/nrn-rewards
+
+{Reactions}
+❤️ 
+
+[02/13/2024 13:23] 0xsl1
+you are a little wrong, points or NRN at risk are modified for both fighters depending on the outcome. It does not matter who initiated a fight, it only affects the voltage.
+
+{Reactions}
+🤔 ✅ (6) 
+
+[02/13/2024 13:25] 0xsl1
+It can be easily seen in the updateBattleRecord function, initiatorBool variable only affects the voltage of the initiator. But regardless of the fact who initiated a fight, _addResultPoints will be called for both fighters (of course if they are staking)
+
+
+[02/13/2024 13:29] aripse
+Search "Challenger" and "Opponent" in this doc : https://docs.aiarena.io/gaming-competition/nrn-rewards
+It tells us that only challengers are at risk for points and stakeAtRisk. not opponents.
+
+
+[02/13/2024 13:29] 0xsl1
+i don’t need to look into docs, because the code tells me otherwise
+
+{Reactions}
+👍 
+
+[02/13/2024 13:29] aripse
+But opponents are also at risk for ELO points.
+
+
+[02/13/2024 13:34] aripse
+I see what you mean… So the question to @guppy and @Sonny : Is `RankedBattle::updateBattleRecord` called twice, for each fighters in a battle ? If yes, doc seems to be wrong, else the `initiatorBool` is useless.
+
+
+[02/13/2024 13:35] 0xsl1
+yeah, that's the different question and maybe it's not called for a non-initiator fighter, but that would make initiatorBool useless, as you've correctly noted
+
+{Reactions}
+👍 
+
+[02/13/2024 13:56] nmirchev8
+What if one has unstaked only small amount?
+
+
+[02/13/2024 13:56] 0xsl1
+as long as it’s greater than 0, there is an explicit check of that
+
+{Reactions}
+✅ 
+
+[02/13/2024 14:04] filmptz
+I asked this question to the sponsor few days ago. the answer is YES it updates separately for each fighter.
+
+{Reactions}
+😮 thankyou (2) 
+
+[02/13/2024 14:07] 0xbtk
+yes, you can see that in the tests
+
+{Reactions}
+🙏 (2) 
+
+[02/13/2024 14:12] 0xtekken
+why are these two being added in the `RankedBattle::updateBattleRecord`, `amountStaked[tokenId]` + `stakeAtRisk`:
+```js
+        uint256 stakeAtRisk = _stakeAtRiskInstance.getStakeAtRisk(tokenId);
+        if (amountStaked[tokenId] + stakeAtRisk > 0) {
+            _addResultPoints(battleResult, tokenId, eloFactor, mergingPortion, fighterOwner);
+        }
+```
+aren't the staked tokens always under `amountStaked[tokenId]`?
+
+NVM... I understand, `stakeAtRisk` seems to be a seperate contract that holds one's NRN that is at risk of losing, so it is added on top of the `amountStaked` 
+
+Correct me if I'm wrong.
+
+
+[02/13/2024 14:30] brivan
+You can unstake your $NRN in the round but still you have some $NRN tokens at risk in previous battles. So yea, it is required to  check the sum of the two states
+
+{Reactions}
+👍 (2) 
+
+[02/13/2024 14:51] jes16jupyter
+Hi, does higher physical attributes means higher ability for the hero?
+
+
+[02/13/2024 15:42] 0xauditism
+no
+
+
+[02/13/2024 15:43] 0xauditism
+weight determines the fighting stats
+
+
+[02/13/2024 17:06] amarfares
+So just to get clarification from the protocol, once $NRN is staked for a fighter, they could be the target of battles and potential points lost even if they don't initiate any fights, correct?
+
+
+[02/13/2024 17:10] devblixt_
+do you mean to ask if the opponent's consent needs to be there for a fight to follow?
+
+
+[02/13/2024 17:12] filmptz
+If I understand correctly, the points will change based on whether the fighter wins or loses, while the initiator flag is only used to decide who is responsible for paying the voltage for that battle.
+
+{Reactions}
+✅ 
+
+[02/13/2024 17:13] tychaios.
+Yes, initiatorBool only used to spend voltage. As long as you got staked NRN you are subject to points loss or move stake at risk
+
+{Reactions}
+✅ (3) 
+
+[02/13/2024 17:29] surfer_05
+Can someone please explain, what actually is the role of iconsType here? Or if one can share the relevant docs section ?
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/image-4ED2B.png
+
+
+[02/13/2024 17:30] aripse
+The only useful information I found is in the function `AiArenaHelper::createPhysicalAttributes`
+
+
+[02/13/2024 17:31] aripse
+Check conditions using `iconsType`.
+
+
+[02/13/2024 17:40] nmirchev8
+Do somebody knows whether when all user stakes goes to 'stakeAtRisk', it is possible to be matched for a battle?
+
+
+[02/13/2024 17:52] brivan
+From my understanding, If the round is not ended, he can still recover his stakes at risk by winning battles. If a new round is created, he has no stake left (lost them on the previous round), so he needs to stake again to be eligible for rewards
+
+
+[02/13/2024 17:55] nmirchev8
+But if he has no points earned for that round and no stakea left, he has nothing to loose 🤔
+
+
+[02/13/2024 17:56] brivan
+It's clearly mentioned by devs in code:
+> /// Do not allow users to lose more NRNs than they have in their staking pool
+
+{Reactions}
+👍 
+
+[02/13/2024 17:57] brivan
+So for that round, if all his stakes is at risk, he can't lose more. After new round is created, he needs to stake again to be eligible for rewards.
+
+{Reactions}
+👍 
+
+[02/13/2024 17:57] aripse
+Technically, he has all his stakes to lose. And if you’re in this situation, there is not so much chance to recover.
+
+
+[02/13/2024 17:59] nmirchev8
+If all stakes are at risk?
+He has nothing to loose?
+
+
+[02/13/2024 17:59] aripse
+Nothing to lose more, but still the hope to save some of them. So each match you lose prevents you to recover your stakes.
+
+
+[02/13/2024 18:01] aripse
+This is a situation where "you cannot fall lower", so the only path is to recover. lol
+
+{Reactions}
+👍 
+
+[02/13/2024 19:03] maxwell4426
+How are we doing? Are people finding bugs so far?
+
+{Reactions}
+👀 (4) goose (2) 
+
+[02/13/2024 20:27] aripse
+Can’t stop finding them, not enough hand to write reports. 😁
+
+{Reactions}
+👍🏾 
+
+[02/13/2024 20:47] ivand5690
+@Sonny  can you please answer my pm
+
+
+[02/13/2024 21:11] 0xsonny
+please create private thread
+
+
+[02/13/2024 21:12] .akira0327
+@Sonny  can you check my private message?
+
+
+[02/13/2024 21:13] 0xsonny
+check priv convo
+
+
+[02/13/2024 23:25] .akira0327
+@Sonny Is this deprecated? I couldn't find the relative part in codebase.
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/image-5D844.png
+
+
+[02/13/2024 23:25] 0xsonny
+Yea those docs are outdated please reference the nat spec comments in our contracts
+
+{Reactions}
+👍 (2) 
+
+[02/13/2024 23:33] .akira0327
+@Sonny @guppy Why didn't you describe invariants of the protocol on the contest page?
+I'm not sure how I can identify the level of severity.
+
+
+[02/14/2024 06:41] devblixt_
+it is in a slightly different way- when you stake on RankedBattle, it in turn updates fighter staking in your FighterFarm contract
+
+
+[02/14/2024 06:45] poeaudits
+Can someone explain what the MergingPool contract is doing? The code says:
+```
+/// @notice This contract allows users to potentially earn a new fighter NFT.
+```
+But it seems to be almost like a reward contract for a tournament. I am unsure how it integrates with the rest of the system.
+
+
+[02/14/2024 06:55] shaflow_
+Users can choose to deposit some of their battle winnings points into the MergingPool. I speculate that more points will represent a higher probability of winning prizes. However, the list of winners is determined off-chain. Once the list of winners is finalized, administrators will use pickWinner to transmit the data to the blockchain. Winners can then call claimRewards to mint their own NFTs.The relevant contracts associated with this process are RankBattle and FighterFarm.Just for my understanding.
+
+{Reactions}
+✅ 
+
+[02/14/2024 07:13] blutorque
+In a round lasting 2 weeks, how many battles can be played?
+
+
+[02/14/2024 07:16] _emrekocak
+Rounds are 1 week. You can play as much as your voltage amount. Voltage is filled after 1 day or you can buy battery to fill that
+
+
+[02/14/2024 07:17] _emrekocak
+Also in a battle, there are 2 players and one of them uses voltage, the other one not.
+
+
+[02/14/2024 07:19] blutorque
+I heard guppy mentioned somewhere above, its bi-weekly
+
+
+[02/14/2024 07:19] _emrekocak
+Sorry then I missed that
+
+
+[02/14/2024 07:36] poeaudits
+Its more determined by the number of batteries one can purchase. In GameItems.t.sol the dailyAllowance is set to 10 with them being transferable, which basically means infinite as you can use another address to mint them and trade. The deployment script has the dailyAllowance set to 5 and them not transferable.
+
+{Reactions}
+👍 
+
+[02/14/2024 07:37] 0xauditism
+bi-weekly means twice per week or once every two weeks ?
+
+{Reactions}
+👍 
+
+[02/14/2024 07:37] forgebyola
+Once every 2 weeks
+
+{Reactions}
+👍 (2) 
+
+[02/14/2024 07:40] poeaudits
+biweekly
+bī-wēk′lē
+adjective
+1) Happening every two weeks.
+2) Happening twice a week; semiweekly.
+
+...English
+
+{Reactions}
+chefskiss 🙌 gummy_wink 🤔 
+
+[02/14/2024 07:59] blutorque
+I see, does that mean fighter can join battle without spending his voltage, if got challenged
+
+
+[02/14/2024 07:59] 0xsl1
+yes
+
+{Reactions}
+👍 
+
+[02/14/2024 08:00] saint6704
+`totalAccumulatedPoints[currentRound]` is this the total points accumulated by the fighters during the battle in the current round?
+
+{Reactions}
+✅ 
+
+[02/14/2024 08:19] dudex2684
+yeah
+
+
+[02/14/2024 08:39] nmirchev8
+`modelTypes` and `modelHashes` would be stored onchain and will be obtained from the server when a battle is initialized, or?
+Can we say that skill of the fighters depends on those two values?
+
+
+[02/14/2024 09:01] brivan
+I asked the same question to the sponsors days ago, skills of the fighters depend on the concrete models (stored off-chain). They are storing on-chain model hashes, and you can not inspect others' concrete models
+
+
+[02/14/2024 09:07] nmirchev8
+What if you call `getAllFighterInfo` for other fighter... you can inspect it's model?
+
+
+[02/14/2024 09:10] brivan
+You will get only `modelHash` which is completely useless if you don't have the concrete model behind it.
+
+{Reactions}
+🤔 
+
+[02/14/2024 09:12] aslanbekaibimov
+whats the purpose of storing hashes on chain then?
+
+{Reactions}
+🤔 
+
+[02/14/2024 09:22] tarun1840
+Do the players get staker roles?
+
+{Reactions}
+👎 (3) 
+
+[02/14/2024 09:25] tarun1840
+who would be the msg.sender in this `_neuronInstance.approveStaker(msg.sender, address(this), amount);` ? its from `RankedBattle.sol::stakeNRN`
+
+
+[02/14/2024 09:25] 0xbtk
+msg.sender = RankedBattle, you can test it
+
+
+[02/14/2024 09:26] tarun1840
+oh ok so ranked battle calls stakeNRN?
+
+
+[02/14/2024 09:34] mctoady
+The sponsors working their socks off here because people are allergic to actually reading the code :pepe_coffee:
+
+{Reactions}
+🧂 (6) 👍 (4) 🙏 TimeswapLogoDiscord 
+
+[02/14/2024 09:36] 0xauditism
+Can I challenge whomever I want by entering a the id  ?
+
+
+[02/14/2024 09:37] brivan
+Check the deployment script, only RankedBattle has the staker role for the moment, the sponsor also said that other well audited contracts can get the staker role
+
+
+[02/14/2024 09:40] 0xsl1
+you start a battle off-chain, then the server will call updateBattleRecord
+
+{Reactions}
+thankyou 
+
+[02/14/2024 09:40] 0xsl1
+So challenging someone will be done by a front-end
+
+
+[02/14/2024 09:58] poeaudits
+Achoo
+
+
+[02/14/2024 09:59] tarun1840
+oh ok thank youu
+
+
+[02/14/2024 10:13] brivan
+According to the docs, you do not challenge whomever you want, the matchmaking system randomly selects a group of fighters that are within acceptable deviation.
+Check more info here: https://docs.aiarena.io/gaming-competition/ranking-system (last section, *Match Ups *)
+
+{Embed}
+https://docs.aiarena.io/gaming-competition/ranking-system
+Ranking System
+Overview
+
+{Reactions}
+thankyou 
+
+[02/14/2024 10:48] forgebyola
+RankedBattle contract is an approved staker
+
+{Reactions}
+thankyou 
+
+[02/14/2024 10:49] forgebyola
+Yeah this
+
+
+[02/14/2024 10:57] onan_
+hi, 
+how are dendroids acquired?
+
+
+[02/14/2024 11:05] aamirusmani1552
+when fighter type is 1, it will be dendroid i think
+
+
+[02/14/2024 11:07] aamirusmani1552
+see this: https://github.com/code-423n4/2024-02-ai-arena/blob/cd1a0e6d1b40168657d1aaee8223dc050e15f8cc/src/FighterFarm.sol#L509
+
+{Reactions}
+💕 
+
+[02/14/2024 11:09] onan_
+thank u
+
+
+[02/14/2024 11:19] nmirchev8
+What will `tokenURI` hold and who and when will update it for each token?
+
+
+[02/14/2024 11:58] ivand5690
+I think it was mentioned that it will be used for linking the token to Opensea.
+
+
+[02/14/2024 11:58] masol_66728
+Dont waste time - Ive discussed it intensely with sponsors, model hash and type does not lead to a vulnerability
+
+{Reactions}
+👍 (4) 👀 (3) 
+
+[02/14/2024 12:43] donkicha
+Is there a code walkthrough? 🙂
+
+
+[02/14/2024 13:40] taner2344
+When do you need to stakeNRN and When do you need to unstakNRN ? how is game logic?
+
+
+[02/14/2024 14:02] _emrekocak
+Anytime you want. But if you unstake, at this round you can not stake again. You must wait until the new round start
+
+{Reactions}
+👍 
+
+[02/14/2024 15:44] 0xni8mare
+What's the significance of attributes like element, weight, dna? Do they help users to win battles? Not sure if this has been asked before.
+
+
+[02/14/2024 15:51] taner2344
+There is a YouTube video about the reward mechanism in the official contest overview at c4. Is this binding?
+
+
+[02/14/2024 15:54] devblixt_
+it is in the official docs
+
+
+[02/14/2024 16:02] devblixt_
+i think it would make it : 
+
+1. Easier to fetch the model for each player while battling
+2. Easily verifiable that the player is using a particular model
+
+{Reactions}
+👍 
+
+[02/14/2024 16:11] sihing_guppy
+you can see if your model has been tampered with
+
+
+[02/14/2024 16:12] .justuzair
+for someone to get unclaimed nrn is it necessary that the new round is set??
+
+
+[02/14/2024 16:14] devblixt_
+yeah, because in RankedBattle#getUnclaimedNRN, the higher bound of the loop is roundId and it never reaches there
+
+
+[02/14/2024 16:14] .justuzair
+hmmm i see thanks ser
+
+{Reactions}
+8916pepeshoot1 
+
+[02/14/2024 16:14] .justuzair
+also i read somewhere that eloFactor is minimum 1500, but couldn't find it in the code
+
+
+[02/14/2024 16:16] 0xtendency
+https://docs.aiarena.io/gaming-competition/ranking-system
+
+
+[02/14/2024 16:16] .justuzair
+is it that elofactor's value will be provided by the caller of the function??
+
+
+[02/14/2024 16:20] devblixt_
+It will be provided by the game server address, yes. afaik there are no constraints set in the code for eloFactor
+
+
+[02/14/2024 16:20] devblixt_
+although it should not be a problem since game server is trusted in this case
+
+
+[02/14/2024 16:21] .justuzair
+okay got it thanks
+
+{Reactions}
+dance_vibe 
+
+[02/14/2024 18:07] klau5_
+The documentation says frame exists, but I can't find it in the code - is it not included in this implementation? Or is frame determined by weight and frame concept is really more about just appearance?
+
+
+[02/14/2024 18:21] 0xtekken
+does anyone have a sneakpeak on how the `dna` is supposed to look like?
+
+
+[02/14/2024 18:24] devblixt_
+they have a testnet running, you could check there
+
+{Reactions}
+❤️ 
+
+[02/14/2024 18:27] 0xtekken
+thank you
+
+edit: found it in their live aamintpass
+
+{Reactions}
+❤️ 
+
+[02/14/2024 18:35] aamirusmani1552
+would this be an EOA or contract: `_gameServerAddress`?
+
+
+[02/14/2024 18:43] jvorex
+i suppose the latter
+
+
+[02/14/2024 19:03] haxatron1
+Former
+
+
+[02/14/2024 19:03] haxatron1
+A contract cannot start a tx
+
+{Reactions}
+10_10 (2) 
+
+[02/14/2024 19:12] kingx0001
+hiiii. checking from the code, you can only stake on "your" `tokenID`
+so i cant stake my NRN on a fighter i dont own right?
+
+
+[02/14/2024 19:14] devblixt_
+correct, this is checked for the same on RankedBattle#stakeNRN
+
+
+[02/14/2024 19:14] kingx0001
+yeah, saw it.. just confirm
+
+
+[02/14/2024 19:14] kingx0001
+merci senorr
+
+
+[02/14/2024 19:17] devblixt_
+de rien!
+
+
+[02/14/2024 19:35] jvorex
+right
+
+
+[02/14/2024 19:45] forgebyola
+Can we assume that all admins would be completely trusted
+
+
+[02/14/2024 19:46] forgebyola
+Cause there's a lot of admin functions
+
+
+[02/14/2024 19:46] sihing_guppy
+yes
+
+{Reactions}
+👍🏼 
+
+[02/14/2024 19:46] forgebyola
+Thank you
+
+
+[02/14/2024 20:05] 0xtekken
+does some of the data called up by the server address get taken from user supplied input? If so, which, so proper fuzzing can be thought of.
+
+
+[02/14/2024 21:46] tumelo_crypto
+Why is there a max limit of 10 fighters per address?
+
+
+[02/14/2024 22:04] fulum
+@guppy I send you question on a private thread
+
+
+[02/14/2024 22:27] sihing_guppy
+Nope - it is all handled by us
+
+
+[02/14/2024 22:27] sihing_guppy
+The only thing the user specifies is mergingPortion in their settings, but we handle edge cases on our server
+
+{Reactions}
+🤝 
+
+[02/14/2024 22:42] hgq2wnl
+hello, may I speak with a sponsor in a private thread?
+
+
+[02/14/2024 23:00] lirezarazavi
+Two AI's will fight on the server or two fighter-owner/person will play and fight with eachother with their own AI's ?
+
+
+[02/14/2024 23:01] 0xsonny
+Two AI's will fight on the server
+
+
+[02/14/2024 23:02] 0xsonny
+exactly
+
+
+[02/14/2024 23:02] lirezarazavi
+Can i make a pv-thread with you
+
+
+[02/14/2024 23:03] 0xsonny
+yes
+
+
+[02/14/2024 23:08] lirezarazavi
+Please check my thread
+
+
+[02/14/2024 23:13] tumelo_crypto
+@guppy
+
+
+[02/14/2024 23:26] okolicodes
+https://discord.com/channels/810916927919620096/1201981655850426399/1205865925405048852
+
+{Reactions}
+✅ (2) 
+
+[02/14/2024 23:37] irving6969
+on which chain project gonna deploy?
+
+
+[02/14/2024 23:39] lirezarazavi
+Arbitrum
+
+{Reactions}
+thankyou 
+
+[02/14/2024 23:40] lirezarazavi
+Why not ? Their design decision is that no one should have more than 10 fighters
+
+
+[02/14/2024 23:52] tumelo_crypto
+Wanted to know if there’s a specific reason behind like a security consideration
+
+
+[02/15/2024 00:08] 0xni8mare
+Is a new user always going to buy a voltage battery before they start initiating ranked battles?
+
+
+[02/15/2024 04:40] jennifer37_32959
+@ni8mare , I believe user's voltage will be refreshed each day, do not need to buy a voltage battery except you want to initiate more battles which out of your voltage.
+
+
+[02/15/2024 05:37] dudex2684
+yeah but how much battles fighter could play in 1 day?
+
+
+[02/15/2024 05:39] poeaudits
+Depends on how many batteries they can buy.
+
+
+[02/15/2024 05:41] dudex2684
+oh so 10 battles they could play without purchasing batteries
+
+
+[02/15/2024 06:27] daniel526
+@Sonny @guppy kindly check on private thread
+
+
+[02/15/2024 06:30] jennifer37_32959
+Agree. 10 free battles for one day.
+
+
+[02/15/2024 06:56] danhapo
+hey r u there?
+
+
+[02/15/2024 08:26] 0xvj
+@Sonny @guppy  what are attributeProbabilities?
+
+
+[02/15/2024 08:56] irving6969
+@guppy @Sonny  do I have to consider for front running at L2?? or should i assume no front run on L2?
+
+
+[02/15/2024 08:56] 0xsl1
+there is no front running
+
+{Reactions}
+thankyou 
+
+[02/15/2024 09:02] irving6969
+it 's possible  that sequencer can front run at l2  , that's what chat gpt said
+
+
+[02/15/2024 09:02] irving6969
+idk exactly
+
+
+[02/15/2024 09:03] 0xsl1
+the sequencer is run by offchain labs
+
+
+[02/15/2024 09:03] 0xsl1
+don’t think they would frontrun anyone
+
+
+[02/15/2024 09:03] 0xsl1
+and for normal users its fcfs
+
+{Reactions}
+thankyou 
+
+[02/15/2024 09:06] 14si2o_flint
+What determines the % of mergingpoints in updateBattleRecord? Is this just something set in the gameserver?
+
+
+[02/15/2024 09:06] 0xsl1
+https://discord.com/channels/810916927919620096/1201981655850426399/1207453115796955247
+
+
+[02/15/2024 09:06] 14si2o_flint
+Thanks 😄
+
+{Reactions}
+👍 
+
+[02/15/2024 09:09] 0xauditism
+but users select the select the mergingpoints that they want
+
+{Reactions}
+💯 
+
+[02/15/2024 09:09] 0xauditism
+off chain
+
+
+[02/15/2024 09:54] forgebyola
+They can initiate 10 battles, but it they're not the initiators they can play as much as possible
+
+
+[02/15/2024 09:54] forgebyola
+someone correct me if I'm wrong
+
+
+[02/15/2024 09:59] forgebyola
+The dups for this would be legendary
+
+
+[02/15/2024 09:59] devblixt_
+you're correct
+
+
+[02/15/2024 10:00] devblixt_
+i wonder how this contest is gonna turn out
+
+
+[02/15/2024 10:04] 0xtekken
+how many fighterTypes are there? 
+
+EDIT excuse me, it seems it's 2(i thought its 3)
+
+{Reactions}
+✅ 
+
+[02/15/2024 10:16] _emrekocak
+I don't think this is an issue
+
+{Reactions}
+10_10 (2) 
+
+[02/15/2024 10:19] taner2344
+@guppy  @Sonny i have opened thread for you. pls can you check?
+
+
+[02/15/2024 10:21] taner2344
+@emrekocak are you warden or sponsor?
+
+
+[02/15/2024 10:22] brivan
+This is no issue and it is an intended behavior of the system.
+There's only one who initiates the battle, called the **challenger**, the matchmaking system randomly selects a group of NFTs that are within an acceptable deviation of the Challenger NFT’s Elo and the battle happens, the **Opponent** does not get charged because he gets selected for the battle by the system.
+This is clearly mentioned in the docs
+
+{Reactions}
+👍 (2) 
+
+[02/15/2024 10:25] brivan
+Check: https://docs.aiarena.io/gaming-competition/nrn-rewards (Rewards pool section) and https://docs.aiarena.io/gaming-competition/ranking-system (last section, Match Ups)
+
+{Embed}
+https://docs.aiarena.io/gaming-competition/nrn-rewards
+NRN Rewards
+Overview
+
+{Embed}
+https://docs.aiarena.io/gaming-competition/ranking-system
+Ranking System
+Overview
+
+
+[02/15/2024 10:38] devblixt_
+right
+
+
+[02/15/2024 10:39] _emrekocak
+I'm warden. You can see it from roles
+
+
+[02/15/2024 10:44] forgebyola
+Huh I didn't say that was an issue. I was replying to someone's comment, to clarify it for them
+
+{Reactions}
+👍 
+
+[02/15/2024 10:45] forgebyola
+I was trying to clarify it for others, I didn't specify it was an issue. It is an intended behaviour and is part of the system
+
+{Reactions}
+👍 
+
+[02/15/2024 10:46] forgebyola
+I would never put an issue on here, that's not even allowed
+
+
+[02/15/2024 11:09] desaperh
+Sorry if the question already been asked, does Elo for a figther get modified after a match or after a round ? I mean the elo given as a parameter by the method updateBattleRecord
+
+
+[02/15/2024 11:13] brivan
+My understanding says that it changes after each battle.
+I'm quoting from docs: 
+> If a Challenger NFT has positive Points in the current Round, the penalty for losing a match, in addition to dropping in Elo rank, is a loss of Points. We note that a Challenger NFT cannot have negative Points. When a Challenger NFT reaches 0 Points, further losses will result in their stake being placed in a new mode called “at risk”.
+
+{Reactions}
+👍 (2) 
+
+[02/15/2024 11:14] desaperh
+Thanks
+
+
+[02/15/2024 11:33] donkicha
+Sorry if this has been asked before!
+
+Are there other resources besides the docs that help get a better understanding of the protocol's behavior?
+
+
+[02/15/2024 11:49] 0xni8mare
+Can a fighter's Elo rating change without the user staking any NRN tokens?
+
+
+[02/15/2024 11:49] 0xbtk
+code, tests
+
+{Reactions}
+👍 (3) 
+
+[02/15/2024 12:43] _polex
+I guess that, I assume that staking NRN is only used for getting rewards when winning
+
+
+[02/15/2024 12:50] jes16jupyter
+Hi,  does updateBattleRecord will be called twice, one for the winner, and the other for the loser?
+
+
+[02/15/2024 12:53] forkforkdog
+One fighthterid per call
+
+
+[02/15/2024 12:55] jes16jupyter
+yes. So for one fight, updateBattleRecord will be called twice with 2 different tokenIds, if i am understanding it correctly..
+
+
+[02/15/2024 12:59] forgebyola
+Yup
+
+{Reactions}
+thankyou 
+
+[02/15/2024 13:30] kriko.eth
+the sequencer prioritizes higher fee though so frontrunning is possible
+
+
+[02/15/2024 13:32] 0xsl1
+there is no mempool
+
+
+[02/15/2024 13:33] 0xlemon
+On Arbitrum it is first come first serve. Meaning the first transaction that comes to the sequencer will be processed first no matter how high the gas fee is.
+
+{Reactions}
+✅ 
+
+[02/15/2024 13:49] kriko.eth
+yep i just realized it’s on Arbitrum and the diff between Arb and Op sequencer 🙃
+
+
+[02/15/2024 14:43] evmboi32
+How is one able to obtain a dendroid? One way is if you get the signature from the `delegatedAddress` and you can call `claimFighter` to claim a dendroid. Is this the only way of obtaining a dendroid?
+
+
+[02/15/2024 14:55] .ke1cam
+What is the scale of `FighterPhysicalAttributes` in AiArenaHelper? Is it from 0 to 99?
+
+
+[02/15/2024 15:37] sihing_guppy
+This or through a mintpass
+
+
+[02/15/2024 15:38] evmboi32
+Thank you 🫡
+
+
+[02/15/2024 15:38] sihing_guppy
+🫡
+
+{Reactions}
+🫡 
+
+[02/15/2024 15:41] mctoady
+Will the intial collection size remain ~420 and grow from there or will there be a large amount of `claimFighters` as well as mint pass redemption's early on?
+
+
+[02/15/2024 16:17] mladenov0603
+@guppy Can you please check private thread
+
+
+[02/15/2024 16:45] jes16jupyter
+If a user has not staked yet, he could still play, but his points will not be counted, is my understanding correct?
+
+
+[02/15/2024 16:55] bigveezus
+Is there a limit of rounds users can claim ??
+
+
+[02/15/2024 17:36] sihing_guppy
+can you ping me again in the thread? I can't find it
+
+
+[02/15/2024 17:39] mladenov0603
+done
+
+
+[02/15/2024 17:42] mladenov0603
+tell me if you still can't see it, i can create new one
+
+
+[02/15/2024 17:46] sihing_guppy
+yup I got it!
+
+
+[02/15/2024 18:15] bigveezus
+Hello @guppy
+
+
+[02/15/2024 18:22] sihing_guppy
+There is no limit
+
+{Reactions}
+❤️ 
+
+[02/15/2024 18:26] lirezarazavi
+There is a secondary market where people can sell their NFT/fighter/AI ?
+
+
+[02/15/2024 18:28] sihing_guppy
+yea they can trade their fighters on something like Opensea
+
+
+[02/15/2024 18:29] lirezarazavi
+Only when the NFT is not staked right ? While is staked in a round they can't transfer/sell it ?
+
+
+[02/15/2024 18:34] lirezarazavi
+Another way is to win some battles and earn point in merginPool, then if the admin picks you as winner, you can claim another fighter.
+@guppy correct me if any wrong
+
+{Reactions}
+🔥 
+
+[02/15/2024 18:36] sihing_guppy
+Correct
+
+
+[02/15/2024 18:37] sihing_guppy
+You can get a champion this way, but not a dendroid
+
+{Reactions}
+👍 (2) 
+
+[02/15/2024 18:45] forgebyola
+and he won't get rewarded
+
+
+[02/15/2024 18:46] forgebyola
+I don't think we can ask this lol
+
+
+[02/15/2024 18:46] lirezarazavi
+Delete your message
+Otherwise they may remove you from the channel
+
+
+[02/15/2024 18:49] lirezarazavi
+@thebrittfactor | C4
+
+{Reactions}
+thankyou hi5 
+
+[02/15/2024 18:55] montasirmaged
+Sorry about this I don't know about rules
+
+
+[02/15/2024 18:58] forgebyola
+https://discord.com/channels/810916927919620096/851883682470166558
+
+
+[02/15/2024 19:02] montasirmaged
+Thanks my bro
+
+
+[02/15/2024 22:15] .jacopod
+In `FighterFarm.sol` why is a stakerRole even needed? why not letting the fighter owners stake/unstake themselves?
+
+
+[02/15/2024 22:19] 0xciphky
+Thats not what its used for, stakerRole is given to rankedBattle which is updated everytime a user stakes/unstakes fully so people can't transfer fighters that currently have a stake
+
+{Reactions}
+👍🏻 (3) 
+
+[02/15/2024 22:52] escrow1337
+there has been unintentional bug hints all over this chat sadly :/ it's gonna be dupe city.
+
+
+[02/15/2024 22:53] tamayonft
+What is the use of model types and model hashes?
+
+
+[02/15/2024 22:58] .jacopod
+It is what describes the ai models. Check the docs
+
+
+[02/15/2024 23:14] irving6969
+there is only two fight type?
+
+{Reactions}
+👍🏻 
+
+[02/15/2024 23:45] lirezarazavi
+@guppy if the round ends, the player will lose stakedAtRisk and no way to recover them by winning future fights in the  next round right ?
+
+
+[02/15/2024 23:46] lirezarazavi
+yep
+champion and dendroid
+
+{Reactions}
+thankyou 
+
+[02/15/2024 23:49] sihing_guppy
+correct
+
+{Reactions}
+👍 
+
+[02/16/2024 00:45] .jacopod
+@Daniel526 @sl1 this is cool. What tool did you use?
+
+
+[02/16/2024 02:32] 13u9
+Are there always two winners in a round?
+
+
+[02/16/2024 02:42] guy_in0xnito
+Hey i am kinda confused between
+Attributesprobabilities 
+mapping. And 
+AttributeatoDnadivisor
+Mapping
+
+
+[02/16/2024 02:42] guy_in0xnito
+Can anyone tell me the value difference?
+
+
+[02/16/2024 02:49] mctoady
+Divisor is the amount of traits per attribute: for example if head divisor is 4 that means theres 4 different heads a fighter could get
+Probabilities is how likely each of those heads is
+
+
+[02/16/2024 04:25] bigveezus
+Does the player request to the owner to give them a minter role or staker role ?
+
+
+[02/16/2024 04:28] bigveezus
+@McToady
+
+
+[02/16/2024 05:57] daniel526
+@guppy @Sonny kindly check private thread
+
+
+[02/16/2024 06:23] devblixt_
+wait really!? xD i havent got any of them i think
+
+
+[02/16/2024 06:24] devblixt_
+no, staker roles are for contracts and i suppose minter role is for the delegated address
+
+
+[02/16/2024 06:26] devblixt_
+I think that is of now. Frontrunning should be possible once arbitrum sequencers are decentralized
+
+
+[02/16/2024 06:33] guy_in0xnito
+So does that mean in addattributeprobabilities.  We add more divisors beside the default dnadivisors ?
+
+
+[02/16/2024 08:19] taner2344
+Hello guys? who are the ```allowedVoltageSpenders``` ?? what are they doing? any ideas?
+
+
+[02/16/2024 08:20] alexzoid
+`RankedBattle`, I guess
+
+{Reactions}
+👍 
+
+[02/16/2024 08:23] _emrekocak
+I asked to sponsors, it's RankedBattle contract
+
+{Reactions}
+👍 
+
+[02/16/2024 08:34] bigveezus
+Are you sure about this ?
+
+
+[02/16/2024 08:38] 0xdemonnn
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/image-9D7D5.png
+
+{Reactions}
+❤️ 
+
+[02/16/2024 09:27] devblixt_
+sorry, seems like minter is for contracts as well
+
+
+[02/16/2024 09:28] devblixt_
+RankedBattle is an allowed voltage spender
+
+{Reactions}
+👍 
+
+[02/16/2024 12:10] bigveezus
+What determines the dna Inuit in the createPhysicalAttribute ?
+
+
+[02/16/2024 12:14] bigveezus
+What determines the uint256 DNA*
+
+
+[02/16/2024 12:22] forkforkdog
+Started a thread.
+
+
+[02/16/2024 12:25] devblixt_
+please look at the FighterFarm contract
+
+
+[02/16/2024 13:17] 14si2o_flint
+depends on the type of creation, check the contract 😉
+
+
+[02/16/2024 13:44] ivand5690
+@guppy @Sonny can you please check the private thread
+
+
+[02/16/2024 13:45] .ready_player_2
+Hello, how do I get in touch with a sponsor?
+
+
+[02/16/2024 13:46] vrontg
+@guppy @Sonny check the private thread pls
+
+
+[02/16/2024 13:52] devblixt_
+Either put a message here or create a private thread with them
+
+
+[02/16/2024 14:00] .ready_player_2
+@devblixt Thanks, who is the sponsor?
+
+
+[02/16/2024 14:22] devblixt_
+Find them in pinned messages, they're tagged in the first
+
+
+[02/16/2024 14:22] .ready_player_2
+@devblixt Thanks
+
+
+[02/16/2024 15:28] forkforkdog
+so there is no staking in the merging pool to increase chances to get nft?
+
+{Reactions}
+👍 (4) 
+
+[02/16/2024 19:51] evmboi32
+What is a valid range for a `element` and `weight` ? I assume its `0-99`?
+
+
+[02/16/2024 19:53] evmboi32
+And also when it comes to dendorids.... They all have the same `DNA` from my understanding? which is `DNA` of `fighterType = 1` right? But they can have a different `weight` and `element`.
+
+
+[02/16/2024 20:23] lsaudit
+hey @guppy  ok to ask a few questions about the code? I sent FR, please accept, as I cannot DM you
+
+
+[02/16/2024 20:25] lsaudit
+How dnaToIndex is suppose to work? I don't understand this break here - https://github.com/code-423n4/2024-02-ai-arena/blob/cd1a0e6d1b40168657d1aaee8223dc050e15f8cc/src/AiArenaHelper.sol#L182
+
+
+[02/16/2024 20:27] tumelo_crypto
+Is the rankedNrnDistribution the $NRN that will distributed to winners for that round or what is it for?
+
+
+[02/16/2024 20:41] brivan
+Correct
+
+
+[02/16/2024 20:42] tumelo_crypto
+Thanks
+
+
+[02/16/2024 23:05] inmarelibero
+@Sonny can you please clarify how the string `hex"407c44926b6805cf9755a88022102a9cb21cde80a210bc3ad1db2880f6ea16fa4e1363e7817d5d87e4e64ba29d59aedfb64524620e2180f41ff82ca9edf942d01c"` is generated?
+
+I'm talking about `FighterFarmTest::testClaimFighters()`, which I attach here for clarity:
+
+```
+/// @notice Test whether the correct sender of the signature can claim a fighter.
+function testClaimFighters() public {
+    uint8[2] memory numToMint = [1, 0];
+    bytes memory claimSignature = abi.encodePacked(
+        hex"407c44926b6805cf9755a88022102a9cb21cde80a210bc3ad1db2880f6ea16fa4e1363e7817d5d87e4e64ba29d59aedfb64524620e2180f41ff82ca9edf942d01c"
+    );
+    string[] memory claimModelHashes = new string[](1);
+    claimModelHashes[0] = "ipfs://bafybeiaatcgqvzvz3wrjiqmz2ivcu2c5sqxgipv5w2hzy4pdlw7hfox42m";
+
+    string[] memory claimModelTypes = new string[](1);
+    claimModelTypes[0] = "original";
+
+    // Right sender of signature should be able to claim fighter
+    _fighterFarmContract.claimFighters(numToMint, claimSignature, claimModelHashes, claimModelTypes);
+    assertEq(_fighterFarmContract.balanceOf(_ownerAddress), 1);
+    assertEq(_fighterFarmContract.ownerOf(0), _ownerAddress);
+    assertEq(_fighterFarmContract.totalSupply(), 1);
+}
+```
+
+
+[02/16/2024 23:08] sihing_guppy
+It's a signature generated from our server
+
+
+[02/16/2024 23:08] sihing_guppy
+if you look at the claimFighters function, you should see what we're signing on our servers
+
+
+[02/17/2024 01:30] tumelo_crypto
+When a fight is happening will the nft owners be able to watch it live?
+
+
+[02/17/2024 03:41] sihing_guppy
+They will not - it happens on our server first
+
+
+[02/17/2024 03:41] sihing_guppy
+Then once the match is done we push onchain
+
+
+[02/17/2024 03:41] sihing_guppy
+Only after that do they get to watch it
+
+
+[02/17/2024 06:26] tumelo_crypto
+Oh okay👍🏽
+
+
+[02/17/2024 07:59] 0xauditism
+no bro the dna is initially a hash
+
+
+[02/17/2024 08:01] 0xauditism
+all the mint function input a hash
+
+
+[02/17/2024 08:33] mylifechangefast.eth_70767
+Is it necessary to transfer lost stake to the treasury address and if so, is it the lost stake of every round or just a general stake lost?
+
+
+[02/17/2024 08:33] mylifechangefast.eth_70767
+@guppy @Sonny
+
+
+[02/17/2024 08:45] devblixt_
+after each round, the lost stake of that particular account is transferred to the treasury
+
+{Reactions}
+✅ 
+
+[02/17/2024 10:59] alexander_orjustalex
+Anyone aware of why in the following line `curStakeAtRisk = (bpsLostPerLoss * (amountStaked[tokenId] + stakeAtRisk)) / 10**4;` we divide by `10**4`?
+
+
+[02/17/2024 11:02] visualbits
+Learn about "basis points"
+
+
+[02/17/2024 12:26] lsaudit
+In `dnaToIndex`, why we break from the loop when `cumProb >= rarityRank` and return `i + 1`?
+
+
+[02/17/2024 13:26] lirezarazavi
+@Sonny @guppy what is eloFactor ? Server always set it 1500 ? It depends on what ?
+
+
+[02/17/2024 13:44] evmboi32
+So we should not report any frontrunning bugs? Or will they be accepted because of deployment on other chains in the future?
+
+
+[02/17/2024 14:27] devblixt_
+I believe frontrunning is valid because only the centralized sequencer on arbitrum is FCFS right now, there may be other sequencers who adopt another model later on when it becomes a decentralized L2
+
+{Reactions}
+chefskiss 
+
+[02/17/2024 14:29] 14si2o_flint
+I think that's more an Analisys point then? Based on current situation there is no risk, but this could be an issue in the future. 
+
+If C4 starts accepting issues on basis what could be tomorrow, then I have 999 findings to submit 😄
+
+{Reactions}
+👍 (4) 
+
+[02/17/2024 14:30] devblixt_
+In that case, do you think effects of external protocols pausing on another protocol is also an analysis point? Curious (because currently there is no risk)
+
+
+[02/17/2024 15:04] sihing_guppy
+It a number that is derived from the user’s ELO
+
+
+[02/17/2024 15:04] sihing_guppy
+It is not always 1500 - it will vary
+
+
+[02/17/2024 15:25] ubl4nk
+we can say the ELO depends on the performance of player during the time ? and it will be updated and stored on off-chain servers ?
+
+
+[02/17/2024 15:25] ubl4nk
+better performance so higher ELO
+
+
+[02/17/2024 15:36] sihing_guppy
+You are correct
+
+{Reactions}
+👍 
+
+[02/17/2024 15:37] sihing_guppy
+It is linked to the NFT
+
+{Reactions}
+👍 
+
+[02/17/2024 16:08] tumelo_crypto
+Is claimFighter in fighterFarm.sol contract able to called by anyone or only the delegated address
+
+
+[02/17/2024 16:11] x2ice
+as i understand, anyone can call this function, but it's required to pass  a message signed by _delegatedAddress
+
+
+[02/17/2024 16:11] x2ice
+so that the validation of the call is done off-chain
+
+
+[02/17/2024 16:16] tumelo_crypto
+Ohh okay
+
+
+[02/17/2024 19:35] tumelo_crypto
+When fights happen is it possible for 2 challengers to fight each other? And also since 30 opponents will be selected from around a fighters elo score is it possible for some of those fighters to be challengers as well?
+
+
+[02/17/2024 19:43] nishant_.323
+@guppy how does numTrained[tokenId] i.e no of times tokenId is trained affects the game?
+
+
+[02/17/2024 22:05] sihing_guppy
+It doesn’t - purely a front-end stats we use
+
+
+[02/17/2024 22:06] sihing_guppy
+Every match that happens will have 1 challenger and 1 opponent
+
+
+[02/17/2024 22:09] tumelo_crypto
+So when 30 fighters get randomly selected for the challenger is only one chosen to fight, or does the fighter  fight all of the them as the challenger?
+
+
+[02/17/2024 22:10] sihing_guppy
+Only 1
+
+
+[02/17/2024 23:01] fktworld
+@guppy  Which chain is deployed?
+
+
+[02/17/2024 23:12] sihing_guppy
+Arbitrum
+
+{Reactions}
+✅ (3) 
+
+[02/18/2024 07:25] tumelo_crypto
+Can there be multiple fights in one round?
+
+{Reactions}
+👍 (2) 
+
+[02/18/2024 09:27] devblixt_
+one round is just a period of time
+
+{Reactions}
+✅ 
+
+[02/18/2024 09:48] aamirusmani1552
+Yeah 1 week according to docs
+
+
+[02/18/2024 09:53] .ash_hunter
+tokenId for the game item is unique for all users or same tokenId but different tokenUri?
+
+
+[02/18/2024 11:11] 0xceletia
+could you provide addresses of deployed contracts @Sonny
+
+
+[02/18/2024 11:28] evmboi32
+@Sonny @guppy Upon updating a model how long does a fighter need to be trained? is it instant?
+
+
+[02/18/2024 12:23] 0xabhay.
+one round can have multiple fight?
+
+
+[02/18/2024 12:26] evmboi32
+yes
+
+{Reactions}
+👍 
+
+[02/18/2024 13:03] forkforkdog
+if anyone wants to discuss invariannts with me welcome in dm
+
+
+[02/18/2024 13:56] ahmedaghadi
+@Sonny @guppy What's the purpose of weight and element of the Fighter?
+
+
+[02/18/2024 14:08] mctoady
+https://docs.aiarena.io/gaming-competition/nft-makeup
+
+{Embed}
+https://docs.aiarena.io/gaming-competition/nft-makeup
+NFT Makeup
+AI-Powered NFTs
+
+
+[02/18/2024 14:10] ahmedaghadi
+Thanks
+
+{Reactions}
+🫡 
+
+[02/18/2024 14:55] sihing_guppy
+I’m not sure I understand this
+
+
+[02/18/2024 15:14] tumelo_crypto
+How long will a round be?
+
+
+[02/18/2024 15:33] superman_i4g
+https://discord.com/channels/810916927919620096/1201981655850426399/1208711586961817600
+
+{Reactions}
+✅ 
+
+[02/18/2024 15:35] tamayonft
+question, in a battle there is a challenger and a oponent,  regardless of the challenger and a oponent  and who won or loss both get call in the updateBattle transaction?
+
+
+[02/18/2024 15:38] brivan
+Yes
+
+
+[02/18/2024 16:50] tumelo_crypto
+In what scenario would users use claimFighters() since in the docs it seems most nfts will come from merging pool or redeeming AAmintpass
+
+
+[02/18/2024 19:22] evmboi32
+In `FighterFarm` contract there is `updateModel` function which from my understanding changes the model that the nft is trained on?
+
+
+[02/18/2024 19:44] sihing_guppy
+This changes the model that is used in the ranked competition
+
+
+[02/18/2024 19:45] sihing_guppy
+training happens totally off-chain
+
+
+[02/18/2024 19:45] sihing_guppy
+they can decide when to upload the trained model hash
+
+
+[02/18/2024 19:59] the_code_doctor
+hi in the Neuron contract  the function addMinter refers to the function _setupRole. in which contract can I find this function? thanks
+
+
+[02/18/2024 20:23] aamirusmani1552
+It's part of openzeppelin's `AccessControl.sol`
+
+
+[02/18/2024 20:24] the_code_doctor
+ok thanks for that
+
+
+[02/18/2024 20:39] bigveezus
+Pls is there an index for the weight classes ? @guppy 
+
+How much weight is striker or Scrapper or Slugger
+
+
+[02/18/2024 21:18] forgebyola
+winners would be picked by admins for each round and can then claimfighters for that round as the winners
+
+
+[02/18/2024 22:03] sovaslava9
+Why in pickWinner function fighter points is set to 0 for winners? fighterPoints[winners[i]] = 0;
+
+
+[02/18/2024 22:25] sobieski_adam
+The more points you have in MergingPool, the bigger the chance you win the NFT. When you do win the NFT, your points get reset, which makes sense - imagine  some pro player has 99% of MergingPool points and they are never reset. He will basically win the NFT 99% percent of the time. That's why the points of a winner are wiped out - when he wins, he starts from scratch, he has to sacrifice his RankedBattle points again to have a chance of winning NFT one more time.
+
+{Reactions}
+✅ (2) 🙏🏼 
+
+[02/18/2024 22:49] sihing_guppy
+The range for weights is 65-95, and each of the groups you indicated increase in weight for increments of 10 (i.e. striker is 65-74)
+
+
+[02/19/2024 01:53] mylifechangefast.eth_70767
+is it a must be after a concluded round?
+
+
+[02/19/2024 01:54] mylifechangefast.eth_70767
+@guppy @Sonny
+
+
+[02/19/2024 02:59] sihing_guppy
+yes after the round has concluded
+
+
+[02/19/2024 04:38] tumelo_crypto
+Okay, I thought the winners would get an nft from the mergingPool 🤔
+
+
+[02/19/2024 04:40] tumelo_crypto
+For the elements of the fighters is the range it can be chosen from  [0, 1, 2]
+
+
+[02/19/2024 05:42] 0xdemonnn
+this function used to claim other potential give away rewards (this will be more rare occurance), got this from sponsor. And for another case, if user picked up as winner, then he / she can use claimRewards() and mint NFT rewards from mergingPool. So, claimFighters() and claimRewards() have diferent functionality
+
+
+[02/19/2024 05:51] tumelo_crypto
+Okay that makes more sense thanks🔥
+
+{Reactions}
+👍 
+
+[02/19/2024 07:41] dimitar.mitev
+Are the previous audit reports public or private?
+
+
+[02/19/2024 07:47] aamirusmani1552
+I don't think there was any previous audits
+
+
+[02/19/2024 07:48] aamirusmani1552
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/remix-e48e88c1-6a10-4ab9-9876-7a9687197f14-B6CDB.png
+
+
+[02/19/2024 09:46] fktworld
+The first audit
+
+
+[02/19/2024 10:17] tumelo_crypto
+Will Voltage batteries be the only game items nft available until the protocol adds others later on?
+
+{Reactions}
+👍 (2) 
+
+[02/19/2024 10:22] 14si2o_flint
+NFT-Makup docs state that are 4 levels of rarity for the physical attributes (Bronze to Diamond). How exactly are these correlated to the actual attributes?  <10 diamond, <30 silver <60 gold 60+= bronze? Is this written down somewhere?
+
+
+[02/19/2024 12:37] 0x11singh99
+@guppy what is the time period of every round ?
+
+
+[02/19/2024 12:39] benrai
+Between 1 and 2 weeks
+
+{Reactions}
+👍 (2) 
+
+[02/19/2024 13:00] forkforkdog
+It's everyone dead or wrapped up already?
+
+{Reactions}
+☠️ (8) 😂 
+
+[02/19/2024 13:56] mctoady
+I think if people are still trying to understand how the code works 48 hours before the contest closes they may have a problem :kek:
+
+{Reactions}
+💯 (2) 
+
+[02/19/2024 14:48] tychaios.
+Personally, just took the weekend off.
+
+{Reactions}
+👍 (4) 
+
+[02/19/2024 14:57] aripse
+Happy to see that some auditors take care of their personal life. 🙂
+Need to work on that aspect of my life. 😄
+
+{Reactions}
+❤️ (2) 
+
+[02/19/2024 15:55] forkforkdog
+Am I right than I can participate with same address and same id several times inside one round?
+
+
+[02/19/2024 15:55] forkforkdog
+god loves to bite
+
+{Reactions}
+🧛‍♂️ 
+
+[02/19/2024 16:04] tychaios.
+wdym? If you are talking about using the same token several times in the same round, you can.
+
+{Reactions}
+❤️ 
+
+[02/19/2024 17:09] elcid2000
+@Sonny @guppy created a private thread! Thanks
+
+
+[02/19/2024 20:09] mladenov0603
+@guppy Can you please check private thread? If you can't see it again just tell me to tag you
+
+
+[02/19/2024 20:44] tumelo_crypto
+Since a round will last approximately one week, will the time be tracked off-chain?
+
+
+[02/19/2024 21:35] tumelo_crypto
+@guppy who are the recipients of the setupAirdrop() function, are these players who use the protocol regularly to fight thier nfts?
+
+
+[02/20/2024 00:15] sihing_guppy
+People that have been with our community for a while during our testnet playtests
+
+{Reactions}
+✅ 
+
+[02/20/2024 03:06] blutorque
+@guppy, Does ELO factor for a fighter for a battle changes after the `updateBattleRecord` call?  or just serverSide independent of `updateBattleRecord` ?
+
+
+[02/20/2024 03:19] sihing_guppy
+it actually changes immediately before calling `updateBattleRecord` on the server-side
+
+{Reactions}
+✅ (2) 
+
+[02/20/2024 03:59] danhapo
+Is there any limit for length of `attributeProbabilities[generation][attr]`?
+
+
+[02/20/2024 04:52] agadzhalov
+Are `customAttributes` valuable and meaningful off-chain?
+If we have two fighters  - Fighter A with `customAttributes[1,1]` and Fighter B with `customAttributes[100,100]` 
+Is Fighter B considered better/stronger/more powerful?
+
+
+[02/20/2024 05:31] tumelo_crypto
+@guppy
+
+
+[02/20/2024 08:23] poeaudits
+Can users play without staking NRN? Or is this required before starting a battle?
+
+
+[02/20/2024 08:27] 0xabhay.
+can play without staking NRN but  The user will not receive any points?
+
+
+[02/20/2024 09:33] forgebyola
+Yeah
+
+
+[02/20/2024 10:48] tumelo_crypto
+Will there a limited number of users for the testnet and if so how many
+@guppy @Sonny
+
+
+[02/20/2024 11:16] dimitar.mitev
+can you tell me who is supposed to be the _delegatedAddress?
+
+
+[02/20/2024 13:32] 0xabhay.
+user will be the owner of the AiArenaHelper.sol contract?
+
+
+[02/20/2024 13:36] sihing_guppy
+Yes we keep track off-chain and the decision to move to the next round is discretionary
+
+
+[02/20/2024 13:37] sihing_guppy
+It is not limited - anyone can join
+
+
+[02/20/2024 14:13] tumelo_crypto
+Okay thanks
+
+
+[02/20/2024 15:39] mihir1808
+What is rerolls ?
+
+
+[02/20/2024 15:45] 0xsonny
+changes the weight and element of your fighter which will change your fighters moves in battle (i.g fire element re rolled to water element)
+
+{Reactions}
+✅ 
+
+[02/20/2024 15:48] mihir1808
+Thank you
+
+
+[02/20/2024 15:50] novamanbg
+what is the role of dna
+
+
+[02/20/2024 15:54] 0xsonny
+dna is what makes up your fighters attributes
+
+
+[02/20/2024 16:27] audinarey
+@guppy and @Sonny kindly repond to my private thread
+
+
+[02/20/2024 16:57] tumelo_crypto
+What is the max weight and what are the unit values of the elements, is it [0, 1, 2]?
+
+
+[02/20/2024 17:03] 0xsonny
+so in our game, we bound the weight to be between 65 and 95
+
+
+[02/20/2024 17:33] tumelo_crypto
+And the values for the elements?
+
+
+[02/20/2024 17:35] 0xsonny
+yes you are correct
+
+{Reactions}
+👍🏻 
+
+[02/20/2024 17:59] bigveezus
+So the weight can’t exceed 95 or be below 65 ?
+
+
+[02/20/2024 17:59] 0xsonny
+it shouldn't be able too
+
+
+[02/20/2024 18:49] kmanofficial
+Hi, is it possible for an NFT to be in a fight/battle without staking NRN?
+
+
+[02/20/2024 18:53] 0xsonny
+yes
+
+
+[02/20/2024 18:56] kmanofficial
+Am I correct that essentially the fight is created on your internal servers (without any blockchain updates) and then the results are posted in a transaction to blockchain to confirm the results using the coded functions?
+
+
+[02/20/2024 18:56] 0xsonny
+yes
+
+
+[02/20/2024 18:56] kmanofficial
+Thank you for the quick replies
+
+{Reactions}
+👍🏼 
+
+[02/20/2024 19:30] jvorex
+@guppy @Sonny please see the private thread ty!
+
+
+[02/20/2024 19:31] mladenov0603
+@guppy please check private thread 🙂
+
+
+[02/20/2024 19:39] elcid2000
+same! thanks 🙂
+
+
+[02/21/2024 06:14] linmiaomiao_qaq
+_ownerAddress of fighterFarm is a address which user know it's private key?
+
+{Reactions}
+😅 (8) 😩 
+
+[02/21/2024 07:14] alexander_orjustalex
+@guppy @Sonny Can you answer this question, since I couldn't find an answer at the time of asking
+
+
+[02/21/2024 07:17] tumelo_crypto
+Absolutely not😅
+
+
+[02/21/2024 07:19] tumelo_crypto
+From my understanding these are handled by the AiArenaHelper contract from the createPhysicalAttributes function
+
+
+[02/21/2024 07:20] alexander_orjustalex
+Yeah, but what if I call createPhysicalAttributes and it returns FighterOps.FighterPhysicalAttributes(3, 4, 11, 5, 2, 1), what is the meaning of those numbers?
+
+
+[02/21/2024 07:23] tumelo_crypto
+Those are the values of the attributes since if you look at earlier in function for dendroids it returns 99 for all six attributes
+
+
+[02/21/2024 07:23] tumelo_crypto
+Basically how strong your fighter is for a certain attribute out of 100
+
+
+[02/21/2024 07:33] 0xwallsecurity
+Look at the corresponding struct in FighterOps. It does not correspond to a fighters strength
+
+
+[02/21/2024 07:41] tumelo_crypto
+Oh yes I forgot about that struct, I would it’s final rarity rank value of each attribute then🤔
+
+
+[02/21/2024 08:04] alexander_orjustalex
+I thought it could be that too, however it seems that the rarity goes from smaller ( more rare ) number to bigger ( less rare ) number. In this case, however, the dendroid starts with 99 on all and it would not make sense for the dendroid to have less rare attributes
+
+
+[02/21/2024 08:24] yashpatel2003
+Anyone have the format to submit an issue . If yes Kindly share .
+
+
+[02/21/2024 08:44] forgebyola
+submit on the audit page on c4
+
+{Reactions}
+👍🏻 
+
+[02/21/2024 09:37] aamirusmani1552
+Yeah it's already given in there. You can check any previous audit report as well or read it on https://solodit.xyz/
+
+{Embed}
+https://solodit.xyz/
+Solodit - all findings from popular audit platforms
+Solodit is a platform that aggregates all findings from popular audit platforms.
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/logo-440D5.png
+
+{Reactions}
+👍🏻 
+
+[02/21/2024 11:18] devblixt_
+is this satire 😭
+
+{Reactions}
+🧛‍♂️ (4) 
+
+[02/21/2024 13:02] forkforkdog
+Okay sers, it was an honour to audit with you all. Should say that finding findings was fun but reporting that amounts was a torture. Good luck everyone!
+
+{Reactions}
+🫡 (6) 😂 (3) 😢 
+
+[02/21/2024 14:34] ahmedaghadi
+What `amounts`? 1? 10? 100? 👀
+
+
+[02/21/2024 15:23] dot_cloud
+what amounts is amounts ser :ohno:
+
+
+[02/21/2024 15:29] forkforkdog
+Liek three idk ⚆ _ ⚆
+
+
+[02/21/2024 15:35] ahmedaghadi
+rookie numbers 👀
+
+{Reactions}
+easybutton 
+
+[02/21/2024 15:36] forgebyola
+Don't be humble now
+
+
+[02/21/2024 15:37] forgebyola
+curve 2.0
+
+{Reactions}
+thisisfine (2) 
+
+[02/21/2024 15:37] forgebyola
+Pleasure auditing with you all.  sonny and guppy thanks for answering our enquiries promptly everytime🍻
+
+{Reactions}
+❤️ (5) 
+
+[02/21/2024 15:38] 0xdetermination
+High five to the sponsors, was a very fun codebase to audit!
+
+{Reactions}
+hi5 (14) 
+
+[02/21/2024 16:00] maroutis
+@guppy  @Sonny sent a DM in private thread
+
+
+[02/21/2024 16:09] brivan
+Here we wrap it, it was a real pleasure to audit the codebase, it was a solid one (with some bugs hidden there xd)
+High fives to the sponsors guppy and Sonny for the quick replies, the GameFi project idea is epic, best of luck on your launch.
+
+{Reactions}
+hi5 
+
+[02/21/2024 16:32] amarfares
+Anyone wanna bet on submission count lol?
+
+
+[02/21/2024 16:32] amarfares
+1300-1500+ imo
+
+{Reactions}
+👍 (3) 
+
+[02/21/2024 16:33] 0xsl1
+let’s hope it’s not higher than dopex:4739_Skeletor:
+
+{Reactions}
+🙏🏻 
+
+[02/21/2024 16:34] forkforkdog
+200 participants * 5 vulns i think is mean
+
+
+[02/21/2024 16:34] amarfares
+200 participatns again would be crazy
+
+
+[02/21/2024 16:35] 0xsl1
+still probably more, the sheer amount of chatgpt and just straight up low quality submissions will make it higher
+
+{Reactions}
+psyduck 
+
+[02/21/2024 16:38] forkforkdog
+People receive moni for chatgpt subs fr?
+
+{Reactions}
+ohno 
+
+[02/21/2024 16:40] 0xloscar01
+No, judges can detect this
+
+
+[02/21/2024 16:41] 0xsl1
+no, they don’t, it just adds overhead to lookout and judges
+
+
+[02/21/2024 16:48] haxatron1
+Way more than that haha
+
+
+[02/21/2024 16:48] haxatron1
+Prob 2000
+
+
+[02/21/2024 17:05] chris0xff
+holy crap there is some bad stuff in this repo
+
+
+[02/21/2024 17:05] ahmedaghadi
+How is one gonna find even 1 low level vulnerability with gpt let alone 5
+
+
+[02/21/2024 17:06] rouhsamad
+Hey i might be late
+But is there a base value for elo factor of a new fighter?
+
+
+[02/21/2024 17:07] alexander_orjustalex
+1500
+
+
+[02/21/2024 17:07] chris0xff
+the only person making money off of audits using gpt is openai
+
+
+[02/21/2024 17:08] rouhsamad
+Thanks friend
+
+{Reactions}
+🫡 
+
+[02/21/2024 17:43] superman_i4g
+Why don’t we bet on the no of valid issue instead? Lol
+
+
+[02/21/2024 19:04] chris0xff
+ill take that bet from you
+
+
+[02/21/2024 19:40] dimulski
+50 submissions absolute max, judge is going to be the luckiest person
+
+
+[02/21/2024 19:52] 0xauditism
+2.2k
+
+
+[02/21/2024 19:52] saint6704
+I bet 1$ for more than 2k submissions
+
+
+[02/21/2024 20:00] haxatron1
+Omg so many issues!
+
+
+[02/21/2024 20:01] brivan
+How many
+
+
+[02/21/2024 20:01] brivan
+Can someone with backstage role spoils number of submissions
+
+
+[02/21/2024 20:01] haxatron1
+1 million!
+
+
+[02/21/2024 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺Wardens The **AI Arena** audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the audit is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a Contest-Admin if you have questions along the way!
+
+{Reactions}
+👍 (3) 
+
+[02/21/2024 20:03] chris0xff
+i guess 983
+
+
+[02/21/2024 20:07] chris0xff
+at least its just a game so hax can be written off as an advanced feature
+
+
+[02/21/2024 20:07] chris0xff
+advanced user's gameplay mechanic
+
+{Reactions}
+🧠 
+
+[02/21/2024 20:09] 0xsl1
+I remember you using the same exact rhetoric after Dopex audit. At the very least, it’s not appropriate and you’ve been warned about this even back then
+
+{Reactions}
+👆 (2) 
+
+[02/21/2024 20:10] chris0xff
+i am not using the same exact rhetoric as i did about dopex
+
+
+[02/21/2024 20:12] 0xsl1
+you said something in almost exact same words, just with more insults for dopex devs, it does not change the point
+
+
+[02/21/2024 20:12] 0xauditism
+these remarks are not appropriate, the project is fun and creative, they are reaching out for an audit which is the right security approach.
+
+{Reactions}
+💯 (4) 
+
+[02/21/2024 20:12] dimulski
+didn't this guy get perma banned 😄
+
+
+[02/21/2024 20:12] 0xsl1
+thought the same
+
+
+[02/21/2024 20:12] _paperparachute
+Continue any discussion regarding the above here please 👉
+
+
+[02/21/2024 20:23] 0xjuancito
+Good job by the team, and good luck to everyone ✌️
+
+{Reactions}
+10_10 (5) 
+
+[02/21/2024 20:24] dimulski
+how many submissions are there, did the git api broke or 😄
+
+{Reactions}
+😂 
+
+[02/21/2024 20:25] 0x.elpabl0
+also curious 👀
+
+
+[02/21/2024 20:29] unpluggedtj
+I would like to genuinely thank guppy and sonny for entertaining me as this was my first audit and they answered to all my queries promptly.
+
+{Reactions}
+🎉 (6) 
+
+[02/21/2024 20:47] saint6704
+Was really good working with @guppy and @Sonny 
+Wish you guys very best for the project 
+All the best to everyone
+
+
+[02/21/2024 20:48] rouhsamad
+Hey guys, how many submissions 😅
+
+
+[02/21/2024 20:50] ubl4nk
+How many ?
+
+
+[02/21/2024 20:53] haxatron1
+Backstage is taking a while, must be alot of issues. 😅
+
+
+[02/21/2024 20:55] saint6704
+2k issues
+
+{Reactions}
+🤯 (9) 🫨 
+
+[02/21/2024 21:06] rouhsamad
+So results will be out 5-6 weeks from now
+
+
+[02/21/2024 21:15] haxatron1
+it was a mistake joining this contest
+
+{Reactions}
+🫂 (14) 
+
+[02/21/2024 21:19] olanre_waju
+check back in May for the results.🫂 \
+
+
+[02/21/2024 21:29] devblixt_
+the amount of dupes for each issue 😳 unsurprising though, considering the number of hints in the chat. 
+i guess this is how we all learn 😛
+
+
+[02/21/2024 21:31] forkforkdog
+Dats from backstage
+
+
+[02/21/2024 21:32] rouhsamad
+I think at some point in time there will be so many good auditors such that each finding no matter how complex will have 50 duplicates
+
+
+[02/21/2024 21:34] devblixt_
+Not necessarily anytime near in the future, because if that was true, people wouldn't go for web2 bug bounties
+
+{Reactions}
+👌 
+
+[02/21/2024 21:34] cryptor9119
+IDK why C4 removed the ability to see the number the submissions before the contest was over. More people would have been able to see the signs and bail early
+
+{Reactions}
+😆 (5) 
+
+[02/21/2024 21:37] forgebyola
+Um we knew it was going to be like this
+
+
+[02/21/2024 21:37] yotov721
+For this to happen the space needs to stop developing. At the moment there are new ERCs, project implementations and attack vectors coming out every day. The ones that will thrive are the one that continue to learn
+
+{Reactions}
+👍 (5) 
+
+[02/21/2024 21:37] forgebyola
+It was fun though
+
+
+[02/21/2024 21:38] forgebyola
+Hydra is still on :4739_Skeletor:
+
+
+[02/21/2024 21:38] forkforkdog
+But why
+
+
+[02/21/2024 21:58] alexander_orjustalex
+Probably could have invested the time in something with more incentive for the time spent
+
+{Reactions}
+👍 (3) 
+
+[02/21/2024 22:58] 0xdetermination
+web2 is very different tbh, and supply/demand is a big factor here
+
+{Reactions}
+❤️ (2) 
+
+[02/21/2024 23:47] tamayonft
+How many submissions?
+
+
+[02/22/2024 00:03] tamayonft
+You sure?
+
+
+[02/22/2024 08:04] desaperh
+Where do you see it please ?
+
+
+[02/22/2024 08:07] dimulski
+he is a hacker, he hacked github
+
+{Reactions}
+😂 (14) 
+
+[02/22/2024 13:37] devblixt_
+There's something called backstage role on Code4rena, where you can see submissions after a contest ends 
+I forgot the criteria for it but it was something like 2H/4M something
+
+{Reactions}
+👍 (2) 
+
+[02/22/2024 14:26] desaperh
+Thanks, reading the différents messages i wrongly thought that the backstage mechanism was over
+
+
+[02/22/2024 15:05] forkforkdog
+1 high, 3 contests and kyc
+
+
+[02/22/2024 16:15] tumelo_crypto
+1 high or 3 med
+
+{Reactions}
+✅ 
+
+[02/22/2024 18:07] forgebyola
+Valid issues in 3 contests right?
+
+
+[02/22/2024 19:40] hgq2wnl
+i think it was a cool contest. Would be interesting if the off-chain components are included in a future audit/bug bounty.
+
+
+[02/22/2024 22:31] tumelo_crypto
+Yes
+
+
+[02/23/2024 05:25] dimulski
+https://docs.code4rena.com/roles/certified-contributors/backstage-wardens
+
+{Embed}
+https://docs.code4rena.com/roles/certified-contributors/backstage-wardens
++Backstage wardens
+
+
+[02/23/2024 07:22] chris0xff
+@GhK3Ndf it would have helped finding high risk issues if the off chain code was included
+
+{Reactions}
+🤣 (5) 
+
+[02/23/2024 07:56] chris0xff
+the offchain code is gona be a big weakpoint in any bug that allows malicious users to pwn and rob other users
+
+
+[02/23/2024 07:57] chris0xff
+combination of pwning the oracle backend and weak contracts is the kind of thing that makes a big pwnage
+
+
+[02/23/2024 07:58] chris0xff
+aint nobody dont like a big pwn
+
+
+[02/23/2024 07:58] chris0xff
+:chefskiss:
+
+
+[02/23/2024 08:09] forkforkdog
+I thought the goal for being on the blockchain is not to use the chain as a database but to write contracts such that malicious inputs from backend  can be mitigated by restrictions is contracts. Eg if i would be advisor to the proj id recommend pausable architecture, like if you have backend compromised you just stop anything onchain
+
+
+[02/23/2024 08:12] chris0xff
+in this case the oracle i am referring to is the off chain game logic as stated by the dev team. you cant make a high impact finding based on a nonexistant PoC and hypotheticals based of speculation about a completely unknown element(the off chain game logic in this case)
+
+{Reactions}
+👍 
+
+[02/23/2024 08:15] forkforkdog
+Everything is possible if you high enough
+
+
+[02/23/2024 08:18] 0xtendency
+@chris0x Since you've failed to audit and quit blasting sponsors, I have timed you out and also removed your warden role temporarily.
+
+You will have to create a help desk to get it back when you are chill enough to follow c4 guidelines, thanks
+
+{Reactions}
+wow (6) 🤣 (9) ✅ (5) 🃏 
+
+[02/23/2024 08:52] forgebyola
+ain't this the guy talking about corporal punishments?
+
+
+[02/23/2024 08:53] forgebyola
+Every space needs a troll lbh
+
+
+[02/23/2024 15:31] 0xdemonnn
+so, this continues 😅
+
+
+[02/23/2024 23:59] 7a4raf
+Hey guys, I found ai tokens in my wallet, any idea where these came from?
+
+
+[02/24/2024 11:15] 0xvj
+What do you mean by AI tokens?
+
+
+[02/24/2024 11:16] 0xvj
+AI arena  tokens?
+
+
+[02/24/2024 13:44] dimulski
+most probably a scam don't interact with them
+
+{Reactions}
+👆 (2) 
+
+[02/24/2024 15:23] 7a4raf
+Not sure, they are called ai so the first thing came in mind was this contest
+
+{Reactions}
+👍 
+
+[02/24/2024 15:23] 7a4raf
+I believe so, do I just ignore them?
+
+{Reactions}
+👍 (4) 
+
+[02/24/2024 19:55] forkforkdog
+Security researchers chat q1 2024
+
+{Reactions}
+😂 (6) 
+
+[02/28/2024 12:46] judeabara
+Hi when is the result going to be announced
+
+
+[02/28/2024 13:40] mctoady
+probably a few weeks from now
+
+
+[02/28/2024 14:11] hunter_w3b
+like months:chefskiss:
+
+{Reactions}
+👌 (2) 
+
+[02/28/2024 15:26] brivan
+Given the number of submissions, it will take a while. Just forget about it until you receive a ping from the C4 bot, lol.
+
+{Reactions}
+👍 
+
+[02/28/2024 19:35] forkforkdog
+How much subs toady?
+
+
+[03/03/2024 09:53] kingx0001
+https://tenor.com/view/funny-dogs-bores-waiting-12years-later-gif-9768278
+
+{Embed}
+https://tenor.com/view/funny-dogs-bores-waiting-12years-later-gif-9768278
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/funny-dogs-bores-22DFE.png
+
+
+[03/03/2024 10:40] young09778
+:hi5:
+
+
+[03/03/2024 11:12] forkforkdog
+◔̯◔
+
+
+[03/08/2024 23:49] tamayonft
+when qa?
+
+
+[03/10/2024 16:17] xyzbtchunt
+https://tenor.com/view/officialyongbok-cat-grumpy-gif-6970677865555291125
+
+{Embed}
+https://tenor.com/view/officialyongbok-cat-grumpy-gif-6970677865555291125
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/officialyongbok-cat-D9C77.png
+
+{Reactions}
+👀 (10) 
+
+[03/12/2024 12:49] forgebyola
+Those with backstage pls what is the status for this?
+
+
+[03/12/2024 12:53] jvorex
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/Screenshot_2024-03-12_at_05.54.11-3A790.png
+
+
+[03/12/2024 13:07] forgebyola
+That's all you can see?
+
+
+[03/12/2024 13:08] forgebyola
+Why am I worried, it's gonna be cent payouts anyway
+
+
+[03/12/2024 13:29] haxatron1
+Yea be prepared 😂
+
+
+[03/12/2024 13:29] haxatron1
+Dont set your expectations too high for this one
+
+
+[03/12/2024 13:30] haxatron1
+I did not take a look at your issues btw im just saying in general
+
+
+[03/12/2024 13:35] shaflow_
+i want backstage
+
+
+[03/12/2024 13:36] shaflow_
+Waiting without knowing the progress is unbearable
+
+
+[03/12/2024 13:44] rouhsamad
+I think we have to wait at least 2 more weeks for the results
+
+
+[03/12/2024 13:47] hickuphh3
+i've about ~700 issues remaining out of the 2k to look at, probably a couple of weeks
+
+{Reactions}
+empathy (14) 
+
+[03/12/2024 13:47] jvorex
+the judge has spoken 🫡
+
+
+[03/12/2024 14:18] forgebyola
+Wait you can see a specific warden's issues with backstage?
+
+
+[03/12/2024 14:20] haxatron1
+You can see all issues in backstage
+
+
+[03/12/2024 14:24] forgebyola
+I need backstage now
+
+
+[03/12/2024 14:24] forgebyola
+Soon hopefully
+
+
+[03/12/2024 15:15] shaflow_
+Thank you for your work! salute！
+
+
+[03/13/2024 06:40] swizz1337
+My very first contest on C4 and it was a saturated one with a bunch of submissions haha. hopefully my 2-3 mediums are valid and i make enough to buy pizza and coke zero on the weekend
+
+{Reactions}
+😂 (3) 
+
+[03/13/2024 09:31] tigerfrake
+Lmao
+
+
+[03/13/2024 12:55] 14si2o_flint
+Bruh, if everything is valid, you will maybeeee have enough for one loaf of bread. The amount of duplicates on everything is just stupid.
+
+
+[03/13/2024 13:05] swizz1337
+Nah you see my brain is a special kind of brain. A Swizz brain. Watch me get 3 unique mediums  and top QA report 😎
+
+
+[03/13/2024 13:06] 14si2o_flint
+2 coffees then
+
+
+[03/13/2024 13:06] swizz1337
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/image0-6FFA2.gif
+
+
+[03/13/2024 13:07] 14si2o_flint
+Welcome to web3 auditing 😂
+
+
+[03/13/2024 13:07] swizz1337
+I was told I was gonna make 6 figures with 20 hour work weeks
+
+
+[03/13/2024 13:07] swizz1337
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/image0-956FA.gif
+
+
+[03/13/2024 13:08] 14si2o_flint
+with an 1e18 coin, yeah 6 figures of wei is realistic
+
+{Reactions}
+kek (9) 
+
+[03/13/2024 13:08] swizz1337
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/image0-E2EFB.gif
+
+
+[03/13/2024 13:08] swizz1337
+If I honestly make 50 dollars I'll be happy
+
+
+[03/13/2024 13:08] swizz1337
+Baby steps
+
+
+[03/13/2024 13:12] 14si2o_flint
+Take it as a learning experience. Just bad luck that there were 2k+ submissions, but even if everything is valid, the payout will be definitely less than 10$
+
+
+[03/13/2024 13:19] forgebyola
+Nun wrong with some optimism :4739_Skeletor:
+
+
+[03/13/2024 13:20] swizz1337
+Most submissions aren't even valid in the first place, right? At least that's what I remember hearing from an interview with a judge
+
+
+[03/13/2024 13:20] forgebyola
+You won't. If you want that go audit zksync or something. Not Ai arena lol
+
+
+[03/13/2024 13:21] forgebyola
+I just want it to count towards my backstage
+
+
+[03/13/2024 13:21] swizz1337
+What's backstage
+
+
+[03/13/2024 13:21] 14si2o_flint
+Oh yeah for backstage it will be perfect. But $ don't bother 😄
+
+
+[03/13/2024 13:21] 14si2o_flint
+Behind the scenes acces where you can see the findings and the judging happening
+
+
+[03/13/2024 13:22] swizz1337
+Oof that's cool
+
+
+[03/13/2024 13:22] forgebyola
+If you see this then theres probably no better time to get it than now with the thousand audits going on atm
+
+
+[03/13/2024 13:23] forgebyola
+Just need findings in 3
+
+
+[03/13/2024 13:23] swizz1337
+What's the usual submission count? Maybe ai arena was high because It appeared to be the most interesting/fun protocol to audit
+
+
+[03/13/2024 13:23] 14si2o_flint
+Well usually for small contests like that there are 200-400 submissions. AiArena was 2400
+
+
+[03/13/2024 13:24] swizz1337
+2400 HM ? Fuuuuuuuhhh
+
+
+[03/13/2024 13:24] 14si2o_flint
+no in total
+
+
+[03/13/2024 13:24] 14si2o_flint
+so 2000? i think
+
+
+[03/13/2024 13:25] swizz1337
+So it could be lots of QA reports then maybe
+
+
+[03/13/2024 13:25] 14si2o_flint
+no i mean 2000 h/m
+
+
+[03/13/2024 13:25] swizz1337
+Ohhh
+
+
+[03/13/2024 13:25] 14si2o_flint
+look at least you'll be on the board with some valid H/M, so that's very nice for your first contest
+
+
+[03/13/2024 13:26] forgebyola
+I'm predicting
+15H unique(200 total)
+30 M unique (400 total)
+
+{Reactions}
+wtf (2) 
+
+[03/13/2024 13:26] swizz1337
+I think it took me 25 hours in total auditing, then like another 12 hours writing all reports cuz I was slow and sucky haha, but yes at least it's something for my first contest
+
+
+[03/13/2024 13:27] 14si2o_flint
+I think my first 3 contest I have 0$, then one contest 1M for 0.01$
+
+
+[03/13/2024 13:27] swizz1337
+The solution for all of us is to just git gud, isn't it
+
+
+[03/13/2024 13:27] 14si2o_flint
+It's a long road, just keep walking it & don't expect easy money. Not the path for that 😄
+
+{Reactions}
+🔥 
+
+[03/13/2024 13:28] swizz1337
+Thanks G
+
+{Reactions}
+👍 
+
+[03/13/2024 13:29] swizz1337
+I also predict I make enough for my damn Costco pizza
+
+
+[03/14/2024 20:12] xyzbtchunt
+Any update ser?
+
+
+[03/14/2024 20:28] forgebyola
+https://discord.com/channels/810916927919620096/1201981655850426399/1217106651279261727
+
+
+[03/15/2024 04:50] forkforkdog
+This contest has real crits besides all other stuff, so to expect 2000 h/ms
+
+
+[03/15/2024 12:21] devpelz
+man its gonna  be a long thing
+
+
+[03/15/2024 18:23] kartik_giri_47538
+It's my first contest and still waiting for the result,  I can just say best of luck to judge for checking  more than 2000 findings.
+
+{Reactions}
+hi5 (6) 
+
+[03/15/2024 22:03] radev_40364
+I guess we will see in couple of weeks😄
+
+{Reactions}
+👍 (3) 
+
+[03/15/2024 22:29] forgebyola
+Please don't take me serious lol
+
+{Reactions}
+4739_Skeletor (4) 
+
+[03/19/2024 12:20] mctoady
+I mean you could have done 3 more contests in the meantime instead of just waiting for results of one?
+
+{Reactions}
+☝️ (6) 
+
+[03/19/2024 14:43] haxatron1
+soon
+
+{Reactions}
+👍 (3) 
+
+[03/19/2024 15:13] dany_armstrong
+👍
+
+
+[03/19/2024 19:37] xyzbtchunt
+https://tenor.com/view/chilldog-gif-6253079634849225723
+
+{Embed}
+https://tenor.com/view/chilldog-gif-6253079634849225723
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/chilldog-5C56A.png
+
+
+[03/20/2024 01:56] guy_in0xnito
+How many left ser ?
+
+
+[03/20/2024 02:04] haxatron1
+Next week
+
+
+[03/20/2024 02:05] haxatron1
+Either this friday or next monday
+
+{Reactions}
+😭 
+
+[03/20/2024 15:49] kartik_giri_47538
+🥹
+
+
+[03/20/2024 17:09] devblixt_
+cant wait for my 2 cents payout
+
+{Reactions}
+empathy (4) 
+
+[03/20/2024 18:35] jvorex
+not enuff for a Big Mac :empathy:
+
+{Reactions}
+✅ 
+
+[03/20/2024 19:18] tigerfrake
+Lmao.
+
+
+[03/21/2024 05:04] t0x1c.c0de
+Whatever the result, got to say that given the high number of submissions & dupes, this judgement speed by @hickuphh3 is damn impressive. Specially given the fact that the discussion board is not submerged with appeals - which means accuracy's pretty fine 👍
+
+{Reactions}
+💯 (6) 
+
+[03/21/2024 05:21] tigerfrake
+Is judging over already?
+
+
+[03/21/2024 05:22] t0x1c.c0de
+ongoing. PJQA ends in about 7.5 hours
+
+
+[03/21/2024 06:39] auditor_79099
+Hi. What is PJQA?
+
+
+[03/21/2024 07:35] _paperparachute
+There is a 48 hour window after initial judging is complete for judges and backstage wardens to discuss issues further
+
+
+[03/21/2024 07:42] kuprumion
+To supplement the answer above, PJQA stands for Post-judging QA
+
+{Reactions}
+thankyou (4) dance_vibe (3) 👍 
+
+[03/21/2024 14:34] taner2344
+dont be so pessimistic, i think at least 5 cents
+
+{Reactions}
+😂 
+
+[03/21/2024 14:41] 0xauditism
+don't spend it all at once
+
+{Reactions}
+🔥 (3) 🤣 
+
+[03/21/2024 15:02] rouhsamad
+Can i borrow some of it? I need money
+
+
+[03/21/2024 15:55] devblixt_
+i will divide it between all 5 of you who replied to me'
+
+{Reactions}
+🙏 (4) 
+
+[03/21/2024 17:18] xyzbtchunt
+Pjqa done?
+
+
+[03/22/2024 07:27] alexander_orjustalex
+Must be
+
+{Reactions}
+👁️ 
+
+[03/22/2024 08:31] auditor_79099
+when announcement?
+
+
+[03/22/2024 09:00] kalogerone
+i would guess monday
+
+
+[03/22/2024 09:31] alexander_orjustalex
+Still hoping for today
+
+{Reactions}
+🙏 (3) 
+
+[03/22/2024 09:36] kartik_giri_47538
+me too
+
+
+[03/22/2024 10:49] forgebyola
+Maybe the result is the patience we learnt along the way
+
+{Reactions}
+🫡 (13) 😂 (10) cyberheart (2) 
+
+[03/22/2024 14:29] cloudellie
+please post this in #😃chat or #🐺wardens so we can reference it daily :hi5:
+
+{Reactions}
+hi5 (3) 
+
+[03/23/2024 02:10] haxatron1
+Not monday
+
+
+[03/23/2024 02:10] haxatron1
+There are a few stalemates in PJQA
+
+{Reactions}
+😭 
+
+[03/23/2024 02:19] kalogerone
+So even later
+
+
+[03/23/2024 10:16] kriko.eth
+do you guys have nothing to do just wait for results of one comp? 😃
+
+
+[03/23/2024 10:50] tigerfrake
+Lmao
+
+
+[03/23/2024 11:15] xyzbtchunt
+https://tenor.com/view/tiktok-dog-awkward-dog-confused-awkward-confused-dog-gif-2881577801438605193
+
+{Embed}
+https://tenor.com/view/tiktok-dog-awkward-dog-confused-awkward-confused-dog-gif-2881577801438605193
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/tiktok-dog-awkward-dog-8621F.png
+
+
+[03/24/2024 16:49] swizz1337
+u can grab urself some btc with that!
+
+
+[03/25/2024 14:44] auditor_79099
+when announcement?😔
+
+
+[03/25/2024 14:46] kartik_giri_47538
+Who knows
+
+
+[03/25/2024 14:50] auditor_79099
+I also know you do not know.
+
+
+[03/25/2024 14:52] auditor_79099
+who are you?
+
+
+[03/25/2024 14:54] novamanbg
+😵‍💫
+
+
+[03/25/2024 15:10] kartik_giri_47538
+Human like you
+
+
+[03/25/2024 15:48] haxatron1
+Update: the stalemates are almost resolved. It was a bloodbath during PJQA :4739_Skeletor:
+
+{Reactions}
+😮 (4) 🥲 
+
+[03/25/2024 16:07] forgebyola
+I really need backstage
+
+
+[03/25/2024 16:07] kartik_giri_47538
+So how long do u think it will take to announce result?
+
+
+[03/25/2024 16:37] haxatron1
+I think by this week
+
+
+[03/25/2024 16:37] haxatron1
+But honestly i dont recommned waiting
+
+
+[03/25/2024 16:42] kartik_giri_47538
+thanks
+
+
+[03/25/2024 16:46] shaflow_
+whats mean bloodbath
+
+
+[03/25/2024 16:49] forgebyola
+I feel bad for those who had this as their first contest
+
+
+[03/25/2024 16:50] haxatron1
+Me too
+
+
+[03/25/2024 16:50] forgebyola
+On the other hand, it's good character development
+
+
+[03/25/2024 16:50] forgebyola
+Builds the spirit
+
+
+[03/25/2024 17:02] yotov721
+why ? the reward would be cents but the motivation from finding some issues is a better reward  IMO 🙂
+
+{Reactions}
+4739_Skeletor 
+
+[03/25/2024 17:18] kartik_giri_47538
+It is my first contest 🥹
+
+{Reactions}
+🫂 
+
+[03/25/2024 18:28] xyzbtchunt
+Any update ser?
+
+
+[03/25/2024 18:28] brivan
+Just wondering, if this is your first contest, how did u get the leaderboard role?
+
+{Reactions}
+👍 (2) 😂 
+
+[03/25/2024 18:31] xyzbtchunt
+Me no role, but I'm still waiting for the results😑
+
+
+[03/25/2024 19:56] kriko.eth
+could have done some other contest after this one which is already evaluated
+
+
+[03/25/2024 19:57] kriko.eth
+guys dont worry about when, those few dollars will not save you
+
+{Reactions}
+👍 (3) 
+
+[03/26/2024 06:05] kartik_giri_47538
+cause I participated in althea too after completing  ai-arena.
+
+
+[03/26/2024 06:06] kartik_giri_47538
+Yeah exactly
+
+
+[03/26/2024 08:33] swizz1337
+*raises hand*
+
+
+[03/26/2024 16:11] lsaudit
+any info when the results are coming?
+
+
+[03/26/2024 16:13] xyzbtchunt
+I think now
+
+
+[03/27/2024 08:05] josephdara
+GG
+
+
+[03/27/2024 12:31] _paperparachute
+🤑 🎉  Awards for **AI Arena**:
+
+$7,568.05 USDC » @fnanni
+$6,523.25 USDC » @d3e4
+$5,015.66 USDC » @NiSeR
+$3,246.86 USDC » @haxatron
+$2,513.91 USDC » BARW
+$2,479.51 USDC » @juancito
+$2,441.52 USDC » DanielArmstrong
+$681.68 USDC » @0xDetermination
+$490.21 USDC » @0x11singh99
+$489.39 USDC » @MrPotatoMagic
+$387.62 USDC » @klau5
+$340.30 USDC » @Timenov
+$330.84 USDC » MidgarAudits
+$328.94 USDC » @lil_eth
+$314.64 USDC » @givn
+$311.82 USDC » @btk
+$294.08 USDC » @merlinboii
+$275.30 USDC » @rspadi
+$268.28 USDC » @SovaSlava
+$268.28 USDC » @josephdara
+$267.78 USDC » @Rolezn
+$262.57 USDC » @K42 Ψ
+$253.95 USDC » @vnavascues
+$246.18 USDC » @0xblackskull
+$246.18 USDC » @Sabit
+$242.10 USDC » CodeWasp
+$239.24 USDC » @sobieski
+$238.93 USDC » @andywer
+$223.77 USDC » @ZanyBonzy
+$216.02 USDC » @0xSmartContract
+$191.72 USDC » @immeas
+$180.29 USDC » @14si2o_Flint
+$179.80 USDC » @hunter_w3b
+$178.73 USDC » @Draiakoo
+$178.47 USDC » @Greed
+$178.42 USDC » @sashik_eth
+$166.17 USDC » @0xepley
+$166.17 USDC » @0xweb3boy
+$166.17 USDC » @Aariiif
+$166.17 USDC » @popeye
+$166.17 USDC » @yongskiws
+$145.18 USDC » abhishek_thaku_r
+$144.03 USDC » @dimulski
+$134.12 USDC » @offside0011
+$134.03 USDC » @PoeAudits
+$132.19 USDC » @0xCiphky
+$128.75 USDC » @ahmedaghadi
+$127.86 USDC » @yotov721
+$127.22 USDC » @kiqo
+$126.43 USDC » @djxploit
+$125.83 USDC » PedroZurdo
+$125.39 USDC » @alexzoid
+$125.19 USDC » @peter
+$122.75 USDC » @Tychai0s
+$120.92 USDC » @lsaudit
+$120.49 USDC » @kartik_giri_47538
+$118.76 USDC » @comradeKtg
+$117.04 USDC » DarkTower
+$116.30 USDC » 0xAlix2
+$115.83 USDC » @stakog
+$113.09 USDC » @korok
+$112.93 USDC » @Aamir
+$111.91 USDC » @pontifex
+$111.78 USDC » @Fulum
+$111.71 USDC » @iamandreiski
+$111.68 USDC » @0xShitgem
+$111.68 USDC » @maxim371
+$107.59 USDC » @radev_sw
+$102.10 USDC » @alexxander
+
+{Reactions}
+🫡 (14) 
+
+[03/27/2024 12:31] _paperparachute
+$88.62 USDC » @zaevlad
+$84.47 USDC » @t0x1c
+$79.27 USDC » @McToady
+$76.73 USDC » @Krace
+$75.30 USDC » @0xBinChook
+$73.22 USDC » @evmboi32
+$72.86 USDC » @matricksdecoder
+$71.06 USDC » @ke1caM
+$70.14 USDC » @forkforkdog
+$69.63 USDC » @sl1
+$68.24 USDC » @unknown-BL4NK
+$67.72 USDC » @Swizz
+$67.09 USDC » @CodeCipher
+$66.56 USDC » solmaxis69
+$65.89 USDC » @grearlake
+$65.83 USDC » @VAD37
+$65.66 USDC » @bhilare_
+$65.40 USDC » @Kow
+$64.74 USDC » @Zac🇬🇧
+$64.53 USDC » @0xLogos
+$64.53 USDC » @web3pwn
+$64.50 USDC » @Jnforja
+$64.49 USDC » @rsam_eth
+$64.42 USDC » @BoRonGod
+$64.42 USDC » @Tricko
+$64.39 USDC » 0brxce
+$64.39 USDC » @zxriptor
+$63.64 USDC » @amar
+$62.64 USDC » @Kalogerone
+$62.27 USDC » @visualbits
+$61.53 USDC » @Velislav4o
+$61.37 USDC » @lanrebayode77
+$61.11 USDC » @shaflow2
+$59.67 USDC » @SpicyMeatball
+$59.58 USDC » @0xladboy | Sparkware
+$59.23 USDC » @Shubham
+$50.18 USDC » @nuthan2x
+$42.82 USDC » @jesjupyter
+$42.81 USDC » @favelanky
+$34.88 USDC » @Vijay
+$33.70 USDC » @jcfichtner
+$33.70 USDC » @SAQ
+$32.49 USDC » @_eperezok
+$30.36 USDC » @PTolev
+$30.27 USDC » @sandy
+$30.01 USDC » 0xStriker
+$29.15 USDC » @kutu
+$28.99 USDC » @Bauchibred
+$24.21 USDC » @pynschon
+$23.52 USDC » @peanuts
+$22.57 USDC » @0xAsen
+$22.56 USDC » @yovchev_yoan
+$22.55 USDC » @oualidpro
+$22.44 USDC » @rekxor
+$20.31 USDC » @pipidu83
+$20.11 USDC » @kaveyjoe
+$20.07 USDC » @0xblack_bird
+$20.07 USDC » @0xbrett8571
+$20.07 USDC » @JayshreeRAM
+$20.07 USDC » @myd8418
+$20.07 USDC » @Albahaca
+$20.07 USDC » @ansa-zanjbeel
+$20.07 USDC » @cheatc0d3
+$20.07 USDC » clara
+$20.07 USDC » @cudo
+$20.07 USDC » @Fouzantanveer
+$20.07 USDC » @foxb868
+$20.07 USDC » @hassanshakeel13
+$20.07 USDC » scokaf
+$20.07 USDC » @john80
+$20.07 USDC » @none
+$15.74 USDC » @0xRiO
+$15.03 USDC » @shaka
+$14.68 USDC » @0xE1
+$13.86 USDC » @emrekocak
+$13.74 USDC » al88nsk
+$13.63 USDC » @0xAnah
+$13.63 USDC » @Raihan
+$13.63 USDC » @SM3_SS
+$13.63 USDC » @SY_S
+$13.63 USDC » @dharma09
+$13.63 USDC » @Donko Tonev
+$13.63 USDC » @judeabara
+$13.63 USDC » @0xlrivo
+$13.63 USDC » @mikosons
+$13.63 USDC » shamsulhaq123
+$13.63 USDC » @unique
+$13.63 USDC » @yashgoel72
+$13.63 USDC » @ziyou-
+$13.34 USDC » Blank_Space
+$13.09 USDC » @AlexCzm
+$11.20 USDC » 0xmystery
+$10.69 USDC » @agadzhalov
+$10.16 USDC » @KmanOfficial
+$10.04 USDC » @cartlex_
+$9.93 USDC » EagleSecurity
+$9.82 USDC » @0xMosh
+
+
+[03/27/2024 12:31] _paperparachute
+$9.05 USDC » DeFiHackLabs
+$9.05 USDC » @BigVeezus
+$8.85 USDC » @Tekken
+$8.81 USDC » @0xAkira
+$8.81 USDC » @7ashraf
+$8.81 USDC » @BenasVol
+$8.81 USDC » @Bube
+$8.81 USDC » @SHA_256
+$8.81 USDC » @boredpukar
+$7.39 USDC » @c0pp3rscr3w3r
+$7.32 USDC » @0xgrbr
+$6.32 USDC » @aslanbek
+$6.29 USDC » @petro_1912
+$5.38 USDC » @auditism
+$5.38 USDC » @denzi_
+$4.53 USDC » @Silvermist
+$4.49 USDC » @n0kto
+$4.43 USDC » @handsomegiraffe
+$4.37 USDC » @0xlemon
+$4.37 USDC » @pkqs90
+$4.23 USDC » @WoolCentaur
+$3.93 USDC » FloatingPragma
+$3.89 USDC » soliditywala
+$3.75 USDC » @Ryonen
+$3.71 USDC » @Abdessamed
+$3.51 USDC » @radin100
+$3.42 USDC » @VrONTg
+$3.36 USDC » @blutorque
+$3.36 USDC » 0rpse
+$3.25 USDC » @Tendency
+$3.15 USDC » @krikolkk
+$3.07 USDC » @csanuragjain
+$3.07 USDC » @ubermensch
+$3.00 USDC » @Topmark
+$2.50 USDC » @matejdb
+$2.50 USDC » @zhaojohnson
+$2.44 USDC » @erosjohn
+$2.29 USDC » @Honour
+$2.17 USDC » @israeladelaja
+$2.10 USDC » @ni8mare
+$2.06 USDC » @0xAadi
+$2.06 USDC » @Merulez99
+$2.06 USDC » @YouCrossTheLineAlfie
+$2.06 USDC » @forgebyola
+$2.06 USDC » @neo.crao
+$1.96 USDC » @Varun_05
+$1.94 USDC » devblixt
+$1.91 USDC » @0xWallSecurity
+$1.91 USDC » @Matue
+$1.91 USDC » @Tumelo_Crypto
+$1.91 USDC » @dutra
+$1.73 USDC » @KupiaSec
+$1.64 USDC » @JCN
+$1.54 USDC » @ac000123
+$1.37 USDC » @ADM
+$1.37 USDC » @stackachu
+$1.36 USDC » @0xKowalski
+$1.36 USDC » @0xAleko
+$1.27 USDC » @Archime
+$1.27 USDC » @OMEN
+$1.27 USDC » @adamn000
+$1.27 USDC » @0xaghas
+$1.23 USDC » @novamanbg
+$1.23 USDC » @xchen1130
+$1.13 USDC » @0xbranded
+$1.12 USDC » @AgileJune
+$1.12 USDC » @Davide
+$1.12 USDC » @linmiaomiao
+$1.05 USDC » @Jorgect
+$1.03 USDC » @okolicodes
+$1.01 USDC » @0xG0P1
+$1.01 USDC » @0xabhay
+$1.01 USDC » @merlin
+$0.74 USDC » almurhasan
+$0.65 USDC » @tallo
+$0.56 USDC » @0xSpenzar
+$0.50 USDC » dipp
+$0.34 USDC » @deadrosesxyz
+$0.34 USDC » @0x13
+$0.24 USDC » @Nyxaris
+$0.23 USDC » @0xPluto
+$0.23 USDC » Avci
+$0.23 USDC » @Cryptor
+$0.23 USDC » @Fitro
+$0.23 USDC » GoSlang
+$0.23 USDC » @ReadyPlayer2
+$0.23 USDC » @cu5t0mpeo
+$0.23 USDC » @inzinko
+$0.23 USDC » @jesusrod15
+$0.23 USDC » @taner2344
+$0.23 USDC » @y4y
+$0.14 USDC » @thank_you
+$0.12 USDC » dvrkzy
+$0.12 USDC » @Pelz
+$0.11 USDC » @DMoore
+$0.11 USDC » @GhK3Ndf
+$0.11 USDC » @Josh4324
+$0.11 USDC » @Limbooo
+$0.11 USDC » @sunny
+$0.11 USDC » @jaydhales
+$0.10 USDC » @adam-idarrha
+$0.09 USDC » 0xlyov
+$0.04 USDC » @pa6kuda
+$0.04 USDC » @tpiliposian
+$0.04 USDC » @0xGreyWolf
+$0.04 USDC » 0xkaju
+$0.04 USDC » @Daniel526
+
+
+[03/27/2024 12:33] _paperparachute
+$0.04 USDC » PUSH0
+$0.04 USDC » @bgsmallerbear
+$0.04 USDC » @desaperh
+$0.04 USDC » @gesha17
+$0.04 USDC » honey-k12
+
+🏁 Findings summary
+--------------------------------------—
+High risk findings: 8 unique (515 total)
+Med risk findings: 9 unique (340 total)
+Gas reports: 36 (Best: 0xDetermination)
+QA reports: 60 (Best: givn)
+Advanced analysis reports: 42 (Best: 0xSmartContract)
+
+Awards will be distributed on Polygon within the next week. Congratulations all!  💸 💸 💸
+
+*Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.*
+
+
+[03/27/2024 12:59] kalogerone
+After how long does the repo become public?
+
+
+[03/27/2024 12:59] kalogerone
+Generally speaking
+
+
+[03/27/2024 13:06] 14si2o_flint
+Cool, I can buy diapers for one month with these results! 😂
+
+{Reactions}
+😂 (2) 
+
+[03/27/2024 13:11] daniel526
+How many M and H did you get?
+
+
+[03/27/2024 13:12] 14si2o_flint
+4h 1m grade A analysis
+
+
+[03/27/2024 13:14] mctoady
+Nobody is allowed to complain unless you can top this, 9 issues + QA/Gas/Analysis :salute:
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/Screenshot_2024-03-27_at_22.12.40-D1856.png
+
+{Reactions}
+wojak_cry (4) 
+
+[03/27/2024 13:14] daniel526
+Congratulations! Been silently admiring your effort, hope one day we can team up and work together!
+
+
+[03/27/2024 13:15] 14si2o_flint
+Thank you 🙏  We'll meet at the top someday 😄
+
+{Reactions}
+🙏 
+
+[03/27/2024 13:15] 14si2o_flint
+Impressive!
+
+{Reactions}
+❤️ 
+
+[03/27/2024 13:16] 14si2o_flint
+@McToady where can you find that screen? Did they add leaderboard results already?
+
+
+[03/27/2024 13:16] mctoady
+yeah it's on the site now!
+
+
+[03/27/2024 13:17] mctoady
+https://code4rena.com/audits/2024-02-ai-arena#top
+
+
+[03/27/2024 13:17] 14si2o_flint
+oh nice that's fast
+
+
+[03/27/2024 13:17] forgebyola
+One more step to backstage
+
+{Reactions}
+🫡 
+
+[03/27/2024 13:18] tumelo_crypto
+I only have 2 med valid, how did I miss so many bugs😅😂
+
+{Reactions}
+😂 
+
+[03/27/2024 13:19] tumelo_crypto
+At least I have enough for backstage access now tho
+
+
+[03/27/2024 13:20] 14si2o_flint
+This is wierd, in backstage i have 4 valid highs, in the leaderboard only 3.
+
+
+[03/27/2024 13:21] 0xstriker
+the money ain't much but the first high in my career is found so yeah
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - ai_arena-feb9 [1201981655850426399].txt_Files/Screenshot_from_2024-03-27_17-47-39-7EB35.png
+
+
+[03/27/2024 13:21] yashgoel72
+Whats backstage ?
+
+
+[03/27/2024 13:21] mctoady
+Congrats, first of many my friend!
+
+{Reactions}
+👍 (2) 
+
+[03/27/2024 13:22] yashgoel72
+I submitted 4 med findings but none got selected seems 😕
+
+
+[03/27/2024 13:23] forgebyola
+@haxatron Congrats my man
+
+
+[03/27/2024 13:24] 0xstriker
+only the beginning, thanks mate
+
+{Reactions}
+salute (2) 
+
+[03/27/2024 13:24] haxatron1
+thanks ser!
+
+
+[03/27/2024 13:28] mladenov0603
+I think my issue is valid but i am not in the leaderboard, how can i see valid issues
+
+{Reactions}
+➕ (2) 
+
+[03/27/2024 13:30] mctoady
+unfortunately you have to wait for the report to be released
+
+
+[03/27/2024 13:31] mladenov0603
+And after that if my issue is valid what should i do
+
+
+[03/27/2024 13:32] haxatron1
+I see alot of Blast participants in the leaderboard, I wonder why they were here instead of doing Blast? 😂
+
+
+[03/27/2024 13:32] haxatron1
+actually not, only see 1
+
+
+[03/27/2024 13:50] kartik_giri_47538
+56/283 not bad for my first contest 😄
+
+
+[03/27/2024 14:04] honour_d_dev
+how many do you need for backstage access
+
+
+[03/27/2024 14:05] tumelo_crypto
+You need to have values findings in 3 c4 contest and found 1 high or 3 med or get an A on a QA report
+
+
+[03/27/2024 14:06] honour_d_dev
+ok, what are the perks?
+
+
+[03/27/2024 14:14] devpelz
+oh well, we go again next time💪🏾
+
+
+[03/27/2024 14:25] young09778
+$42 for 5h and 3m？
+
+{Reactions}
+4739_Skeletor (10) 
+
+[03/27/2024 14:38] bbl4de.xyz
+Recovering 🤒
+
+
+[03/27/2024 14:49] tumelo_crypto
+you get to see all the bugs that were submitted right after the contest ends and maybe discuss escalations with judges
+
+
+[03/27/2024 15:03] 0xjuancito
+6th place 🏆. gg everyone!
+
+{Reactions}
+hi5 (7) 🤘 (3) 
+
+[03/27/2024 15:17] 0xsmartcontractsamurai
+I had 1 H and 1 M reports submitted both with runnable PoCs and seems both were invalidated, despite the PoCs...
+Definitely need to get access to backstage asap so I can explain my logic and defend my reports.
+
+{Reactions}
+✅ (7) 👍 
+
+[03/27/2024 15:24] devpelz
+how do you get backstage access?
+
+
+[03/27/2024 15:40] daniel526
+congratulations @juancito
+
+{Reactions}
+❤️ (2) 
+
+[03/27/2024 15:42] mctoady
+Know a lot of people will be annoyed a their payouts (or lack thereof) but it should be known that the PJQA for this contest was very thorough. If your reports were deemed invalid/downgraded etc I am pretty confident the decisions were likely correct.
+
+IMO the superpower of getting backstage access is being able to understand WHY your issue is invalid, so you can learn for next time, rather than because it gives you the opportunity to fight with the judge on every decision.
+
+{Reactions}
+💯 (12) 💜 (2) 
+
+[03/27/2024 15:47] 0xsorrynotsorry
+Big shout out to the judge - @hickuphh3 ,
+I got tired scrolling the winners post, can't imagine handling 2k+ issues.
+🫡
+
+{Reactions}
+salute (27) dance_vibe 
+
+[03/27/2024 16:01] dany_armstrong
+Sadly, only 7th position.
+
+
+[03/27/2024 16:09] vangrim
+I saw that some vulnerabilities were deemed invalid due to offchain mechanisms that weren't readily available on their site unfortunately. For example, a few frontrunning issues got invalidated due to the players not knowing the outcome of the fight until the results were already published
+
+{Reactions}
+👍 
+
+[03/27/2024 16:35] forkforkdog
+Congrats everyone who discovered crits here
+
+{Reactions}
+💪 (4) 
+
+[03/27/2024 17:14] 7a4raf
+@haxatron  congratssss 🔥🔥🔥👌
+
+{Reactions}
+hi5 
+
+[03/27/2024 19:57] josephdara
+282 wardens/teams. That’s alot
+
+
+[03/27/2024 19:57] josephdara
+Happy i got some reward
+
+
+[03/28/2024 03:48] swizz1337
+Ggs Boyz, grats to the guys who got paid big. Are our findings viewable ATM or do we need to wait? Just want to make sure incase I can make an appeal or something
+
+
+[03/28/2024 03:51] swizz1337
+Oh as a noobie we don't have the privilege of disputing a finding do we
+
+
+[03/28/2024 04:39] swizz1337
+How Is that possible?
+
+
+[03/28/2024 10:29] devblixt_
+Basically there's an algorithm which calculates how much payout each person gets- if you find high issues but if they are duplicated by a lot of wardens, you get less. if you find a unique (solo) vulnerability, you get more
+
+{Reactions}
+mermaidHappy 
+
+[03/28/2024 11:40] _paperparachute
+The comment above yours explains how our algorithm reduces the value of highly duplicated findings. Also would appreciate if you removed the profanity and avoid using it in future.
+
+
+[03/28/2024 11:44] judeabara
+Ok thank you. It wasn't me. But I was just concerned. I was shocked to see such a low amount
+
+
+[03/28/2024 11:44] judeabara
+When is the reward going to get to may wallet?
+
+
+[03/28/2024 11:49] _paperparachute
+I appreciate it is frustrating when high-dupe findings become somewhat worthless, but they do still count towards your Backstage eligibility, which is worth a lot in itself. Unfortunately, if 100 people can find a bug then it suggests the bug is relatively easy to find, and therefore less valuable to the sponsor. If 1 person finds a bug with 200 participants, the value of that bug will be extremely high.
+
+Rewards will be sent in the next few days and will be announced in #📢announcements.
+
+{Reactions}
+hi5 
+
+[03/28/2024 11:50] _paperparachute
+I'm deleting your original post, just to avoid leaving profanity in the channel 🙂
+
+{Reactions}
+👍 
+
+[03/29/2024 20:47] xkeywordx
+you found 4 highs, and 5 lows, and 1 gas, and you got paid 79?
+
+
+[03/30/2024 02:39] poeaudits
+Must have mostly been heavily duplicated findings.
+
+
+[03/30/2024 15:32] 0xtekken
+I found some valid mediums that even in the roughest conditions could be taken at least as informationals.
+
+just my opinions of course, and my PoC's opinions
+
+
+[04/09/2024 04:06] kartik_giri_47538
+Hey @PaperParachute can i participate in ai arena mitigation contest? I have found vulnerabilities in previous contest,
+
+{Reactions}
+😂 
+
+[04/09/2024 08:31] kalogerone
+@PaperParachute sorry if you are not the right person for this but I would also like to participate in ai arena mitigation, found 3 Hs and 3 Ms in the contest
+
+
+[04/09/2024 08:36] kuprumion
+Guys, it's not may be explained properly, the closest I found in the doc is [How Code4rena mitigation reviews work](https://docs.code4rena.com/roles/sponsors/contest-process#how-code4rena-mitigation-reviews-work).
+> Most mitigation reviews are invitational competitions between 3-5 of the top-performing wardens from your audit.
+Specifically for AI Arena, you had to be in the top 3 of the wardens participating. Moreover, you need to become [certified](https://docs.code4rena.com/roles/certified-contributors) to participate in any invitational audit.
+
+{Embed}
+https://docs.code4rena.com/roles/certified-contributors
+Certified contributors | Code4rena
+In order to create opportunities for contributions which rely on establishment of trust, Code4rena allows community members to opt into certifying their identity and entering into a simple agreement.
+
+{Embed}
+https://docs.code4rena.com/roles/sponsors/contest-process
+Audit process | Code4rena
+
+{Reactions}
+🙏 thankyou 
+
+[04/09/2024 11:36] _paperparachute
+Thanks kuprum. Just to confirm, certified wardens are selected from the highest performers in audits to participate in the mitigation review. Due to their high performance in the original audit, it's clear they have the broadest understanding of the codebase, and the issues found in the original audit.
+
+{Reactions}
+🤝 
+
+[04/09/2024 14:21] kartik_giri_47538
+Thanks guys for confirmation.
+
+{Reactions}
+🤝 
+
+[04/25/2024 02:14] itsmetechjay
+ℹ️ This channel is pending archive.   As a result, any private threads will be permanently deleted on Friday, 03 May 2024. Please make sure to grab anything you might need before then.
+
+
+[04/26/2024 22:57] vrontg
+about 2 month since this audit ended. Where I can see report? I don't see it on web site. I wanna know why I receive 3$ for 3H 🤣
+
+
+[05/03/2024 15:25] itsmetechjay
+ℹ️ Reminder: this channel will be deleted in 24 hours.
+
+
+==============================================================
+Exported 1,251 message(s)
+==============================================================
